@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.org/tidders2000/screenpop.svg?branch=master)](https://travis-ci.org/tidders2000/screenpop)
+[![Build Status](https://travis-ci.com/tidders2000/screenpop.svg?branch=master)](https://travis-ci.com/tidders2000/screenpop)
