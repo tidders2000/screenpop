@@ -1,0 +1,19 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password recovery on 127.0.0.1:8000
+From: webmaster@localhost
+To: simon@scruffyhorse.com
+Date: Sun, 16 Aug 2020 15:56:28 -0000
+Message-ID: <159759338879.31426.4904713232462417587@simons-mbp.lan>
+
+Dear admin,
+
+You -- or someone pretending to be you -- has requested a password reset on 127.0.0.1:8000.
+
+You can set your new password by following this link:
+
+http://127.0.0.1:8000/resetreset/MQ:1k7L1I:v8Qu4ZqhuSpLAtgfFs_ndOpRrEZ2MOBSndaqkuJnAWg/
+
+If you don't want to reset your password, simply ignore this email and it will stay unchanged.
+-------------------------------------------------------------------------------
