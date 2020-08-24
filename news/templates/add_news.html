@@ -1,0 +1,20 @@
+{% extends 'base.html' %}{%load static %}{% load crispy_forms_tags %} {% block page_title %} Add News{% endblock %} {% block page_heading %}Add News{% endblock %}
+ {% block content %}
+
+ <script src="https://cdn.tiny.cloud/1/kpjdhptjs36lfqw2qadvf8at9ctiu2mayk7ij9qickwejno7/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+ <script src="{% static  'js/tiny.js' %}"></script> 
+ <h1>Add News</h1>
+
+ <div class="container-fluid">
+
+  <form method='POST' enctype="multipart/form-data">
+                      {% csrf_token %} {{ news|crispy }}
+                      <button type="submit" class="btn btn-success">PUBLISH</button>
+
+                      </form>
+
+                      </div>
+
+
+
+ {% endblock%}

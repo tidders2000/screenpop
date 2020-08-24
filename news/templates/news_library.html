@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block page_title %}News Library{% endblock %} {% block page_heading %} News Library{% endblock %}
+ {% block content %}
+
+ <div class="container-fluid">
+
+ <h1>News Library</h1>
+
+ 
+  <div class="blog-content pt60">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+
+        {% for article in articles %}
+          <article class="uou-block-7f"> <img src="{{MEDIA_URL}}{{ article.image}}" alt="news image" class="thumb">
+            <div class="meta"> <span class="Published">{{article.date}}</span>  </div>
+            <h1><a href="#">{{article.headline}}</a></h1>
+            <p>{{article.article|striptags |truncatewords_html:10}}</p>
+            <a href="{{article.pk}}" class="btn btn-small btn-primary">Read More</a> </article>
+          <!-- end .uou-block-7f -->
+          {% endfor %}
+        
+          <!-- end .uou-block-7f -->
+          
+          <div class="text-center pt20">
+            <ul class="uou-paginatin list-unstyled">
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+            </ul>
+          </div>
+        </div>
+        
+          <!-- end uou-sidebar --> 
+        </div>
+      </div>
+      <!-- end row --> 
+      
+    </div>
+    <!-- edn cotainer --> 
+    
+  </div>
+</div>
+</div>
+ {% endblock%}

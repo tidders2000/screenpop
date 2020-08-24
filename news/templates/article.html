@@ -1,0 +1,25 @@
+{% extends 'base.html' %}{% load crispy_forms_tags %} {% block page_title %} Add News{% endblock %} {% block page_heading %}Add News{% endblock %}
+ {% block content %}
+
+<div class="container-fluid">
+
+
+<div class="row">
+
+<div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 mt-2" style="background-color:#f4f4f4;">
+
+
+<h1>{{article.headline}}</h1>
+
+<div class="uou-block-6a">
+<img src="{{MEDIA_URL}}{{article.image}}" style="height:270px; width:270px;" alt="newsimage" class="image"/>
+   
+          </div>
+
+          {{article.article| safe | linebreaks}}
+
+</div>
+</div>
+</div>
+
+ {% endblock%}

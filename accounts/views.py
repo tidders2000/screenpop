@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
 from .forms import ProfileForm
+from news.models import News
 
 
 def index(request):
@@ -77,5 +78,6 @@ def user_profile(request):
 
 @login_required
 def dashboard(request):
+    articles = News.objects.all()[:3]
 
-    return render(request, 'dashboard.html')
+    return render(request, 'dashboard.html', {'articles': articles})

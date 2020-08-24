@@ -1,5 +1,5 @@
 
-{% extends 'base.html' %} {% block page_title %}User Profile Page{% endblock %} {% block page_heading %}Profile{% endblock %}
+{% extends 'base.html' %}{% load static%} {% block page_title %}User Profile Page{% endblock %} {% block page_heading %}Profile{% endblock %}
  {% block content %}
  <p>{{ profile.email }}</p>
  <div class="compny-profile"> 
@@ -40,26 +40,18 @@
               <div class="sidebar-information">
 
               <h4>News</h4>
-       
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
 
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
+              {% for article in articles %}
+
+              <article class="uou-block-7f"> <img src="{{MEDIA_URL}}{{ article.image}}" alt="news image" class="thumb" style="height:80px;width:80px;">
+          <div class="meta"> <span class="time-ago">{{article.date}}</span>  </div>
+          <h1><a href="#">{{article.headline}}</a></h1>
+          <p>{{article.article|striptags |truncatewords_html:10}}</p>
+          <a href="{{article.pk}}" class="btn btn-primary">Read More</a> </article>
+
+          {% endfor %}
+       
+         
 
               <h4>Latest Group Chat</h4>
               <div class="alert alert-secondary alert-dismissible fade show" role="alert">
