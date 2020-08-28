@@ -19,7 +19,7 @@ def index(request):
 
             if user:
                 auth.login(user=user, request=request)
-                return redirect(reverse('dashboard'))
+                return redirect(reverse('switcher'))
             else:
                 login_form.add_error(None, 'your u or p is wrong')
     else:
@@ -104,7 +104,7 @@ def switcher(request):
 
 
 def switching(request, pk):
-
+    # changes the group and business based on the switcher instance by updating session cookies
     switchdata = Switcher.objects.get(pk=pk)
     grp = switchdata.group.pk
     bp = switchdata.business_profile.pk
