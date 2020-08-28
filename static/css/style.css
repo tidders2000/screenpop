@@ -351,8 +351,8 @@ body
 
 .profile-bnr {
     min-height: 500px;
-    background: url(../images/profile-bnr.jpg) no-repeat;
-    background-size: cover;
+    /* background: url(../images/webdesign.jpeg) no-repeat;
+    background-size: cover; */
 }
 
 .user-profile-bnr {
@@ -1561,7 +1561,7 @@ iframe {
 .banr-head input[type="email"],
 input[type="text"],
 input[type="password"] {
-    color: #fff;
+    color: #000;
 }
 
 .home-pro .services ul {
@@ -1660,7 +1660,7 @@ input[type="password"] {
 }
 
 .app-images .text-area p {
-    color: #fff;
+    color: #000;
 }
 
 .app-images .text-area a i {

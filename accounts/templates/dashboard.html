@@ -29,7 +29,26 @@
                 </div>
               </div>
             </div>
+                  <div class="sidebar">
+              <h5 class="main-title">My Groups</h5>
+           
+              <div class="sidebar-information">
+                <div class="profile-usermenu">
+
+                  <ul class="nav nav-links">
+                  {% for switch in switchData %}
+                    <li class="active"> <a href="{% url 'switching' switch.pk %} "> <i class="fa fa-heart-o"></i> {{switch.group.groupName}}--{{switch.business_profile.business_name}}</a> </li>
+                   
+                    
+                  {% endfor %}
+                  </ul>
+                  <br>
+                </div>
+              </div>
+            </div>
           </div>
+
+          
           
 
               <div class="col-md-8"> 
@@ -40,6 +59,7 @@
               <div class="sidebar-information">
 
               <h4>News</h4>
+              {{test}}
 
               {% for article in articles %}
 

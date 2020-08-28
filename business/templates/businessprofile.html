@@ -1,36 +1,35 @@
-{% extends 'base.html' %} {% block page_title %}Market Place{% endblock %} {% block page_heading %}Market Place{% endblock %}
+{% extends 'base.html' %}{% load static%} {% block page_title %}Profile{% endblock %} {% block page_heading %}Market Place{% endblock %}
  {% block content %}
 
   <div class="compny-profile"> 
+    {% for prof in profile %}
     <!-- SUB Banner -->
-    <div class="profile-bnr">
+    <div class="profile-bnr" style='background: url({{MEDIA_URL}}{{prof.header_image}}) no-repeat; background-size: cover;'>
       <div class="container"> 
         
         <!-- User Iinfo -->
         <div class="user-info">
-          <h1>UOU Motors Inc. <a data-toggle="tooltip" data-placement="top" title="Verified Member"><img src="images/icon-ver.png" alt="" ></a> </h1>
-          <h6>Automotive</h6>
-          <p>7979 Leary Way Northeast
-            Redmond, WA 98052  (<a href="#.">map</a> / <a href="#.">street</a>)</p>
+      
+          <h1>{{prof.business_name}} <a data-toggle="tooltip" data-placement="top" title="Verified Member"><img src="{{MEDIA_URL}}{{prof.logo}}" alt="" ></a> </h1>
+          <h6>{{prof.business_type}}</h6>
+          <p>{{ prof.street_address1}} {{ prof.street_address2}} {{ prof.town_or_city}} {{ prof.postcode }}</p>
           
           <!-- Social Icon -->
-          <div class="social-links"> <a href="#."><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-google"></i></a> <a href="#."><i class="fa fa-linkedin"></i></a> </div>
+          <div class="social-links"> <a href="{{prof.facebook}}"><i class="fa fa-facebook"></i></a> <a href="prof.twitter"><i class="fa fa-twitter"></i></a> <a href="prof.google"><i class="fa fa-google"></i></a> <a href="prof.linkedin"><i class="fa fa-linkedin"></i></a> </div>
           
           <!-- Stars -->
           <ul class="row">
             <li class="col-sm-6">
               <div class="stars"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <span>(06)</span> </div>
             </li>
-            <li class="col-sm-6">
-              <p><i class="fa fa-bookmark-o"></i> 28 Bookmarks</p>
-            </li>
+
           </ul>
           
           <!-- Followers -->
           <div class="followr">
             <ul class="row">
               <li class="col-sm-6">
-                <p>Followers <span>(31)</span></p>
+                <p>Followers <span>{{prof.pk}}</span></p>
               </li>
               <li class="col-sm-6">
                 <p>Following <span>(38)</span></p>
@@ -94,30 +93,27 @@
             <!-- Company Information -->
             <div class="sidebar">
               <h5 class="main-title">Company Information</h5>
-              <div class="sidebar-thumbnail"> <img src="images/company-thumb.jpg" alt=""> </div>
+              <div class="sidebar-thumbnail"> <img src="{{MEDIA_URL}}{{prof.logo}}" alt=""> </div>
               <div class="sidebar-information">
                 <ul class="single-category">
                   <li class="row">
                     <h6 class="title col-xs-6">Industry</h6>
-                    <span class="subtitle col-xs-6">Automotive</span> </li>
+                    <span class="subtitle col-xs-6">{{prof.business_type}}</span> </li>
                   <li class="row">
                     <h6 class="title col-xs-6">Location</h6>
-                    <span class="subtitle col-xs-6">California, USA</span> </li>
+                    <span class="subtitle col-xs-6">{{prof.location}}</span> </li>
                   <li class="row">
-                    <h6 class="title col-xs-6">Number of Employees</h6>
-                    <span class="subtitle col-xs-6">11,245</span> </li>
+                    <h6 class="title col-xs-6">Employees</h6>
+                    <span class="subtitle col-xs-6">{{prof.number_emp}}</span> </li>
                   <li class="row">
                     <h6 class="title col-xs-6">Legal Entity</h6>
-                    <span class="subtitle col-xs-6">Gesselschaft</span> </li>
-                  <li class="row">
-                    <h6 class="title col-xs-6">Company Registration</h6>
-                    <span class="subtitle col-xs-6">HSD7589</span> </li>
-                  <li class="row">
+                    <span class="subtitle col-xs-6">{{prof.legal_entity}}</span> </li>
+                 <li class="row">
                     <h6 class="title col-xs-6">Operating Hours</h6>
-                    <span class="subtitle col-xs-6">10:00 AM - 5:00 PM</span> </li>
+                    <span class="subtitle col-xs-6">{{prof.opening_hours}}</span> </li>
                   <li class="row">
                     <h6 class="title col-xs-6">Contacts</h6>
-                    <div class="col-xs-6"> <span class="subtitle">*****************<i class="fa fa-exclamation-circle"></i></span> <span class="subtitle">***************** <i class="fa fa-exclamation-circle"></i></span> <a href="#.">example@example.com</a> <a href="#.">example.com</a> </div>
+                    <div class="col-xs-6"> <span class="subtitle">{{prof.contact_name}}</i></span> <span class="subtitle"><a href="mailto:{{prof.e_mail}}">Mail Me</a></i></span>  </div>
                   </li>
                 </ul>
               </div>
@@ -147,7 +143,7 @@
               </div>
             </div>
             
-            <!-- Company Rating -->
+            <!-- Company Rating 
             <div class="sidebar">
               <h5 class="main-title">Contact</h5>
               <div class="sidebar-information form-side">
@@ -158,7 +154,7 @@
                   <button class="btn btn-primary">Send message</button>
                 </form>
               </div>
-            </div>
+            </div>-->
           </div>
           
           <!-- Tab Content -->
@@ -170,54 +166,27 @@
                 <div class="profile-main">
                   <h3>About the Company</h3>
                   <div class="profile-in">
-                    <div class="image-part"> <img src="images/profile-img.jpg" alt="" > </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, maxime, excepturi, mollitia, voluptatibus 
-                      similique aliquidautem laudantium sapiente ad enim ipsa modi labo rum accusantium deleniti neque. </p>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat 
-                      accusamus nemoitate id molestiae consectetur quae pariatur repudi andae vel ex quaerat nam iusto aliquid 
-                      laborum quia adipisci aut ut imcati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum
-                      assumenda.</p>
+                    <div class="image-part"> <img src="{% static 'images/about-icon.png'%}" alt="logo" style="height:80px; width:80px;"> </div>
+                    <p>    {{prof.about| safe | linebreaks}}.</p>
                   </div>
                 </div>
                 
                 <!-- Services -->
                 <div class="profile-main">
                   <h3>Services</h3>
-                  <div class="profile-in profile-serv">
-                    <h6>Here’s an overview of the services we provide.</h6>
-                    <div class="media">
-                      <div class="media-left">
-                        <div class="icon"> <img src="images/icon-prifile-1.png" alt="" > </div>
-                      </div>
-                      <div class="media-body">
-                        <h6>Engine diagnostics and repairs</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, maxime, excepturi, 
-                          mollitia, voluptatibus similique aliquidautem laudantium sapiente ad enim ipsa modi 
-                          labo rum accusantium deleniti neque.</p>
-                      </div>
-                    </div>
-                    <div class="media">
-                      <div class="media-left">
-                        <div class="icon"> <img src="images/icon-prifile-2.png" alt="" > </div>
-                      </div>
-                      <div class="media-body">
-                        <h6>Engine diagnostics and repairs</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, maxime, excepturi, 
-                          mollitia, voluptatibus similique aliquidautem laudantium sapiente ad enim ipsa modi 
-                          labo rum accusantium deleniti neque.</p>
-                      </div>
-                    </div>
-                    <div class="media">
-                      <div class="media-left">
-                        <div class="icon"> <img src="images/icon-prifile-3.png" alt="" > </div>
-                      </div>
-                      <div class="media-body">
-                        <h6>Engine diagnostics and repairs</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, maxime, excepturi, 
-                          mollitia, voluptatibus similique aliquidautem laudantium sapiente ad enim ipsa modi 
-                          labo rum accusantium deleniti neque.</p>
-                      </div>
-                    </div>
+                   <div class="profile-in">
+                  <div class="image-part"> <img src="{% static 'images/about-icon.png'%}" alt="logo" style="height:80px; width:80px;"> </div>
+                  </div>
+                  <div class="profile-in ">
+                  
+                    
+                   
+                 
+                         
+                        <p>{{prof.services| safe | linebreaks}}</p>
+                   
+                    
+                    
                   </div>
                 </div>
               </div>
@@ -228,4 +197,5 @@
     </div>
   </div>
 </div>
+{% endfor%}
  {% endblock %}

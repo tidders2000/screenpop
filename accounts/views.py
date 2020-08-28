@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
 from .forms import ProfileForm
 from news.models import News
+from .models import Switcher
 
 
 def index(request):
@@ -78,6 +79,35 @@ def user_profile(request):
 
 @login_required
 def dashboard(request):
+    user = request.user
     articles = News.objects.all()[:3]
+    switchData = Switcher.objects.filter(user=user)
 
-    return render(request, 'dashboard.html', {'articles': articles})
+    return render(request, 'dashboard.html', {'articles': articles,  'switchData': switchData})
+
+
+def switcher(request):
+
+    # set user id
+    user = request.user
+    # filters switcher table by user
+    switchData = Switcher.objects.filter(user=user)
+    # queries first instance in list
+    grp = switchData[0].group.pk
+    bp = switchData[0].business_profile.pk
+
+    # set business profile and group cookies
+    request.session['group'] = grp
+    request.session['bussprof'] = bp
+
+    return redirect(reverse('dashboard'))
+
+
+def switching(request, pk):
+
+    switchdata = Switcher.objects.get(pk=pk)
+    grp = switchdata.group.pk
+    bp = switchdata.business_profile.pk
+    request.session['group'] = grp
+    request.session['bussprof'] = bp
+    return redirect(reverse('dashboard'))

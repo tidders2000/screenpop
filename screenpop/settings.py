@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'pop_admin',
     'news',
     'tinymce',
+    'phone_field',
 ]
 
 MIDDLEWARE = [

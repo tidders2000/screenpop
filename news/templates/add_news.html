@@ -7,6 +7,9 @@
 
  <div class="container-fluid">
 
+      <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2">
+
   <form method='POST' enctype="multipart/form-data">
                       {% csrf_token %} {{ news|crispy }}
                       <button type="submit" class="btn btn-success">PUBLISH</button>
@@ -15,6 +18,7 @@
 
                       </div>
 
-
+</div>
+</div>
 
  {% endblock%}

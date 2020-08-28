@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from groups.models import Groups
+from business.models import BusinessProfile
 
 
 class Profile(models.Model):
@@ -19,3 +21,10 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+class Switcher(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    group = models.ForeignKey(Groups, null=True, on_delete=models.SET)
+    business_profile = models.ForeignKey(
+        BusinessProfile, null=True, on_delete=models.CASCADE)
