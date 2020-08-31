@@ -68,7 +68,7 @@
             <li> <a href="{% url 'market' %}">Market Place</a> </li>
             <li class=""> <a href="{% url 'blog' %}">Blog</a>
               <ul>
-                  <li><a href="{% url 'blogread' %}">Blog Read</a></li> 
+                  {% comment %} <li><a href="{% url 'post_detail' %}">Blog Read</a></li>  {% endcomment %}
                 <li><a href="{% url 'blog' %}">Blog Post</a></li>                
               </ul>
             </li>
@@ -79,7 +79,8 @@
                   <li><a href="{% url 'registration' %}"> Add User</a></li>
         
                 <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
-                    <li><a href="{% url 'addNews'%}">Add News</a></li>                
+                    <li><a href="{% url 'addNews'%}">Add News</a></li>  
+                     <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>              
               </ul>
             </li>
               <li><a href="{% url 'group_directory'%}">Group Directory</a></li>

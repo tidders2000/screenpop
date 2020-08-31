@@ -36,7 +36,7 @@
       <div class="row">
       {% for group in groups %}
         <div class="col-sm-3">
-          <div class="uou-block-6a"> <a href='user-profile(layout-2).html'><img src="{{MEDIA_URL}}{{ group.image}}" alt="" style="cursor:pointer;height:255px; height:142px"></a>
+          <div class="uou-block-6a"> <a href="{% url 'group_detail' group.pk%}"><img src="{{MEDIA_URL}}{{ group.image}}" alt="" style="cursor:pointer;height:255px; height:142px"></a>
             <h6>{{group.groupName}} <span>15 Members</span></h6>
             <p><i class="fa fa-map-marker"></i>{{group.groupLocation}}</p>
           </div>

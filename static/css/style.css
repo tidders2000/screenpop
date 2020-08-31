@@ -355,12 +355,13 @@ body
     background-size: cover; */
 }
 
-.user-profile-bnr {
+
+/* .user-profile-bnr {
     min-height: 250px;
     padding-top: 65px;
     background: url(../images/user-bg.jpg) no-repeat;
     background-size: cover;
-}
+} */
 
 .user-profile-bnr h2 {
     color: #fff;

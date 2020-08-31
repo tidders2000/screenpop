@@ -11,6 +11,5 @@ class Groups(models.Model):
     about = HTMLField()
     image = models.ImageField(upload_to='media/images')
 
-
-def __str__(self):
-    return self.groupLocation
+    def __str__(self):
+        return self.groupName

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>ScreenPop Agenda</title>
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+        </style>
+    </head>
+    <body>
+        <div class='wrapper'>
+            <div class='header'>
+                <p class='title'>Meeting Agenda </p>
+            </div>
+        <div>
+             <H2>Group:{{meeting.group}}</h2>
+        <h2>Date of Meeting:{{meeting.meeting_date}}</h2>
+<h3>Attendees:</h3>
+     {% for attend in attendees %}
+        {{attend.user}}
+        {% endfor %}<br>
+
+    <h3>Visitors & Guests</h3>
+     {% for visit in visitors %}
+        {{visit.name}}
+        {% endfor %}
+       {% for guest in guests %}
+        {{guest.user}}
+        {% endfor %}
+        
+        
+        <br>
+
+    <h3>Apologies:</h3>
+     {% for apol in apologies %}
+        {{apol.user}}
+        {% endfor %}
+<h3>Agenda</h3>
+           <p>1: 1 minute round</p>
+        <p>2: {{meeting.agenda_item1}}</p>
+        <p>3: {{meeting.agenda_item2}}</p>
+        <p>4: {{meeting.agenda_item3}}</p>
+
+    </div>
+       
+
+  
+     
+
+   
+    </body>
+</html>

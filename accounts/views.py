@@ -6,6 +6,10 @@ from accounts.forms import UserLoginForm, UserRegistrationForm
 from .forms import ProfileForm
 from news.models import News
 from .models import Switcher
+from meetings.models import Meeting, Apologies, Guests
+from meetings.forms import apologies_form
+from datetime import datetime
+from datetime import date
 
 
 def index(request):
@@ -19,6 +23,7 @@ def index(request):
 
             if user:
                 auth.login(user=user, request=request)
+                # redirects to switcher instead of dash to set group and business
                 return redirect(reverse('switcher'))
             else:
                 login_form.add_error(None, 'your u or p is wrong')
@@ -79,11 +84,34 @@ def user_profile(request):
 
 @login_required
 def dashboard(request):
-    user = request.user
-    articles = News.objects.all()[:3]
-    switchData = Switcher.objects.filter(user=user)
 
-    return render(request, 'dashboard.html', {'articles': articles,  'switchData': switchData})
+    # current user
+    user = request.user
+    # get new articles for dash
+    articles = News.objects.all()[:3]
+    # get list of groups and business for user
+    switchData = Switcher.objects.filter(user=user)
+    # work out next meeting
+    # todays date
+    today = date.today()
+    # limits the search to one and model in date order by group
+    group = request.session['group']
+    # show the latest meeting
+    meeting = Meeting.objects.filter(meeting_date__gte=today, group=group)[0:1]
+    # show any meeting requests
+
+    guests = Guests.objects.filter(
+        user=user, meeting__meeting_date__gte=today)
+
+    # returns nummber of group members
+
+    member_count = Switcher.objects.filter(group=group).count()
+
+    # get group members details
+
+    members = Switcher.objects.filter(group=group)
+
+    return render(request, 'dashboard.html', {'guests': guests, 'articles': articles,  'switchData': switchData, 'meeting': meeting, 'today': today, 'members': members, 'member_count': member_count})
 
 
 def switcher(request):
@@ -105,9 +133,24 @@ def switcher(request):
 
 def switching(request, pk):
     # changes the group and business based on the switcher instance by updating session cookies
+    # filters switcher table by instance
     switchdata = Switcher.objects.get(pk=pk)
+    # sets  variables
     grp = switchdata.group.pk
     bp = switchdata.business_profile.pk
+    # resets session cookies
     request.session['group'] = grp
     request.session['bussprof'] = bp
+    return redirect(reverse('dashboard'))
+
+
+def apologies(request, pk):
+    user = request.user
+    meeting = Meeting.objects.get(pk=pk)
+    apologies = apologies_form().save(commit=False)
+    apologies.user = user
+    apologies.meeting = meeting
+    apologies.save()
+    messages.error(request, 'apologies added')
+
     return redirect(reverse('dashboard'))

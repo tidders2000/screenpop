@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %}{% block page_title %}Meeting{% endblock %} {% block page_heading %}Meeting{% endblock %}
+ {% block content %}
+
+
+<h1>Approve Meeting Requests</h1>
+
+      <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2">
+
+          <table class=" table table-bordered table-hover rota_tab ">
+                <thead class=" ">
+                    <tr>
+                        <th scope=" col ">Name</th>
+                        <th scope=" col ">Meeting</th>
+                        
+                      <th scope="col">Group</th>
+                        <th scope=" col ">Approve</th>
+                        <th scope ="col">Submit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in requests %}
+                    <tr>
+                        <td> {{request.user}}</td>
+                        <td>{{request.meeting.meeting_date}}</td>
+                        <td>{{request.meeting.group}}</td>
+                      
+                        
+                        <td>
+                            <form method='POST'>
+                            <input type='hidden' name='guest_pk' id='guest_pk' value="{{request.pk}}"/>
+                                <div class=" form-group form-check ">
+                                   {% csrf_token %} {{ form |crispy}}
+                                
+                        </td>
+                        <td>
+                        </div><button type=" submit "  class=" ">Approve</button></form>
+                        </td>
+
+
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+ 
+                      </div>
+
+</div>
+</div>
+
+
+ {% endblock %}
