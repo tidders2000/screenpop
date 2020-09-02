@@ -2,13 +2,13 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-from .models import Profile
+from .models import Profile, Switcher
 
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('telephone',)
+        fields = ('profile_image', 'telephone',)
 
 
 class UserLoginForm(forms.Form):
@@ -46,3 +46,9 @@ class UserRegistrationForm(UserCreationForm):
         if password1 != password2:
             raise forms.ValidationError(u'Passwords do not match')
         return password2
+
+
+class switcher_form(forms.ModelForm):
+    class Meta:
+        model = Switcher
+        fields = '__all__'

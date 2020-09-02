@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from machina import urls as machina_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -31,6 +31,7 @@ urlpatterns = [
     path('pop_admin/', include('pop_admin.urls')),
     path('news/', include('news.urls')),
     path('tinymce/', include('tinymce.urls')),
+    path('forum/', include(machina_urls)),
 
 ]
 

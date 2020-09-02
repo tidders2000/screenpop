@@ -70,11 +70,11 @@
           <div class="meta"> <span class="time-ago">{{article.date}}</span>  </div>
           <h1><a href="#">{{article.headline}}</a></h1>
           <p>{{article.article|striptags |truncatewords_html:10}}</p>
-          <a href="{{article.pk}}" class="btn btn-primary">Read More</a> </article>
+          <a href="{% url 'newsArticle' article.pk %}" class="btn btn-primary">Read More</a> </article>
 
           {% endfor %}
        
-         
+       {{data }}
 
               <h4>My Meeting Requests</h4>
               <ul>
@@ -83,6 +83,11 @@
               <li></li>
               {% endfor %}
               </ul>
+
+              <h4>Latest Forum Posts</h4>
+                <a href='http://127.0.0.1:8000/forum/'><img src="{% static 'images/forum.png'%}" alt='forums'/></a>
+
+              
               {% comment %} <div class="alert alert-secondary alert-dismissible fade show" role="alert">
                 <img src="https://www.w3schools.com//w3images/bandmember.jpg" alt="Avatar" class='av'> You should check in on some of those fields below.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -130,30 +135,19 @@
            
             <!-- Company Information -->
              <h5 class="sidebar-title">Latest Blogs</h5>
+
+             {% for blo in blog %}
          <div class="latest-post-widget">
               <div class="post-single">
-                <img src="img/p-post-1.png" alt="">
-                <p class="meta">January 12, 2015</p>
-                <p class="meta">Design</p>
-                <h6 class="post-title"><a href="#">Pariatur Vellit Corrupti Goes Into 2 Lines</a></h6>
+                <img src="{{MEDIA_URL}}{{blo.author.profile.profile_image}}" alt="image of author">
+                <p class="meta">{{blo.created_on}}</p>
+                <p class="meta">{{blo.author}}</p>
+                <h6 class="post-title"><a href="#">{{blo.title}}</a></h6>
 
               </div>
+              {% endfor %}
 
-              <div class="post-single">
-                <img src="img/p-post-2.png" alt="">
-                <p class="meta">January 12, 2015</p>
-                <p class="meta">Design</p>
-                <h6 class="post-title"><a href="#">Pariatur Vellit Corrupti Goes Into 2 Lines</a></h6>
-
-              </div>
-
-              <div class="post-single">
-                <img src="img/p-post-3.png" alt="">
-                <p class="meta">January 12, 2015</p>
-                <p class="meta">Design</p>
-                <h6 class="post-title"><a href="#">Pariatur Vellit Corrupti Goes Into 2 Lines</a></h6>
-
-              </div>
+     
             </div> <!-- end latest-post-widget -->
 
 

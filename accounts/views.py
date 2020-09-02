@@ -3,13 +3,14 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
-from .forms import ProfileForm
+from .forms import ProfileForm, switcher_form
 from news.models import News
 from .models import Switcher
 from meetings.models import Meeting, Apologies, Guests
 from meetings.forms import apologies_form
 from datetime import datetime
 from datetime import date
+from blog.models import Post
 
 
 def index(request):
@@ -62,14 +63,18 @@ def logout(request):
 
 def registration(request):
 
-    # if request.method == "POST":
-    #     registration_form = UserRegistrationForm(request.POST)
-    #     profile_form = ProfileForm(request.POST)
+    if request.method == "POST":
+        registration_form = UserRegistrationForm(request.POST)
+        profile_form = ProfileForm(request.POST, request.FILES)
+        telephone = request.POST.get("telephone", "default")
+        image = request.FILES.get("profile_image")
 
-    #     if registration_form.is_valid() and profile_form.is_valid():
-    #         xe = registration_form.save()
-    #         xe.profile.telephone = "testing"
-    #         xe.save()
+        if registration_form.is_valid() and profile_form.is_valid():
+            xe = registration_form.save()
+            xe.profile.telephone = telephone
+            xe.profile.profile_image = image
+            xe.save()
+            return redirect(reverse('new_business'))
 
     registration_form = UserRegistrationForm()
     profile_form = ProfileForm()
@@ -111,7 +116,10 @@ def dashboard(request):
 
     members = Switcher.objects.filter(group=group)
 
-    return render(request, 'dashboard.html', {'guests': guests, 'articles': articles,  'switchData': switchData, 'meeting': meeting, 'today': today, 'members': members, 'member_count': member_count})
+    # get blog posts
+    blog = Post.objects.all()[0:3]
+
+    return render(request, 'dashboard.html', {'blog': blog, 'guests': guests, 'articles': articles,  'switchData': switchData, 'meeting': meeting, 'today': today, 'members': members, 'member_count': member_count})
 
 
 def switcher(request):
@@ -142,6 +150,19 @@ def switching(request, pk):
     request.session['group'] = grp
     request.session['bussprof'] = bp
     return redirect(reverse('dashboard'))
+
+
+def switcher_add(request):
+    if request.method == "POST":
+        switch = switcher_form(request.POST)
+        if switch.is_valid():
+            switch.save(commit=True)
+            messages.error(request, "business Added")
+            return redirect(reverse('dashboard'))
+    else:
+
+        switch = switcher_form()
+        return render(request, 'switch_add.html', {'switch': switch})
 
 
 def apologies(request, pk):

@@ -2732,7 +2732,7 @@ input[type="password"] {
 
 .profile-company-content {
     position: relative;
-    padding: 60px 0 70px 0;
+    padding: 60px 0 0 0;
     background: #fff;
 }
 
