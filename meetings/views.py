@@ -10,12 +10,13 @@ from accounts.models import Switcher
 
 
 def meeting_detail(request):
-
+    form = meeting_model_form()
     if request.method == "POST":
         meeting = meeting_model_form(request.POST, request.FILES)
         if meeting.is_valid():
             meeting.save(commit=True)
             messages.error(request, "Meeting Added")
+
     else:
         form = meeting_model_form()
     return render(request, 'add_meeting.html', {'form': form})

@@ -1,6 +1,9 @@
 
 {% extends 'base.html' %}{%load static %}{% load crispy_forms_tags %} {% block page_title %} Add News{% endblock %} {% block page_heading %}Add News{% endblock %}
  {% block content %}
+
+  <script src="https://cdn.tiny.cloud/1/kpjdhptjs36lfqw2qadvf8at9ctiu2mayk7ij9qickwejno7/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+ <script src="{% static  'js/tiny.js' %}"></script> 
 <div id="main-wrapper"> 
   
  
@@ -23,15 +26,7 @@
           <article class="uou-block-7f blog-post-content">
             <img src="img/b-post-image.jpg" alt="">
 
-            <div class="meta">
-              <span class="time-ago">{{ post.created_on }}</span>
-              <span class="category">Posted in: <a href="#">{{ post.author }}</a></span>
-              <a href="#" class="comments">12 Comments</a>
-            </div>
-
-            <h1><a href="#">{{ post.title }}</a></h1>
-
-            <p>{{ post.content | safe }}</p>
+{{blog}}
 
 
             <div class="uou-share-story clearfix">

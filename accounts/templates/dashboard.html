@@ -13,6 +13,7 @@
           <div class="col-md-4"> 
             <!-- Company Information -->
             <div class="sidebar">
+            
               {% for meet in meeting %}
               <h5 class="main-title">My Meetings</h5>
               <div class="sidebar-thumbnail"> <a href="{{meet.zoom_link}}"><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuuJPsARq6KBAjTcAfwVe9Ujvq9SZO7HFOyOM8RmsqyuJZ7pNc&s' alt='zoom'> </a></div>
@@ -47,6 +48,30 @@
                   </ul>
                   <br>
                 </div>
+                
+              </div>
+            </div>
+
+                  <div class="sidebar">
+              <h5 class="main-title">My Meeting Requests</h5>
+           
+              <div class="sidebar-information">
+                <div class="profile-usermenu">
+
+             
+              <ul>
+              {%for guest in guests %}
+              {{guest.meeting.meeting_date}} {{guest.meeting.group}} {{guest.status}}
+              <li></li>
+              {% endfor %}
+              </ul>
+
+
+                 
+                  <br>
+                  
+                </div>
+                
               </div>
             </div>
           </div>
@@ -59,14 +84,14 @@
             <div class="sidebar bottom_fix">
               <h5 class="main-title">Notifications</h5>
           
-              <div class="sidebar-information">
+              <div class="sidebar-information" style="background-color:#fff">
 
-              <h4>News</h4>
+                  <div class="row" style="background-color:#C7AAC6; margin-bottom:10px;"><h4>News</h4></div>
               {{test}}
 
               {% for article in articles %}
 
-              <article class="uou-block-7f"> <img src="{{MEDIA_URL}}{{ article.image}}" alt="news image" class="thumb" style="height:80px;width:80px;">
+              <article class="uou-block-7f" > <img src="{{MEDIA_URL}}{{ article.image}}" alt="news image" class="thumb" style="height:80px;width:80px;">
           <div class="meta"> <span class="time-ago">{{article.date}}</span>  </div>
           <h1><a href="#">{{article.headline}}</a></h1>
           <p>{{article.article|striptags |truncatewords_html:10}}</p>
@@ -74,17 +99,30 @@
 
           {% endfor %}
        
-       {{data }}
-
+   <div style="background-color:#f4f4f4">
+      <div class="row" style="background-color:#5A8BAA; margin-bottom:10px;"><h4>Latest Blogs</h4></div>
+       {% for blo in blog %}
+         <div class="latest-post-widget" >
+              <div class="post-single">
+                <img src="{{MEDIA_URL}}{{blo.author.profile.profile_image}}" alt="image of author" style="height:80px;width:80px;">
+                <p class="meta"><span class="post-title">{{blo.title}}</span> {{blo.created_on}} {{blo.author}} </p>
+                <br><p class="">{{blo.content|striptags|safe|slice:":100" }}</p>
+               
+              </div>
+              </div>
+             
+              {% endfor %}
+              </div>
+{% comment %} 
               <h4>My Meeting Requests</h4>
               <ul>
               {%for guest in guests %}
               {{guest.meeting.meeting_date}} {{guest.meeting.group}} {{guest.status}}
               <li></li>
               {% endfor %}
-              </ul>
+              </ul> {% endcomment %}
 
-              <h4>Latest Forum Posts</h4>
+              <div class="row" style="background-color:rgb(217,147,59); margin-bottom:10px;"> <h4>Latest Forum Posts</h4></div>
                 <a href='http://127.0.0.1:8000/forum/'><img src="{% static 'images/forum.png'%}" alt='forums'/></a>
 
               
@@ -134,36 +172,17 @@
           <div class="col-md-4"> 
            
             <!-- Company Information -->
-             <h5 class="sidebar-title">Latest Blogs</h5>
-
-             {% for blo in blog %}
-         <div class="latest-post-widget">
-              <div class="post-single">
-                <img src="{{MEDIA_URL}}{{blo.author.profile.profile_image}}" alt="image of author">
-                <p class="meta">{{blo.created_on}}</p>
-                <p class="meta">{{blo.author}}</p>
-                <h6 class="post-title"><a href="#">{{blo.title}}</a></h6>
-
-              </div>
-              {% endfor %}
-
      
-            </div> <!-- end latest-post-widget -->
 
 
             <h5 class="sidebar-title">Tag Cloud</h5>
 
             <div class="widget-tag">
               <div class="tag-cloud">
-                <a class="btn btn-primary" href="#">User Experience</a>
-                <a class="btn btn-primary" href="#">HTML 5</a>
-                <a class="btn btn-primary" href="#">Css 3</a>
-                <a class="btn btn-primary" href="#">web design</a>
-                <a class="btn btn-primary" href="#">social media</a>
-                <a class="btn btn-primary" href="#">web development</a>
-                <a class="btn btn-primary" href="#">print design</a>
-                <a class="btn btn-primary" href="#">e-commerce</a>
-                <a class="btn btn-primary" href="#">java script</a>
+
+              {% for blo in blog %}
+                <a class="btn btn-primary" href="#">{{blo.tag}}</a>
+              {% endfor %}
               </div>
             </div>
           </div>
@@ -187,44 +206,12 @@
                   <div class="net-work-in"> 
                     
                     <!-- Filter -->
-                    <div class="filter-flower">
-                      <div class="row">
-                        <div class="col-sm-7">
-                          <ul>
-                            <li><a href="#." class="active">Show All</a></li>
-                         
-                          </ul>
-                        </div>
-                        
-                        <!-- Short -->
-                        <div class="col-sm-5">
-                          <select>
-                            <option>Sort</option>
-                            <option>Sort</option>
-                            <option>Sort</option>
-                            <option>Sort</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    
+                   
                     <!-- Members -->
                     <div class="main-mem"> 
                       
                       <!-- Head -->
-                      <div class="head">
-                        <div class="row">
-                          <div class="col-sm-8">
-                           
-                          </div>
-                          <div class="col-sm-4">
-                            <form>
-                              <input type="search" placeholder="Search">
-                              <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
+                   
                       
                       <!-- Title -->
                       <div class="tittle">

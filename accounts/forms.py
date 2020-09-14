@@ -12,8 +12,7 @@ class ProfileForm(forms.ModelForm):
 
 
 class UserLoginForm(forms.Form):
-    """form tobe used to login users"""
-    username = forms.CharField()
+    username = forms.CharField(label='Email')
     password = forms.CharField(widget=forms.PasswordInput)
 
 

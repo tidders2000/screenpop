@@ -1,36 +1,41 @@
 from django.contrib.auth.models import User
+from django.contrib import auth, messages
+from django.contrib.auth import get_user_model
+from django.db.models import Q
+from django.contrib.auth.backends import ModelBackend
 
 
-class EmailAuth:
-    """Authenticate a user by an exact match on the email and password"""
+UserModel = get_user_model()
 
-    def authenticate(self, username=None, password=None):
-        """
-        Get an instance of `User` based off the email and verify the
-        password
-        """
 
+class EmailAuth(ModelBackend):
+    def authenticate(self, request, username=None, password=None, **kwargs):
         try:
-            user = User.objects.get(email=username)
+            user = UserModel.objects.get(
+                Q(username__iexact=username) | Q(email__iexact=username))
+        except UserModel.DoesNotExist:
+            UserModel().set_password(password)
 
-            if user.check_password(password):
+        else:
+            if user.check_password(password) and self.user_can_authenticate(user):
                 return user
 
+    def get_user(self, user_id):
+        try:
+            user = UserModel.objects.get(pk=user_id)
+        except UserModel.DoesNotExist:
             return None
-        except User.DoesNotExist:
-            return None
-    
+
+        return user if self.user_can_authenticate(user) else None
+
     def get_user(self, user_id):
         """
-        Used by the Django authentiation system to retrieve a user instance
-        """
-        
+       Used by the django authentication system to retrieve an instance of User
+       """
         try:
             user = User.objects.get(pk=user_id)
-
             if user.is_active:
                 return user
-
             return None
         except User.DoesNotExist:
             return None

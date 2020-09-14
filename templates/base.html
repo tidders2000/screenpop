@@ -69,7 +69,8 @@
             <li class=""> <a href="{% url 'blog' %}">Blog</a>
               <ul>
                   {% comment %} <li><a href="{% url 'post_detail' %}">Blog Read</a></li>  {% endcomment %}
-                <li><a href="{% url 'blog' %}">Blog Post</a></li>                
+                <li><a href="{% url 'blog' %}">Blogs</a></li> 
+                <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
               </ul>
             </li>
             <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
@@ -112,7 +113,7 @@
 </div>
 <!-- end #main-wrapper -->
 <!-- Footer -->
-<div class="uou-block-4e">
+{% comment %} <div class="uou-block-4e">
   <div class="container">
     <div class="row">
       <div class="col-md-3 col-sm-6"> <a href="#" class="logo"><img src="{% static 'images/screenpop-logo.png'%}" alt=""></a>
@@ -154,16 +155,17 @@
       </div>
     </div>
   </div>
-</div>
+</div> {% endcomment %}
 <!-- end .uou-block-4e -->
 
 <div class="uou-block-4a secondary dark">
   <div class="container">
     <ul class="links">
+     <li><a href="#">Contact ScreenPop</a></li>
       <li><a href="#">Privacy Policy</a></li>
       <li><a href="#">Terms &amp; Conditions</a></li>
     </ul>
-    <p>Copyright &copy; 2015 <a href="#">Scruffy Horse</a>. All Rights reserved.</p>
+    <p>Copyright &copy; 2020 <a href="#">Scruffy Horse</a>. All Rights reserved.</p>
   </div>
 </div>
 <!-- end .uou-block-4a --> 

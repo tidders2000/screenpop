@@ -1,62 +1,258 @@
-{% extends "base.html" %} 
+{% extends 'base.html' %}{%load static %}{% load crispy_forms_tags %} {% block page_title %} Add News{% endblock %} {% block page_heading %}Add News{% endblock %}
+ {% block content %}
 
+<body>
+<div id="main-wrapper"> 
+  
+  <!-- Top Toolbar -->
 
+    <!-- end .uou-block-1a --> 
+  </div>
 
- {% block head %} 
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Professional Web Designer Blog. Website Design & Development,Web Applications, Grantham, Nottingham, Melton Mowbray, Newark, leicestershire ...">
-  <meta name="author" content="Scruffy Horse Media">
-  <title>Blog - web designer & website design</title>
-{% endblock head %}
+       <div class="col-md-8"></div>
+  <!-- end toolbar -->
  
-{% block content %}
+  
 
-<style>
-    body {
-        font-family: "Roboto", sans-serif;
-        font-size: 18px;
-        background-color: #fdfdfd;
-    }
-    
-    .head_text {
-        color: white;
-    }
-    
-    .card {
-        box-shadow: 0 16px 48px #E3E7EB;
-    }
-</style>
-
-<header class="blog_mast">
-    <div class="overlay"></div>
-    <div class="container">
+  
+  <!-- search -->
+  <div class="search-pro">
+    <div class="map-search">
+      <div class="container">
         <div class="row">
-            <div class=" col-md-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1 class=" site-heading my-4 mt-3 text">Web Builder Blog </h1>
-                 
-                </div>
+          <div class="col-md-12">
+            <div class="map-toggleButton"> <i class="fa fa-bars"></i> </div>
+            <div class="map-search-fields">
+              <div class="field">
+                <input type="text" placeholder="Keyword">
+              </div>
+              <div class="field">
+                <input type="text" placeholder="Name">
+              </div>
+              <div class="field custom-select-box">
+                <input type="text" placeholder="Profession">
+              </div>
             </div>
-        </div>
-    </div>
-</header>
-<div class="container">
-    <div class="row">
-        <!-- Blog Entries Column -->
-        <div class="col-md-8 mt-3 left">
-            {% for post in post_list %}
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h2 class="card-title">{{ post.title }}</h2>
-                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
-                    <p class="card-text">{{post.content|striptags|safe|slice:":200" }}</p>
-                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-             
+            <div class="search-button">
+              <button>Search Blog</button>
             </div>
-            {% endfor %}
+          </div>
         </div>
-       
+      </div>
     </div>
+  </div>
+
+
+  <div class="blog-content pt60">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+               {% for post in post_list %}
+          <article class="uou-block-7f"> <img src="{% static 'images/blog-image-1.jpg'%}" alt="" class="thumb">
+            <div class="meta"> <span class="time-ago">{{ post.created_on}}</span> <span class="category">Posted by:{{ post.author }}  <a href="#">Design</a></span> <a href="#" class="comments">12 Comments</a> </div>
+            <h1><a href="blog-post.html">{{ post.title }}</a></h1>
+            <p>{{post.content|striptags|safe|slice:":100" }}</p>
+            <a href="{% url 'post_detail' post.slug  %}" class="btn btn-small btn-primary">Read More</a> </article>
+          <!-- end .uou-block-7f -->
+          
+         {% endfor %}
+          <!-- end .uou-block-7f -->
+          
+          <div class="text-center pt20">
+            <ul class="uou-paginatin list-unstyled">
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="uou-sidebar">
+            <div class="search-widget">
+              <form class="search-form-widget" action="#">
+                <input type="text" class="search-input" placeholder="Search ...">
+                <input type="submit" value="">
+              </form>
+            </div>
+            <!-- end search-widget -->
+            
+            <h5 class="sidebar-title">Categories</h5>
+            <div class="list-widget">
+              <ul>
+                <li><a href="#">Creative</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Development</a></li>
+                <li><a href="#">Mulitmedia</a></li>
+                <li><a href="#">Offtopic</a></li>
+              </ul>
+            </div>
+            <h5 class="sidebar-title">About Us</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi.</p>
+            <h5 class="sidebar-title">Connect With Us</h5>
+            <div class="social-widget">
+              <div class="uou-block-4b">
+                <ul class="social-icons">
+                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                  <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                  <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                </ul>
+              </div>
+              <!-- end .uou-block-4b --> 
+            </div>
+            <!-- end social widget -->
+            
+            <h5 class="sidebar-title">Popular Posts</h5>
+            <div class="latest-post-widget">
+              <div class="post-single"> <img src="img/p-post-1.png" alt="">
+                <p class="meta">January 12, 2015</p>
+                <p class="meta">Design</p>
+                <h6 class="post-title"><a href="#">Pariatur Vellit Corrupti Goes Into 2 Lines</a></h6>
+              </div>
+              <div class="post-single"> <img src="img/p-post-2.png" alt="">
+                <p class="meta">January 12, 2015</p>
+                <p class="meta">Design</p>
+                <h6 class="post-title"><a href="#">Pariatur Vellit Corrupti Goes Into 2 Lines</a></h6>
+              </div>
+              <div class="post-single"> <img src="img/p-post-3.png" alt="">
+                <p class="meta">January 12, 2015</p>
+                <p class="meta">Design</p>
+                <h6 class="post-title"><a href="#">Pariatur Vellit Corrupti Goes Into 2 Lines</a></h6>
+              </div>
+            </div>
+            <!-- end latest-post-widget -->
+            
+            <h5 class="sidebar-title">Tag Cloud</h5>
+            <div class="widget-tag">
+              <div class="tag-cloud"> <a class="btn btn-primary" href="#">User Experience</a> <a class="btn btn-primary" href="#">HTML 5</a> <a class="btn btn-primary" href="#">Css 3</a> <a class="btn btn-primary" href="#">web design</a> <a class="btn btn-primary" href="#">social media</a> <a class="btn btn-primary" href="#">web development</a> <a class="btn btn-primary" href="#">print design</a> <a class="btn btn-primary" href="#">e-commerce</a> <a class="btn btn-primary" href="#">java script</a> </div>
+            </div>
+            <h5 class="sidebar-title">Archive</h5>
+            <div class="list-widget">
+              <ul>
+                <li><a href="#">May 2015</a></li>
+                <li><a href="#">April 2015</a></li>
+                <li><a href="#">July 2015</a></li>
+                <li><a href="#">Frbruary 2015</a></li>
+                <li><a href="#">January 2015</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- end uou-sidebar --> 
+        </div>
+      </div>
+      <!-- end row --> 
+      
+    </div>
+    <!-- edn cotainer --> 
+    
+  </div>
 </div>
-{%endblock%}
+{% endblock %}
+<!-- Footer -->
+<div class="uou-block-4e">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6"> <a href="#" class="logo"><img src="images/screenpop-logo.png" alt=""></a>
+        <ul class="contact-info has-bg-image contain" data-bg-image="images/footer-map-bg.png">
+          <li> <i class="fa fa-map-marker"></i>
+            <address>
+            795 Folsom Ave, Suite 600, San Francisco, CA 94107
+            </address>
+          </li>
+          <li> <i class="fa fa-phone"></i> <a href="tel:#">(123) 456-7890</a> </li>
+          <li> <i class="fa fa-envelope"></i> <a href="mailto:#">first.last@example.com</a> </li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <h5>Twitter Feed</h5>
+        <ul class="twitter-feed">
+          <li> RT <a href="#">@no1son</a>: Now this <a href="#">http://t.co/TSfMW1qMAW</a> is one hell of a stunning site!!! Awesome work guys <a href="#">@AIRNAUTS</a> <a href="#" class="time">May 25</a> </li>
+          <li> Check out the wordpress version of Tucson - <a href="#">http://t.co/sBlU3GbapT</a> <a href="#" class="time">May 22</a> </li>
+        </ul>
+      </div>
+           <div class="col-md-3 col-sm-6">
+        <h5>Meet ScreenPop</h5>
+        <ul class="photos-list">
+          <li><img src="images/download.png" style="cursor:pointer;" data-placement="top" data-container="body" data-toggle="popover" title="Bert Bach" data-content="Graphic Design"></li>
+          <li><img src="images/photostream6.jpg" alt=""></li>
+          <li><img src="images/photostream3.jpg" alt=""></li>
+          <li><img src="images/photostream2.jpg" alt=""></li>
+          <li><img src="images/photostream1.jpg" alt=""></li>
+          <li><img src="images/photostream.jpg" alt=""></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <h5>Newsletter</h5>
+        <p>Subscribe to our newsletter to receive our latest news and updates. We do not spam.</p>
+        <form class="newsletter-form" action="#">
+          <input type="email" placeholder="Enter your email address">
+          <input type="submit" class="btn btn-primary" value="Subscribe">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end .uou-block-4e -->
+
+<div class="uou-block-4a secondary dark">
+  <div class="container">
+    <ul class="links">
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms &amp; Conditions</a></li>
+    </ul>
+    <p>Copyright &copy; 2015 <a href="#">Scruffy Horse</a>. All Rights reserved.</p>
+  </div>
+</div>
+<!-- end .uou-block-4a --> 
+
+<div class="uou-block-11a">
+  <h5 class="title">Menu</h5>
+  <a href="#" class="mobile-sidebar-close">&times;</a>
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Index</a></li>
+      <li class="active"><a href="listing-filter.html">Professionals</a> </li>
+      <li><a href="profile_company.html">Profile Company</a></li>
+      <li><a href="profile_company-no-tabs.html">Profile Company No Tabs</a></li>
+      <li><a href="user-dashboard(connections)(hotkeys-disabled).html">User Dashboard 1</a></li>
+      <li><a href="user-dashboard(connections)(hotkeys-enabled).html">User Dashboard 2</a></li>
+      <li><a href="user-dashboard(followers).html">User Dashboard 3</a></li>
+      <li><a href="user-dashboard(following).html">User Dashboard 4</a></li>
+      <li><a href="blog-post.html">Blog Post</a></li>
+      <li> <a href="user-profile(layout-1).html">User Profile</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="gui-kit.html">GUI KIT</a></li>
+    </ul>
+  </nav>
+  <hr>
+</div>
+
+<!-- Scripts --> 
+<script src="https://maps.googleapis.com/maps/api/js"></script> 
+<script src="js/jquery-2.1.3.min.js"></script> 
+
+<!--<script src="js/bootstrap.js"></script> -->
+<script src="js/plugins/superfish.min.js"></script> 
+<script src="js/jquery.ui.min.js"></script> 
+
+
+
+<script src="js/plugins/rangeslider.min.js"></script> 
+<script src="js/plugins/jquery.flexslider-min.js"></script> 
+<script src="js/uou-accordions.js"></script> 
+<script src="js/uou-tabs.js"></script> 
+<script src="js/plugins/select2.min.js"></script> 
+<script src="js/owl.carousel.min.js"></script> 
+<script src="js/gmap3.min.js"></script> 
+<script src="js/scripts.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script><!---->
+
+
+  <script src="js/custom.js"></script> 
+</body>
+</html>

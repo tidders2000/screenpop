@@ -11,25 +11,35 @@ from meetings.forms import apologies_form
 from datetime import datetime
 from datetime import date
 from blog.models import Post
+from django.template.context_processors import csrf
 
 
 def index(request):
+
     if request.user.is_authenticated:
         return redirect(reverse('dashboard'))
-    if request.method == "POST":
+    if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
-        if login_form.is_valid():
-            user = auth.authenticate(username=request.POST['username'],
-                                     password=request.POST['password'])
 
-            if user:
-                auth.login(user=user, request=request)
-                # redirects to switcher instead of dash to set group and business
+        if login_form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = auth.authenticate(username=username,
+                                     password=password)
+
+            if user is not None:
+                auth.login(request=request, user=user)
+                messages.error(request, "You have successfully logged in")
                 return redirect(reverse('switcher'))
             else:
-                login_form.add_error(None, 'your u or p is wrong')
+
+                messages.error(request, "oops")
+                messages.error(request, user)
+                # redirects to switcher instead of dash to set group and business
+
     else:
         login_form = UserLoginForm()
+
     return render(request, 'index.html', {'login_form': login_form})
 
 

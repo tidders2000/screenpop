@@ -29,11 +29,9 @@
           <div class="followr">
             <ul class="row">
               <li class="col-sm-6">
-                <p>Followers <span>{{prof.pk}}</span></p>
+                <a href="{% url  'edit_profile' prof.pk %}"">EDIT PAGE</a>
               </li>
-              <li class="col-sm-6">
-                <p>Following <span>(38)</span></p>
-              </li>
+            
             </ul>
           </div>
         </div>
