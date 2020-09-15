@@ -46,3 +46,9 @@ def add_blog(request):
     else:
         blog = add_blog_form()
     return render(request, 'add_blog.html', {'blog': blog})
+
+
+def post_tag(request):
+    tag = request.GET['q']
+    post_list = Post.objects.filter(tag=tag)
+    return render(request, 'blog.html', {'post_list': post_list})

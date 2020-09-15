@@ -41,7 +41,7 @@
 
                   <ul class="nav nav-links">
                   {% for switch in switchData %}
-                    <li class="active"> <a href="{% url 'switching' switch.pk %} "> <i class="fa fa-heart-o"></i> {{switch.group.groupName}}--{{switch.business_profile.business_name}}</a> </li>
+                    <li class=""> <a href="{% url 'switching' switch.pk %} "> <i class="fa fa-ticket"></i> {{switch.group.groupName}}--{{switch.business_profile.business_name}}</a> </li>
                    
                     
                   {% endfor %}
@@ -59,21 +59,43 @@
                 <div class="profile-usermenu">
 
              
-              <ul>
+              <ul class="nav nav-links">
               {%for guest in guests %}
-              {{guest.meeting.meeting_date}} {{guest.meeting.group}} {{guest.status}}
-              <li></li>
+             
+              <li> <i class="fa fa-microphone"></i> {{guest.meeting.meeting_date}} {{guest.meeting.group}} {{guest.status}}</li>
               {% endfor %}
               </ul>
 
 
                  
                   <br>
+
+                
                   
                 </div>
                 
               </div>
+
+              
             </div>
+
+              <div class="col-md-4"> 
+           
+            <!-- Company Information -->
+     
+
+
+             <h5 class="main-title">Tag Cloud</h5>
+
+            <div class="widget-tag" style="padding-bottom:20px;">
+              <div class="tag-cloud">
+
+              {% for tag in tags %}
+                 <a class="btn btn-primary" href="{% url 'post_tag' %}?q={{tag.tag.pk}}">{{tag.tag}}</a>
+              {% endfor %}
+              </div>
+            </div>
+          </div>
           </div>
 
           
@@ -86,27 +108,36 @@
           
               <div class="sidebar-information" style="background-color:#fff">
 
-                  <div class="row" style="background-color:#C7AAC6; margin-bottom:10px;"><h4>News</h4></div>
+                  <div class="row" style="background-color:#C7AAC6; margin-bottom:10px;padding-left:5px;"><h4>News</h4></div>
               {{test}}
 
               {% for article in articles %}
 
-              <article class="uou-block-7f" > <img src="{{MEDIA_URL}}{{ article.image}}" alt="news image" class="thumb" style="height:80px;width:80px;">
+              {% comment %} <article class="uou-block-7f" > <img src="{{MEDIA_URL}}{{ article.image}}" alt="news image" class="thumb" style="height:80px;width:80px;float:left;">
           <div class="meta"> <span class="time-ago">{{article.date}}</span>  </div>
           <h1><a href="#">{{article.headline}}</a></h1>
           <p>{{article.article|striptags |truncatewords_html:10}}</p>
-          <a href="{% url 'newsArticle' article.pk %}" class="btn btn-primary">Read More</a> </article>
-
+          <a href="{% url 'newsArticle' article.pk %}" class="btn btn-primary">Read More</a> </article> {% endcomment %}
+            <div class="latest-post-widget" >
+              <div class="post-single">
+                <img src="{{MEDIA_URL}}{{ article.image}}" alt="image of author" style="height:80px;width:80px;">
+                <p class="meta"><span class="post-title">{{article.headline}}</span>  </p>
+                <br><p class="">{{article.article|striptags |truncatewords_html:10}}</p>
+               
+              </div>
+              </div>
+          
+          
           {% endfor %}
        
-   <div style="background-color:#f4f4f4">
-      <div class="row" style="background-color:#5A8BAA; margin-bottom:10px;"><h4>Latest Blogs</h4></div>
+   <div>
+      <div class="row" style=" background-color:#5CC0CE; margin-bottom:10px;padding-left:5px;"><h4>Latest Blogs</h4></div>
        {% for blo in blog %}
          <div class="latest-post-widget" >
               <div class="post-single">
                 <img src="{{MEDIA_URL}}{{blo.author.profile.profile_image}}" alt="image of author" style="height:80px;width:80px;">
                 <p class="meta"><span class="post-title">{{blo.title}}</span> {{blo.created_on}} {{blo.author}} </p>
-                <br><p class="">{{blo.content|striptags|safe|slice:":100" }}</p>
+                <br><p class="">{{blo.content|striptags|safe|truncatewords_html:10 }}</p>
                
               </div>
               </div>
@@ -122,8 +153,13 @@
               {% endfor %}
               </ul> {% endcomment %}
 
-              <div class="row" style="background-color:rgb(217,147,59); margin-bottom:10px;"> <h4>Latest Forum Posts</h4></div>
-                <a href='http://127.0.0.1:8000/forum/'><img src="{% static 'images/forum.png'%}" alt='forums'/></a>
+              <div class="row" style="background-color:rgb(217,147,59); margin-bottom:10px;padding-left:5px;"> <h4>Latest Forum Posts</h4></div>
+               {% for post in posts %}
+
+               <h5>{{post.subject}} - {{post.topic.forum}}</h5>
+               <p>{{post.content|striptags|safe|slice:":50"}}
+
+               {% endfor%}
 
               
               {% comment %} <div class="alert alert-secondary alert-dismissible fade show" role="alert">
@@ -169,26 +205,10 @@
         <div class="row"> 
           
           <!-- SIDE BAR -->
-          <div class="col-md-4"> 
-           
-            <!-- Company Information -->
-     
-
-
-            <h5 class="sidebar-title">Tag Cloud</h5>
-
-            <div class="widget-tag">
-              <div class="tag-cloud">
-
-              {% for blo in blog %}
-                <a class="btn btn-primary" href="#">{{blo.tag}}</a>
-              {% endfor %}
-              </div>
-            </div>
-          </div>
+        
           
           <!-- Tab Content -->
-          <div class="col-md-8">
+          <div class="col-md-12" style="padding-bottom:20px;">
             <div class="network">
             
               
@@ -217,9 +237,9 @@
                       <div class="tittle">
                         <ul class="row">
                           <li class="col-xs-4"> <span>Contact</span> </li>
-                          <li class="col-xs-3"> <span>Business Name</span> </li>
-                          <li class="col-xs-3"> <span>Business Type</span> </li>
-                          <li class="col-xs-2 n-p-r n-p-l"> <span>Location</span> </li>
+                          <li class="col-xs-3 d-none d-sm-block"> <span>Business Name</span> </li>
+                          <li class="col-xs-3 d-none d-sm-block"> <span>Business Type</span> </li>
+                          <li class="col-xs-2 n-p-r n-p-l d-none d-sm-block"> <span>Location</span> </li>
                         </ul>
                       </div>
                       
@@ -232,22 +252,19 @@
                             <div class="row">
                               <div class="col-xs-4"> 
                                 <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox1-1" class="styled" type="checkbox">
-                                  <label for="checkbox1-1"></label>
-                                </div>
+                              
                                 <!-- Name -->
                                 <div class="fol-name">
-                                  <div class="avatar"> <img src="{{MEDIA_URL}}{{ member.business_profile.logo}}" alt=""> </div>
-                                  <h6>{{member.user}}</h6>
+                                  <div class="avatar"> <img src="{{MEDIA_URL}}{{ member.business_profile.logo}}" alt="business logo"> </div>
+                                  <h6><a href="{% url 'bp_view' member.pk%}">{{member.user}}</a></h6>
                                   <span>Web Developer</span> </div>
                               </div>
                               <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span><a href="{% url 'bp_view' member.pk%}">{{member.business_profile.business_name}}</a></span> </div>
+                              <div class="col-xs-3 n-p-r n-p-l  d-none d-sm-block"> <span><a href="{% url 'bp_view' member.pk%}">{{member.business_profile.business_name}}</a></span> </div>
                               <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>{{member.business_profile.business_type }}</span>  </div>
+                              <div class="col-xs-3 n-p-r  d-none d-sm-block"> <span>{{member.business_profile.business_type }}</span>  </div>
                               <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>{{member.business_profile.location }}</span> </div>
+                              <div class="col-xs-2 n-p-r n-p-l  d-none d-sm-block"> <span>{{member.business_profile.location }}</span> </div>
                             </div>
                           </li>
                           
@@ -258,491 +275,8 @@
                   </div>
                 </div>
                 
-                <!-- Followers -->
-                <div id="flow" class="tab-pane fade">
-                  <div class="net-work-in"> 
-                    
-                    <!-- Filter -->
-                    <div class="filter-flower">
-                      <div class="row">
-                        <div class="col-sm-7">
-                          <ul>
-                            <li><a href="#." class="active">Show All</a></li>
-                            <li><a href="#."><i class="fa fa-user"></i> Professionals</a></li>
-                            <li><a href="#."><i class="fa fa-building-o"></i> Companies</a></li>
-                          </ul>
-                        </div>
-                        
-                        <!-- Short -->
-                        <div class="col-sm-5">
-                          <select>
-                            <option>Sort</option>
-                            <option>Sort</option>
-                            <option>Sort</option>
-                            <option>Sort</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <!-- Members -->
-                    <div class="main-mem"> 
-                      
-                      <!-- Head -->
-                      <div class="head">
-                        <div class="row">
-                          <div class="col-sm-8">
-                            <button><i class="fa fa-user-plus"></i>Follow</button>
-                            <button><i class="fa fa-trash"></i>Delete</button>
-                          </div>
-                          <div class="col-sm-4">
-                            <form>
-                              <input type="search" placeholder="Search">
-                              <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <!-- Tittle -->
-                      <div class="tittle">
-                        <ul class="row">
-                          <li class="col-xs-4"> <span>Title</span> </li>
-                          <li class="col-xs-3"> <span>Location</span> </li>
-                          <li class="col-xs-3"> <span>Network</span> </li>
-                          <li class="col-xs-2 n-p-r n-p-l"> <span>Connections</span> </li>
-                        </ul>
-                      </div>
-                      
-                      <!-- Tittle -->
-                      <div class="folow-persons">
-                        <ul>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row">
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox2-1" class="styled" type="checkbox">
-                                  <label for="checkbox2-1"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox2-2" class="styled" type="checkbox">
-                                  <label for="checkbox2-2"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox2-3" class="styled" type="checkbox">
-                                  <label for="checkbox2-3"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox2-4" class="styled" type="checkbox">
-                                  <label for="checkbox2-4"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox2-5" class="styled" type="checkbox">
-                                  <label for="checkbox2-5"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox2-6" class="styled" type="checkbox">
-                                  <label for="checkbox2-6"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox2-7" class="styled" type="checkbox">
-                                  <label for="checkbox2-7"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- Following -->
-                <div id="flowing" class="tab-pane fade">
-                <div class="net-work-in"> 
-                    
-                    <!-- Filter -->
-                    <div class="filter-flower">
-                      <div class="row">
-                        <div class="col-sm-7">
-                          <ul>
-                            <li><a href="#." class="active">Show All</a></li>
-                            <li><a href="#."><i class="fa fa-user"></i> Professionals</a></li>
-                            <li><a href="#."><i class="fa fa-building-o"></i> Companies</a></li>
-                          </ul>
-                        </div>
-                        
-                        <!-- Short -->
-                        <div class="col-sm-5">
-                          <select>
-                            <option>Sort</option>
-                            <option>Sort</option>
-                            <option>Sort</option>
-                            <option>Sort</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <!-- Members -->
-                    <div class="main-mem"> 
-                      
-                      <!-- Head -->
-                      <div class="head">
-                        <div class="row">
-                          <div class="col-sm-8">
-                            <button disabled><i class="fa fa-user-plus"></i>Follow</button>
-                            <button disabled><i class="fa fa-trash"></i>Delete</button>
-                          </div>
-                          <div class="col-sm-4">
-                            <form>
-                              <input type="search" placeholder="Search">
-                              <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <!-- Tittle -->
-                      <div class="tittle">
-                        <ul class="row">
-                          <li class="col-xs-4"> <span>Title</span> </li>
-                          <li class="col-xs-3"> <span>Location</span> </li>
-                          <li class="col-xs-3"> <span>Network</span> </li>
-                          <li class="col-xs-2 n-p-r n-p-l"> <span>Connections</span> </li>
-                        </ul>
-                      </div>
-                      
-                      <!-- Tittle -->
-                      <div class="folow-persons">
-                        <ul>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row">
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox3-1" class="styled" type="checkbox">
-                                  <label for="checkbox3-1"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox3-2" class="styled" type="checkbox">
-                                  <label for="checkbox3-2"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox3-3" class="styled" type="checkbox">
-                                  <label for="checkbox3-3"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox3-4" class="styled" type="checkbox">
-                                  <label for="checkbox3-4"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox3-5" class="styled" type="checkbox">
-                                  <label for="checkbox3-5"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox3-6" class="styled" type="checkbox">
-                                  <label for="checkbox3-6"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                          
-                          <!-- MEMBER -->
-                          <li>
-                            <div class="row"> 
-                              <!-- Title -->
-                              <div class="col-xs-4"> 
-                                <!-- Check Box -->
-                                <div class="checkbox">
-                                  <input id="checkbox3-7" class="styled" type="checkbox">
-                                  <label for="checkbox3-7"></label>
-                                </div>
-                                <!-- Name -->
-                                <div class="fol-name">
-                                  <div class="avatar"> <img src="images/sm-avatar.jpg" alt=""> </div>
-                                  <h6>Collin Weiland</h6>
-                                  <span>Web Developer</span> </div>
-                              </div>
-                              <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l"> <span>San Francisco, USA</span> </div>
-                              <!-- Network -->
-                              <div class="col-xs-3 n-p-r"> <span>21 Followers</span> <span>10 Following</span> </div>
-                              <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l"> <span>31 Connections</span> </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                
-                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+              
+               
 </div>
 
  {% endblock %}

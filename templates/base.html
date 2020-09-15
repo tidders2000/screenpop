@@ -9,6 +9,7 @@
 <title>ScreenPop - Index</title>
 
 <!-- Fonts Online -->
+
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -53,15 +54,16 @@
  
       </div>
     </div>
+
     <!-- end .uou-block-1a --> 
 
-
+</div>
        <div class="col-md-8"></div>
   <!-- end toolbar -->
   
   <div class="box-shadow-for-ui">
     <div class="uou-block-2b">
-      <div class="container"> <a href="#" class="logo"><img src="{% static 'images/screenpop-logo.png'%}" alt="logo"></a> <a href="{% url 'dashboard' %}" class="mobile-sidebar-button mobile-sidebar-toggle"><span></span></a>
+      <div class="container"> <a href="#" class="logo"><img src="{% static 'images/screenpop-logo.png'%}" alt="logo"></a> <a href="#" class="mobile-sidebar-button mobile-sidebar-toggle"><span></span></a>
         <nav class="nav">
           <ul class="sf-menu">
                 <li><a href="{% url 'dashboard' %}"><i class="fa  fa-home"></i></a></li>
@@ -73,7 +75,7 @@
                 <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
               </ul>
             </li>
-            <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
+            <li> <a style="color:red;"href="{% url 'business_profile'%}">Company Profile</a></li>
             <li> <a href="{% url 'newsLibrary'%}">News</a></li>
           
                 <li class=""> <a href="">Admin</a>
@@ -92,6 +94,8 @@
       </div>
     </div>
     </div>
+
+  
 
 
  {% block content %} {% endblock %} {% if messages %}
@@ -158,14 +162,28 @@
 </div> {% endcomment %}
 <!-- end .uou-block-4e -->
 
-<div class="uou-block-4a secondary dark">
+<div class="uou-block-4a secondary dark" style='text-align:center;'>
   <div class="container">
-    <ul class="links">
-     <li><a href="#">Contact ScreenPop</a></li>
-      <li><a href="#">Privacy Policy</a></li>
-      <li><a href="#">Terms &amp; Conditions</a></li>
-    </ul>
-    <p>Copyright &copy; 2020 <a href="#">Scruffy Horse</a>. All Rights reserved.</p>
+    {% comment %} <ul class="links">
+     <li ><a href="mailto:penny@screenpop.club" style='color:red;'>Contact ScreenPop</a></li>
+      <li class="d-none d-sm-block">><a href="#">Privacy Policy</a></li>
+      <li class="d-none d-sm-block"><a href="#">Terms &amp; Conditions</a></li>
+    </ul><br> {% endcomment %}
+
+   <div class="row">
+   <div class="col-4 d-none d-sm-block">
+        <a href="#"  style='color:#5A8BAA;'>Privacy Policy</a>
+   </div>
+    <div class="col-12 col-sm-4">
+      <a href="mailto:penny@screenpop.club" style='color:#5A8BAA;'>Contact ScreenPop</a>
+   </div>
+    <div class="col-4 d-none d-sm-block">
+      <a href="#"  style='color:#5A8BAA;'>Terms &amp; Conditions</a>
+   </div>
+   </div>
+   <div class='row' >
+   <div class="col-12">
+    <p  style='text-align:center;'> Copyright &copy; 2020 <a href="#">Scruffy Horse</a>. All Rights reserved.</p>
   </div>
 </div>
 <!-- end .uou-block-4a --> 

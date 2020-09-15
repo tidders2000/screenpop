@@ -9,10 +9,17 @@ STATUS = (
 )
 
 
+class Tag(models.Model):
+    tag_name = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.tag_name
+
+
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    tag = models.CharField(max_length=15, null=True)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='blog_posts')
     updated_on = models.DateTimeField(auto_now=True)

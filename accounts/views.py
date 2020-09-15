@@ -12,6 +12,7 @@ from datetime import datetime
 from datetime import date
 from blog.models import Post
 from django.template.context_processors import csrf
+from machina.apps.forum_conversation.models import Post as Posting
 
 
 def index(request):
@@ -126,10 +127,14 @@ def dashboard(request):
 
     members = Switcher.objects.filter(group=group)
 
-    # get blog posts
+    # get blog posts and tags
     blog = Post.objects.all()[0:3]
 
-    return render(request, 'dashboard.html', {'blog': blog, 'guests': guests, 'articles': articles,  'switchData': switchData, 'meeting': meeting, 'today': today, 'members': members, 'member_count': member_count})
+    tags = Post.objects.order_by('tag').distinct('tag')
+
+    posts = Posting.objects.all().order_by('pk').reverse()[0:3]
+
+    return render(request, 'dashboard.html', {'tags': tags, 'posts': posts, 'blog': blog, 'guests': guests, 'articles': articles,  'switchData': switchData, 'meeting': meeting, 'today': today, 'members': members, 'member_count': member_count})
 
 
 def switcher(request):
