@@ -6,16 +6,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ScreenPop - Index</title>
+
+<title>ScreenPop - Home</title>
 
 <!-- Fonts Online -->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 <!-- Style Sheet -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
 <link rel="stylesheet" href="{% static 'css/main-style.css' %}">
 <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,11 +35,11 @@
   <div class="toolbar">
     <div class="uou-block-1a blog">
       <div class="container">
-        <div class="search"> <a href="#" class="toggle fa fa-search"></a>
-          <form action="#">
-            <input type="text" class="search-input" placeholder="Search ...">
-            <input type="submit" value="">
-          </form>
+        <div class="search"> 
+                <ol class="breadcrumb" style="background-color:#f4f4f4!important;">
+              <li class="breadcrumb-item"><a href="user-dashboard.html">Home</a></li>
+           
+            </ol>
         </div>
         <ul class="social">
           <li><a href="#" class="fa fa-facebook"></a></li>
@@ -44,17 +47,51 @@
           <li><a href="#" class="fa fa-google-plus"></a></li>
         </ul>
         <ul class="authentication">
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Register</a></li>
+          <li><a href="#">Welcome Dave</a></li>
+          <li><a href="#">Logout</a></li>
         </ul>
-     
+ 
       </div>
     </div>
     <!-- end .uou-block-1a --> 
   </div>
-  <!-- end toolbar -->
 
+       <div class="col-md-8"></div>
+  <!-- end toolbar -->
   
+  <div class="box-shadow-for-ui">
+    <div class="uou-block-2b">
+      <div class="container"> <a href="#" class="logo"><img src="images/screenpop-logo.png" alt=""></a> <a href="#" class="mobile-sidebar-button mobile-sidebar-toggle"><span></span></a>
+        <nav class="nav">
+          <ul class="sf-menu">
+            <li><a href="user-dashboard.html"><i class="fa  fa-home"></i></a></li>
+            <li> <a href="listing-filter.html">Market Place</a> </li>
+            <li class=""> <a href="blog.html">Blog</a>
+              <ul>
+                  <li><a href="blog.html"> View Blogs</a></li>
+        
+                <li><a href="blog-post.html">Blog Post</a></li>                
+              </ul>
+            </li>
+            <li> <a href="profile_company-no-tabs.html">Company Profile</a></li>
+          
+                <li class=""> <a href="index.html">Admin</a>
+              <ul>
+                  <li><a href=""> Add User</a></li>
+        
+                <li><a href="">Manage Meeting</a></li> 
+                    <li><a href="">Add News</a></li>                
+              </ul>
+            </li>
+              <li><a href="listing-filter-1.html">Group Directory</a></li>
+         
+          </ul>
+        </nav>
+      </div>
+    </div>
+    </div>
+    <!-- end .uou-block-2b --> 
+
   <!-- HOME PRO-->
   <div class="home-pro" style="height:100%;"> 
     

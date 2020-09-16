@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.urls import path, include
-from .views import logout, registration, user_profile, index, dashboard, switcher, switching, apologies, switcher_add
+from .views import logout, registration, user_profile, index, dashboard, switcher, switching, apologies, switcher_add, test
 from blog.views import post_tag
 
 urlpatterns = [
@@ -31,4 +31,6 @@ urlpatterns = [
     path('switching/<int:pk>', switching, name='switching'),
     path('switcher_add', switcher_add, name='switcher_add'),
     path('post_tag', post_tag, name='post_tag'),
+    path('test', test, name='test'),
+
 ]

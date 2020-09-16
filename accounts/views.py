@@ -190,3 +190,7 @@ def apologies(request, pk):
     messages.error(request, 'apologies added')
 
     return redirect(reverse('dashboard'))
+
+
+def test(request):
+    return render(request, 'user-dashboard.html')

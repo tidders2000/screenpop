@@ -3752,7 +3752,7 @@ body {
     position: relative;
     background: #f8f8f8;
     z-index: 2;
-    min-height: 100%;
+    height: 100%;
     transition: transform 0.3s;
     overflow-x: hidden;
 }
@@ -9517,7 +9517,7 @@ p i {
     width: 30px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 998px) {
     .uou-block-2b .logo {
         line-height: 40px;
     }
@@ -10997,7 +10997,7 @@ p i {
 
 .uou-block-4a p {
     margin-bottom: 0;
-    float: left;
+    /* float: left; */
     color: #333;
 }
 
@@ -11036,7 +11036,7 @@ p i {
 }
 
 .uou-block-4a .links>li {
-    float: left;
+    /* float: left; */
     margin-right: 24px;
 }
 
@@ -16765,7 +16765,6 @@ p i {
 }
 
 .c100.p82 .bar {
-    -webkit-transform: rotate(295.2deg);
     -moz-transform: rotate(295.2deg);
     -ms-transform: rotate(295.2deg);
     -o-transform: rotate(295.2deg);
@@ -18863,7 +18862,7 @@ a.active {
 
 .profile-company-content {
     position: relative;
-    padding: 60px 0 70px 0;
+    padding: 20px 0 30px 0;
 }
 
 .profile-company-content .nav-tabs {

@@ -1,17 +1,20 @@
-{% load static %}{% load crispy_forms_tags %}
-
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ScreenPop - Index</title>
+
+<title>ScreenPop - Home</title>
 
 <!-- Fonts Online -->
-
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+
+
+<!-- Style Sheet -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 <!-- Style Sheet -->
@@ -19,6 +22,7 @@
 <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,11 +40,10 @@
     <div class="uou-block-1a blog">
       <div class="container">
         <div class="search"> 
-       <!-- <ol class="breadcrumb" style="background-color:#f4f4f4!important;">
-              <li class="breadcrumb-item"><a href="user-dashboard.html">Home</a></li>
-              <li class="breadcrumb-item"><a href="blog.html">Blogs</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Blog Post</li>
-            </ol>-->
+                <ol class="breadcrumb" style="background-color:#f4f4f4!important;">
+              <li class="breadcrumb-item">{% block title %}{% endblock %}</li>
+           
+            </ol>
         </div>
         <ul class="social">
           <li><a href="#" class="fa fa-facebook"></a></li>
@@ -48,19 +51,19 @@
           <li><a href="#" class="fa fa-google-plus"></a></li>
         </ul>
         <ul class="authentication">
-          <li><a href="#">Welcome {{user.username}}</a></li>
-          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li><a href="#">Welcome Dave</a></li>
+          <li><a href="#">Logout</a></li>
         </ul>
  
       </div>
     </div>
-
     <!-- end .uou-block-1a --> 
+  </div>
 
-</div>
        <div class="col-md-8"></div>
   <!-- end toolbar -->
   
+   
   <div class="box-shadow-for-ui">
     <div class="uou-block-2b">
       <div class="container"> <a href="#" class="logo"><img src="{% static 'images/screenpop-logo.png'%}" alt="logo"></a> <a href="#" class="mobile-sidebar-button mobile-sidebar-toggle"><span></span></a>
@@ -75,7 +78,7 @@
                 <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
               </ul>
             </li>
-            <li> <a style="color:red;"href="{% url 'business_profile'%}">Company Profile</a></li>
+            <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
             <li> <a href="{% url 'newsLibrary'%}">News</a></li>
           
                 <li class=""> <a href="">Admin</a>
@@ -95,10 +98,8 @@
     </div>
     </div>
 
-  
-
-
- {% block content %} {% endblock %} {% if messages %}
+ 
+  {% block content %} {% endblock %} {% if messages %}
 
         <div class="message" id='alert' role="alert">
 
@@ -106,61 +107,25 @@
           
         </div>
 
+
+    </div>
+    
+
+    <!-- end nav block --> 
+
+
   
 
 
 
+  
 
+     
 
-
-
-</div>
-<!-- end #main-wrapper -->
 <!-- Footer -->
-{% comment %} <div class="uou-block-4e">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3 col-sm-6"> <a href="#" class="logo"><img src="{% static 'images/screenpop-logo.png'%}" alt=""></a>
-        <ul class="contact-info has-bg-image contain" data-bg-image="{% static 'images/footer-map-bg.png' %}%">
-          <li> <i class="fa fa-map-marker"></i>
-            <address>
-            795 Folsom Ave, Suite 600, San Francisco, CA 94107
-            </address>
-          </li>
-          <li> <i class="fa fa-phone"></i> <a href="tel:#">(123) 456-7890</a> </li>
-          <li> <i class="fa fa-envelope"></i> <a href="mailto:#">first.last@example.com</a> </li>
-        </ul>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <h5>Twitter Feed</h5>
-        <ul class="twitter-feed">
-          <li> RT <a href="#">@no1son</a>: Now this <a href="#">http://t.co/TSfMW1qMAW</a> is one hell of a stunning site!!! Awesome work guys <a href="#">@AIRNAUTS</a> <a href="#" class="time">May 25</a> </li>
-          <li> Check out the wordpress version of Tucson - <a href="#">http://t.co/sBlU3GbapT</a> <a href="#" class="time">May 22</a> </li>
-        </ul>
-      </div>
-           <div class="col-md-3 col-sm-6">
-        <h5>Meet ScreenPop</h5>
-        <ul class="photos-list">
-          <li><img src="{% static 'images/download.png' %}" style="cursor:pointer;" data-placement="top" data-container="body" data-toggle="popover" title="Bert Bach" data-content="Graphic Design"></li>
-          <li><img src="{% static 'images/download.png' %}" style="cursor:pointer;" data-placement="top" data-container="body" data-toggle="popover" title="Bert Bach" data-content="Graphic Design"></li>
-          <li><img src="images/photostream3.jpg" alt=""></li>
-          <li><img src="images/photostream2.jpg" alt=""></li>
-          <li><img src="images/photostream1.jpg" alt=""></li>
-          <li><img src="images/photostream.jpg" alt=""></li>
-        </ul>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <h5>Newsletter</h5>
-        <p>Subscribe to our newsletter to receive our latest news and updates. We do not spam.</p>
-        <form class="newsletter-form" action="#">
-          <input type="email" placeholder="Enter your email address">
-          <input type="submit" class="btn btn-primary" value="Subscribe">
-        </form>
-      </div>
-    </div>
-  </div>
-</div> {% endcomment %}
+
 <!-- end .uou-block-4e -->
+
 
 <div class="uou-block-4a secondary dark" style='text-align:center;'>
   <div class="container">
@@ -171,22 +136,59 @@
     </ul><br> {% endcomment %}
 
    <div class="row">
-   <div class="col-4 d-none d-sm-block">
-        <a href="#"  style='color:#5A8BAA;'>Privacy Policy</a>
-   </div>
-    <div class="col-12 col-sm-4">
-      <a href="mailto:penny@screenpop.club" style='color:#5A8BAA;'>Contact ScreenPop</a>
-   </div>
-    <div class="col-4 d-none d-sm-block">
-      <a href="#"  style='color:#5A8BAA;'>Terms &amp; Conditions</a>
-   </div>
+        <div class="col-4 d-none d-sm-block">
+              <a href="#"  style='color:#5A8BAA;'>Privacy Policy</a>
+        </div>
+        <div class="col-12 col-sm-4">
+          <a href="mailto:penny@screenpop.club" style='color:#5A8BAA;'>Contact ScreenPop</a>
+      </div>
+        <div class="col-4 d-none d-sm-block">
+          <a href="#"  style='color:#5A8BAA;'>Terms &amp; Conditions</a>
+      </div>
    </div>
    <div class='row' >
-   <div class="col-12">
-    <p  style='text-align:center;'> Copyright &copy; 2020 <a href="#">Scruffy Horse</a>. All Rights reserved.</p>
-  </div>
+      <div class="col-12">
+        <p  style='text-align:center;'> Copyright &copy; 2020 <a href="#">Scruffy Horse</a>. All Rights reserved.</p>
+      </div>
 </div>
-<!-- end .uou-block-4a --> 
+</div>
+</div>
+<!-- end .uou-block-4a -->
+
+<div class="uou-block-11a">
+  <h5 class="title">Menu</h5>
+  <a href="#" class="mobile-sidebar-close">&times;</a>
+  <nav class="main-nav">
+    <ul>
+                <li><a href="{% url 'dashboard' %}"><i class="fa  fa-home"></i></a></li>
+            <li> <a href="{% url 'market' %}">Market Place</a> </li>
+            <li class=""> <a href="{% url 'blog' %}">Blog</a>
+              <ul>
+                  {% comment %} <li><a href="{% url 'post_detail' %}">Blog Read</a></li>  {% endcomment %}
+                <li><a href="{% url 'blog' %}">Blogs</a></li> 
+                <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
+              </ul>
+            </li>
+            <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
+            <li> <a href="{% url 'newsLibrary'%}">News</a></li>
+          
+                <li class=""> <a href="">Admin</a>
+              <ul>
+                  <li><a href="{% url 'registration' %}"> Add User</a></li>
+        
+                <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
+                    <li><a href="{% url 'addNews'%}">Add News</a></li>  
+                     <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>              
+              </ul>
+            </li>
+              <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
+    </ul>
+  </nav>
+  <hr>
+</div> 
+
+
+
 
 
 
@@ -214,6 +216,9 @@
 
 
   <script src="{% static  'js/custom.js' %}"></script> 
+
+
+
 
 </body>
 </html>
