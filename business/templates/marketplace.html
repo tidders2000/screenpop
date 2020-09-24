@@ -10,20 +10,24 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="map-toggleButton"> <i class="fa fa-bars"></i> </div>
+            
             <div class="map-search-fields">
+             
+             <form method='POST' style="padding-left:0;">
               <div class="field">
-                <input type="text" placeholder="Keyword">
+                <input type="text" placeholder="Keyword" name="keyword">
               </div>
               <div class="field">
-                <input type="text" placeholder="Location">
+                <input type="text" placeholder="Location" name="location">
               </div>
               <div class="field custom-select-box">
-                <input type="text" placeholder="Profession">
+                <input type="text" placeholder="Business Type" name="type">
               </div>
             </div>
             <div class="search-button">
-              <button>Search Members</button>
+             {% csrf_token %}
+              <button  type="submit" >Search Members</button>
+              </form>
             </div>
           </div>
         </div>
@@ -39,7 +43,7 @@
       <div class="row">
       {% for member in all_members %}
         <div class="col-sm-3">
-          <div class="uou-block-6a"> <a href= "{% url 'bp_view' member.pk%}"><img src="{{MEDIA_URL}}{{member.user.profile.profile_image}}" alt="" style="cursor:pointer;"></a>
+          <div class="uou-block-6a"> <a href= "{% url 'bp_view' member.pk%}"><img src="{{MEDIA_URL}}{{member.user.profile.profile_image}}" alt="profile picture" style="cursor:pointer; width:255px;height:142px;"></a>
             <h6>{{member.user.firstname}} <span>{{member.business_profile.business_name}}</span></h6>
             <p><i class="fa fa-map-marker"></i>{{member.business_profile.location}}</p>
           </div>

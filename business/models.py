@@ -34,7 +34,7 @@ class BusinessProfile(models.Model):
     contact_name = models.CharField(max_length=254, default=0)
     about = HTMLField(blank=True)
     services = HTMLField(blank=True)
-    website = models.URLField()
+    website = models.CharField(max_length=254, default='')
     header_image = models.ImageField(upload_to='media/images', blank=True)
     facebook = models.CharField(max_length=254, default="enter a link")
     linkedin = models.CharField(max_length=254, default=0)

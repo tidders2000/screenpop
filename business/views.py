@@ -2,12 +2,19 @@ from django.shortcuts import render, redirect, reverse
 from .models import BusinessProfile
 from .forms import bp_model_form
 from accounts.models import Switcher
+from business.models import BusinessProfile
 from django.contrib import messages
 
 
 def market(request):
 
     all_members = Switcher.objects.all
+    if request.method == "POST":
+        keyword = request.POST.get('keyword')
+        location = request.POST.get('location')
+        type = request.POST.get('type')
+        all_members = Switcher.objects.filter(
+            business_profile__business_name__icontains=keyword).filter(business_profile__location__icontains=location).filter(business_profile__business_type__icontains=type)
 
     return render(request, 'marketplace.html', {'all_members': all_members})
 

@@ -33,6 +33,7 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('forum/', include(machina_urls)),
 
+
 ]
 
 if settings.DEBUG:

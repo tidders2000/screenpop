@@ -9,13 +9,17 @@
       <div class="row">
         <div class="col-12 col-lg-8 offset-lg-2">
 
-  <form method='POST' enctype="multipart/form-data">
+   {% comment %} {% crispy profile %}   {% endcomment %}
+
+<form method='POST' enctype="multipart/form-data">
                       {% csrf_token %} {{ profile|crispy |  safe }}
+                      
                       <button type="submit" class="btn btn-success">PUBLISH</button>
 
-                      </form>
+                      </form> 
 
                       </div>
+
 
 </div>
 </div>

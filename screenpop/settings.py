@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'django_forms_bootstrap',
+    'bootstrap4',
     'crispy_forms',
     'password_reset',
     'business',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     'news',
     'tinymce',
     'phone_field',
+
 
     # Machina dependencies:
     'mptt',
@@ -197,3 +199,10 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
     },
 }
+
+TINYMCE_DEFAULT_CONFIG = {
+    'file_browser_callback': 'mce_filebrowser',
+
+}
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

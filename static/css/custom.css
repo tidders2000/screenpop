@@ -243,3 +243,7 @@
 .message_template {
     display: none;
 }
+
+textarea {
+    visibility: visible !important;
+}

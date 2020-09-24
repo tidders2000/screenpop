@@ -1560,11 +1560,7 @@ iframe {
 
 .banr-head input[type="email"],
 input[type="text"],
-input[type="password"] {
-    color: #fff;
-}
-
-.home-pro .services ul {
+input[type="password"] .home-pro .services ul {
     margin: 0px;
     padding: 0px;
 }
@@ -1846,7 +1842,7 @@ input[type="password"] {
 
 .map-search .map-search-fields {
     position: relative;
-    padding: 0 190px 0 70px;
+    /* padding: 0 5px 0 70px; */
 }
 
 .pro-mem .uou-block-6a h6 {
@@ -1875,7 +1871,7 @@ input[type="password"] {
 .map-search .map-search-fields .field {
     position: relative;
     margin-right: 13px;
-    width: 31.333%;
+    width: 27%;
     float: left;
     display: inline-block;
 }

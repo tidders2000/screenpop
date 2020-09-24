@@ -8,6 +8,11 @@ STATUS = (
     (1, "Publish")
 )
 
+CATS = [
+    ('Digital', 'Digital'),
+    ('StartUp', 'StartUp')
+]
+
 
 class Tag(models.Model):
     tag_name = models.CharField(max_length=40)
@@ -23,6 +28,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='blog_posts')
     updated_on = models.DateTimeField(auto_now=True)
+    category = models.CharField(choices=CATS, max_length=200)
     content = HTMLField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
@@ -41,7 +47,7 @@ class Comment(models.Model):
     email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['created_on']

@@ -1,0 +1,112 @@
+
+{% extends 'base.html' %}{%load static %}{% load crispy_forms_tags %} {% block page_title %} Add News{% endblock %} {% block page_heading %}Add News{% endblock %}
+   {% block title %}<a href="{% url 'dashboard' %}">Dashboard/Add Blog</a>/Edit Blog{% endblock %}
+ {% block content %}
+
+  <script src="https://cdn.tiny.cloud/1/kpjdhptjs36lfqw2qadvf8at9ctiu2mayk7ij9qickwejno7/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+ <script src="{% static  'js/tiny.js' %}"></script> 
+<div id="main-wrapper"> 
+  
+ 
+
+       <div class="col-md-8"></div>
+  <!-- end toolbar -->
+  
+
+  
+
+  
+
+
+
+
+  <div class="blog-content pt60">
+    <div class="container">
+    <h5 class="sidebar-title">Add A Post</h5>
+      <div class="row">
+        <div class="col-md-9">
+          
+          <article class="uou-block-7f blog-post-content">
+            <img src="img/b-post-image.jpg" alt="">
+  <form method='POST' enctype="multipart/form-data">
+                      {% csrf_token %} {{ blog|crispy }}
+                      <button type="submit" class="btn btn-success">PUBLISH</button>
+
+                      </form>
+
+            <div class="uou-share-story clearfix">
+              <div class="row">
+               
+        
+
+
+           
+
+          </article> <!-- end .uou-block-7f -->
+
+
+          <div class="uou-post-comment">
+            <aside class="uou-block-14a">
+       
+
+          </div>
+
+
+
+
+
+
+        </div> <!-- end grid layout -->
+
+        <div class="col-md-3">
+          <div class="uou-sidebar">
+
+         
+
+            <h5 class="sidebar-title">Previous Posts</h5>
+
+            <div class="list-widget">
+              <ul>
+              {% for his in history%}
+
+
+              
+                <li><a href="#">{{his.title}}</a></li>
+                
+              {% endfor %}
+              </ul>
+            </div>
+
+
+
+            
+
+
+
+     
+      
+
+
+          </div> <!-- end uou-sidebar -->
+        </div>
+
+      </div> <!-- end row -->
+
+    </div> <!-- edn cotainer -->
+
+  </div> <!-- end blog-content -->
+
+
+
+
+  
+
+
+
+
+
+
+
+</div>
+<!-- end #main-wrapper -->
+{% endblock%}

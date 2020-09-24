@@ -16,4 +16,4 @@ content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
 class add_blog_form(forms.ModelForm):
     class Meta:
         model = Post
-        fields = '__all__'
+        exclude = ('slug', 'author')

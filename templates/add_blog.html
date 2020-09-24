@@ -1,5 +1,7 @@
 
 {% extends 'base.html' %}{%load static %}{% load crispy_forms_tags %} {% block page_title %} Add News{% endblock %} {% block page_heading %}Add News{% endblock %}
+  {% block title %}<a href="{% url 'dashboard' %}">Dashboard</a>/Add Blog{% endblock %}
+ 
  {% block content %}
 
   <script src="https://cdn.tiny.cloud/1/kpjdhptjs36lfqw2qadvf8at9ctiu2mayk7ij9qickwejno7/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -21,88 +23,32 @@
 
   <div class="blog-content pt60">
     <div class="container">
+    <h5 class="sidebar-title">Add A Post</h5>
       <div class="row">
         <div class="col-md-9">
+          
           <article class="uou-block-7f blog-post-content">
             <img src="img/b-post-image.jpg" alt="">
+  <form method='POST' enctype="multipart/form-data">
+                      {% csrf_token %} {{ blog|crispy }}
+                      <button type="submit" class="btn btn-success">PUBLISH</button>
 
-{{blog}}
-
+                      </form>
 
             <div class="uou-share-story clearfix">
               <div class="row">
-                <div class="col-sm-3">
-                  <h5 class="sidebar-title">Share This Story</h5>
-
-                </div>
-                <div class="col-sm-9 ">
-                  <div class="social-widget">
-                    <div class="uou-block-4b">
-
-                      <ul class="social-icons">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                      </ul>
-
-                    </div> <!-- end .uou-block-4b -->
-                  </div> <!-- end social widget -->
-                </div>
-              </div>
-            </div>
+               
+        
 
 
-            <a class="btn btn-primary " href="#">Back To Blog List</a>
+           
 
           </article> <!-- end .uou-block-7f -->
 
 
           <div class="uou-post-comment">
             <aside class="uou-block-14a">
-              <h5 class="sidebar-title">Comments(<span>2</span>)</h5>
-              <ul>
-               {% for comment in comments %}
-                <li>
-                  <article class="comment">
-                    <img src="img/p-post-1.png" alt="">
-
-                    <div>
-                      <header>
-                        <a href="#" class="user">{{ comment.name }}</a>
-
-                        <span class="time-ago">  {{ comment.created_on }}</span>
-                        <a href="#" class="reply">Reply</a>
-                      </header>
-
-                      <p> {{ comment.body | linebreaks }}</p>
-                    </div>
-                  </article>
-                </li>
-                  {% endfor %}
-
-
-
-              </ul>
-            </aside> <!-- end .uou-block-14a -->
-
-            <h4>Join Conversation</h4>
-
-            <div class="uou-post-comment-form">
-         {% if new_comment %}
-        <div class="alert alert-success" role="alert">
-          Your comment is awaiting moderation
-        </div>
-        {% else %}
-        <h3>Leave a comment</h3>
-        <form method="post" style="margin-top: 1.3em;">
-          {{ comment_form | crispy }}
-          {% csrf_token %}
-          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
-        </form>
-        {% endif %}
-            </div>
+       
 
           </div>
 
@@ -113,109 +59,33 @@
 
         </div> <!-- end grid layout -->
 
-        <div class="col-md-3">
+        <div class="col-lg-3">
           <div class="uou-sidebar">
 
-            <div class="search-widget">
-              <form class="search-form-widget" action="#">
-                <input type="text" class="search-input" placeholder="Search ...">
-                <input type="submit" value="">
-              </form>
-            </div> <!-- end search-widget -->
+         
 
-            <h5 class="sidebar-title">More Posts From Dave</h5>
+            <h5 class="sidebar-title">Previous Posts</h5>
 
             <div class="list-widget">
               <ul>
-                <li><a href="#">Another Blog post</a></li>
-                <li><a href="#">Intersting things</a></li>
-                <li><a href="#">Corndogs and broke</a></li>
-                <li><a href="#">Stuff</a></li>
-                <li><a href="#">Stuff and more</a></li>
+              {% for his in history%}
 
+
+              
+                <li><a href="{% url 'edit_post' his.pk%}">{{his.title}}</a></li>
+                
+              {% endfor %}
               </ul>
             </div>
 
 
-            <h5 class="sidebar-title">About Us</h5>
 
-            <p>Dave runs a small design business specialising in animation adverts</p>
-
-
-            <h5 class="sidebar-title">Connect With Us</h5>
-
-            <div class="social-widget">
-              <div class="uou-block-4b">
-
-                <ul class="social-icons">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                  <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                  <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                </ul>
-
-              </div> <!-- end .uou-block-4b -->
-            </div> <!-- end social widget -->
-
-            <h5 class="sidebar-title">Popular Posts</h5>
-
-            <div class="latest-post-widget">
-              <div class="post-single">
-                <img src="img/p-post-1.png" alt="">
-                <p class="meta">January 12, 2015</p>
-                <p class="meta">Design</p>
-                <h6 class="post-title"><a href="#">Pariatur Vellit Corrupti Goes Into 2 Lines</a></h6>
-
-              </div>
-
-              <div class="post-single">
-                <img src="img/p-post-2.png" alt="">
-                <p class="meta">January 12, 2015</p>
-                <p class="meta">Design</p>
-                <h6 class="post-title"><a href="#">Pariatur Vellit Corrupti Goes Into 2 Lines</a></h6>
-
-              </div>
-
-              <div class="post-single">
-                <img src="img/p-post-3.png" alt="">
-                <p class="meta">January 12, 2015</p>
-                <p class="meta">Design</p>
-                <h6 class="post-title"><a href="#">Pariatur Vellit Corrupti Goes Into 2 Lines</a></h6>
-
-              </div>
-            </div> <!-- end latest-post-widget -->
+            
 
 
-            <h5 class="sidebar-title">Tag Cloud</h5>
 
-            <div class="widget-tag">
-              <div class="tag-cloud">
-                <a class="btn btn-primary" href="#">User Experience</a>
-                <a class="btn btn-primary" href="#">HTML 5</a>
-                <a class="btn btn-primary" href="#">Css 3</a>
-                <a class="btn btn-primary" href="#">web design</a>
-                <a class="btn btn-primary" href="#">social media</a>
-                <a class="btn btn-primary" href="#">web development</a>
-                <a class="btn btn-primary" href="#">print design</a>
-                <a class="btn btn-primary" href="#">e-commerce</a>
-                <a class="btn btn-primary" href="#">java script</a>
-              </div>
-
-            </div>
-
-            <h5 class="sidebar-title">Archive</h5>
-
-            <div class="list-widget">
-              <ul>
-                <li><a href="#">May 2015</a></li>
-                <li><a href="#">April 2015</a></li>
-                <li><a href="#">July 2015</a></li>
-                <li><a href="#">Frbruary 2015</a></li>
-                <li><a href="#">January 2015</a></li>
-
-              </ul>
-            </div>
+     
+      
 
 
           </div> <!-- end uou-sidebar -->
