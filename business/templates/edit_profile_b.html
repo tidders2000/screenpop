@@ -1,0 +1,30 @@
+{% extends 'base.html' %}{%load bootstrap4%}{% load crispy_forms_tags %} {% load static %}{% block page_title %}Market Place{% endblock %} {% block page_heading %}Market Place{% endblock %}
+ {% block content %}
+
+  <script src="https://cdn.tiny.cloud/1/kpjdhptjs36lfqw2qadvf8at9ctiu2mayk7ij9qickwejno7/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+ <script src="{% static  'js/tiny.js' %}"></script> 
+
+  <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2">
+
+
+
+ <form method='POST' enctype="multipart/form-data">
+                      {% csrf_token %} {{ tiny|crispy |  safe }}
+                      
+                      <button type="submit" class="btn btn-success">PUBLISH</button>
+
+                      </form> 
+
+
+                      </div>
+
+
+</div>
+</div>
+
+
+
+ {% endblock %}

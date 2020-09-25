@@ -43,7 +43,7 @@
       <div class="row">
       {% for member in all_members %}
         <div class="col-sm-3">
-          <div class="uou-block-6a"> <a href= "{% url 'bp_view' member.pk%}"><img src="{{MEDIA_URL}}{{member.user.profile.profile_image}}" alt="profile picture" style="cursor:pointer; width:255px;height:142px;"></a>
+          <div class="uou-block-6a" style="padding-top:5px;"> <a href= "{% url 'bp_view' member.business_profile.pk%}"><img src="{{MEDIA_URL}}{{member.business_profile.logo}}" alt="profile picture" style="cursor:pointer; width:200px;height:200px;"></a>
             <h6>{{member.user.firstname}} <span>{{member.business_profile.business_name}}</span></h6>
             <p><i class="fa fa-map-marker"></i>{{member.business_profile.location}}</p>
           </div>

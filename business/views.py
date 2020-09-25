@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from .models import BusinessProfile
-from .forms import bp_model_form
+from .forms import bp_model_form, tiny_model_form
 from accounts.models import Switcher
 from business.models import BusinessProfile
 from django.contrib import messages
@@ -31,10 +31,16 @@ def business_profile(request):
 
 def edit_profile(request, pk):
     data = BusinessProfile.objects.get(pk=pk)
-
+    tpk = pk
     profile = bp_model_form(instance=data)
 
-    return render(request, 'edit_profile.html', {'profile': profile})
+    return render(request, 'edit_profile.html', {'profile': profile, 'tpk': tpk})
+
+
+def edit_profile_b(request, pk):
+    data = BusinessProfile.objects.get(pk=pk)
+    tiny = tiny_model_form(instance=data)
+    return render(request, 'edit_profile_b.html', {'tiny': tiny})
 
 
 def bp_view(request, pk):
