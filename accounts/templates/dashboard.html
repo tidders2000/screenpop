@@ -104,23 +104,19 @@
           
           
 
-              <div class="col-md-8" style="padding:0!important"> 
+              <div class="col-md-8" > 
             <!-- Company Information -->
             <div class="sidebar bottom_fix">
               <h5 class="main-title">Notifications</h5>
           
               <div class="sidebar-information" style="background-color:#fff">
 
-                  <div class="row" style="background-color:#C7AAC6; margin-bottom:10px;padding-left:5px;"><h4>News</h4></div>
+                  {% comment %} <div class="row" style="background-color:#C7AAC6; margin-bottom:10px;padding-left:5px;"><h4>News</h4></div>
               {{test}}
 
               {% for article in articles %}
 
-              {% comment %} <article class="uou-block-7f" > <img src="{{MEDIA_URL}}{{ article.image}}" alt="news image" class="thumb" style="height:80px;width:80px;float:left;">
-          <div class="meta"> <span class="time-ago">{{article.date}}</span>  </div>
-          <h1><a href="#">{{article.headline}}</a></h1>
-          <p>{{article.article|striptags |truncatewords_html:10}}</p>
-          <a href="{% url 'newsArticle' article.pk %}" class="btn btn-primary">Read More</a> </article> {% endcomment %}
+              
             <div class="latest-post-widget" >
               <div class="post-single">
                 <img src="{{MEDIA_URL}}{{ article.image}}" alt="image of author" style="height:80px;width:80px;">
@@ -161,7 +157,7 @@
         
   
                 
-              </div>
+              </div> {% endcomment %}
             </div>
           </div>
 
