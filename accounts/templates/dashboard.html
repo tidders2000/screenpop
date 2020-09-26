@@ -8,7 +8,7 @@
     
     <!-- Profile Company Content -->
     <div class="profile-company-content has-bg-image" data-bg-color="f5f5f5">
-      <div class="container">
+      {% comment %} <div class="container"> {% endcomment %}
         <div class="row"> 
           
           <!-- SIDE BAR -->
@@ -111,7 +111,7 @@
           
               <div class="sidebar-information" style="background-color:#fff">
 
-                  {% comment %} <div class="row" style="background-color:#C7AAC6; margin-bottom:10px;padding-left:5px;"><h4>News</h4></div>
+                  <div class="row" style="background-color:#C7AAC6; margin-bottom:10px;padding-left:5px;"><h4>News</h4></div>
               {{test}}
 
               {% for article in articles %}
@@ -157,7 +157,7 @@
         
   
                 
-              </div> {% endcomment %}
+              </div> 
             </div>
           </div>
 
@@ -253,7 +253,7 @@
             </div>
           </div>
         </div>
-       </div>
+       {% comment %} </div> {% endcomment %}
     </div>
   </div>      
               
