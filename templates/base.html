@@ -2,182 +2,162 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>ScreenPop - Home</title>
+  <title>ScreenPop - Home</title>
 
-<!-- Fonts Online -->
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <!-- Fonts Online -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
+  <!-- Style Sheet -->
+  <link rel="stylesheet" href="{% static 'css/main-style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="https://cdn.tiny.cloud/1/0ndt5xko7fmzltahsah3iue0ngvmywbbd88gb1c63c5ybamc/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+      <script src="{% static  'js/tiny.js' %}"></script> 
 
-
-<!-- Style Sheet -->
-
-
-<!-- Style Sheet -->
-<link rel="stylesheet" href="{% static 'css/main-style.css' %}">
-<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/custom.css' %}">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="https://cdn.tiny.cloud/1/0ndt5xko7fmzltahsah3iue0ngvmywbbd88gb1c63c5ybamc/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
- <script src="{% static  'js/tiny.js' %}"></script> 
-</script>
 </head>
 
 <body>
 <div id="main-wrapper"> 
-  
-  <!-- Top Toolbar -->
-    <div class="toolbar">
-      <div class="uou-block-1a blog">
-        <div class="container">
-          <div class="search"> 
-                  <ol class="breadcrumb" style="background-color:#f4f4f4!important;">
-                <li class="breadcrumb-item">{% block title %}{% endblock %}</li>
-            
-              </ol>
-          </div>
-          <ul class="social">
-            <li><a href="#" class="fa fa-facebook"></a></li>
-            <li><a href="#" class="fa fa-twitter"></a></li>
-            <li><a href="#" class="fa fa-google-plus"></a></li>
-          </ul>
-          <ul class="authentication">
-            <li><a href="#">Welcome {{user.first_name}}</a></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
-  
-        </div>
-      </div>
+      <div class="toolbar">
+        <div class="uou-block-1a blog">
+          <div class="container">
+            <div class="search"> 
+                <ol class="breadcrumb" style="background-color:#f4f4f4!important;">
+                  <li class="breadcrumb-item">{% block title %}{% endblock %}</li>
+              
+                </ol>
+            </div>
+            <ul class="social">
+              <li><a href="#" class="fa fa-facebook"></a></li>
+              <li><a href="#" class="fa fa-twitter"></a></li>
+              <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <ul class="authentication">
+              <li><a href="#">Welcome {{user.first_name}}</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+    
+           </div>
+         </div>
       <!-- end .uou-block-1a --> 
-    </div>
-
-       <div class="col-md-8"></div>
-  <!-- end toolbar -->
-  
-   
-  <div class="box-shadow-for-ui">
-    <div class="uou-block-2b">
-      <div class="container"> <a href="{% url 'dashboard' %}" class="logo"><img src="{% static 'images/screenpop-logo.png'%}" alt="logo"></a> <a href="#" class="mobile-sidebar-button mobile-sidebar-toggle"><span></span></a>
-        <nav class="nav">
-          <ul class="sf-menu">
-                <li><a href="{% url 'dashboard' %}"><i class="fa  fa-home"></i></a></li>
-            <li> <a href="{% url 'market' %}">Market Place</a> </li>
-            <li class=""> <a href="{% url 'blog' %}">Blog</a>
-              <ul>
-                  {% comment %} <li><a href="{% url 'post_detail' %}">Blog Read</a></li>  {% endcomment %}
-                <li><a href="{% url 'blog' %}">Blogs</a></li> 
-                <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
-              </ul>
-            </li>
-            <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
-            <li> <a href="{% url 'newsLibrary'%}">News</a></li>
-          
-                <li class=""> <a href="">Admin</a>
-              <ul>
-                  <li><a href="{% url 'registration' %}"> Add User</a></li>
-        
-                <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
-                    <li><a href="{% url 'addNews'%}">Add News</a></li>  
-                     <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>              
-              </ul>
-            </li>
-              <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
-         
-          </ul>
-        </nav>
       </div>
-    </div>
-  </div>
+      
+      <div class="col-md-8"></div>
 
- 
-  {% block content %} {% endblock %} {% if messages %}
+      <div class="box-shadow-for-ui">
+        <div class="uou-block-2b">
+          <div class="container"> <a href="{% url 'dashboard' %}" class="logo"><img src="{% static 'images/screenpop-logo.png'%}" alt="logo"></a> <a href="#" class="mobile-sidebar-button mobile-sidebar-toggle"><span></span></a>
+            <nav class="nav">
+              <ul class="sf-menu">
+                    <li><a href="{% url 'dashboard' %}"><i class="fa  fa-home"></i></a></li>
+                <li> <a href="{% url 'market' %}">Market Place</a> </li>
+                <li class=""> <a href="{% url 'blog' %}">Blog</a>
+                  <ul>
+                      {% comment %} <li><a href="{% url 'post_detail' %}">Blog Read</a></li>  {% endcomment %}
+                    <li><a href="{% url 'blog' %}">Blogs</a></li> 
+                    <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
+                  </ul>
+                </li>
+                <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
+                <li> <a href="{% url 'newsLibrary'%}">News</a></li>
+              
+                    <li class=""> <a href="">Admin</a>
+                  <ul>
+                      <li><a href="{% url 'registration' %}"> Add User</a></li>
+            
+                    <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
+                        <li><a href="{% url 'addNews'%}">Add News</a></li>  
+                        <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>              
+                  </ul>
+                </li>
+                  <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
+            
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div><!--end box-->
 
-        <div class="message" id='alert' role="alert">
+      {% block content %} {% endblock %} {% if messages %}
+
+      <div class="message" id='alert' role="alert">
 
             {% for message in messages %} {{ message }} {% endfor %} {% endif%}
           
-        </div>
-
-
-   
-    
-
-
-
-
-<div class="uou-block-4a secondary dark" style='text-align:center;'>
-  <div class="container">
-   
-
-   <div class="row">
-        <div class="col-4 d-none d-sm-block">
+      </div><!--end message-->
+      <div class="uou-block-4a secondary dark" style='text-align:center;'>
+        <div class="container">
+          <div class="row">
+            <div class="col-4 d-none d-sm-block">
                 <a href="#"  style='color:#5A8BAA;'>Privacy Policy</a>
+            </div>
+            <div class="col-12 col-sm-4">
+                <a href="mailto:penny@screenpop.club" style='color:#5A8BAA;'>Contact ScreenPop</a>
+            </div>
+            <div class="col-4 d-none d-sm-block">
+                <a href="#"  style='color:#5A8BAA;'>Terms &amp; Conditions</a>
+           </div>
+          </div>
+         <div class='row' >
+           <div class="col-12">
+             <p  style='text-align:center;'> Copyright &copy; 2020 <a href="www.scruffyhorse.com">Scruffy Horse</a>. All Rights reserved.</p>
+           </div>
+         </div>    
         </div>
-        <div class="col-12 col-sm-4">
-            <a href="mailto:penny@screenpop.club" style='color:#5A8BAA;'>Contact ScreenPop</a>
-        </div>
-        <div class="col-4 d-none d-sm-block">
-            <a href="#"  style='color:#5A8BAA;'>Terms &amp; Conditions</a>
-        </div>
-    </div>
-    <div class='row' >
-        <div class="col-12">
-          <p  style='text-align:center;'> Copyright &copy; 2020 <a href="www.scruffyhorse.com">Scruffy Horse</a>. All Rights reserved.</p>
-        </div>
-    </div>    
- </div>
-</div>
-
-<!-- end .uou-block-4a -->
-
-  <div class="uou-block-11a">
-    <h5 class="title">Menu</h5>
-    <a href="#" class="mobile-sidebar-close">&times;</a>
-    <nav class="main-nav">
-      <ul>
-                  <li><a href="{% url 'dashboard' %}"><i class="fa  fa-home"></i></a></li>
-              <li> <a href="{% url 'market' %}">Market Place</a> </li>
-              <li class=""> <a href="{% url 'blog' %}">Blog</a>
-                <ul>
-                    {% comment %} <li><a href="{% url 'post_detail' %}">Blog Read</a></li>  {% endcomment %}
-                  <li><a href="{% url 'blog' %}">Blogs</a></li> 
-                  <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
-                </ul>
-              </li>
-              <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
-              <li> <a href="{% url 'newsLibrary'%}">News</a></li>
-            
-                  <li class=""> <a href="">Admin</a>
-                <ul>
-                    <li><a href="{% url 'registration' %}"> Add User</a></li>
-          
-                  <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
-                      <li><a href="{% url 'addNews'%}">Add News</a></li>  
-                      <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>              
-                </ul>
-              </li>
-                <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
-      </ul>
-    </nav>
-    <hr>
-  </div> 
+      </div><!--end block4a-->
+      <div class="uou-block-11a">
+        <h5 class="title">Menu</h5>
+        <a href="#" class="mobile-sidebar-close">&times;</a>
+        <nav class="main-nav">
+          <ul>
+                      <li><a href="{% url 'dashboard' %}"><i class="fa  fa-home"></i></a></li>
+                  <li> <a href="{% url 'market' %}">Market Place</a> </li>
+                  <li class=""> <a href="{% url 'blog' %}">Blog</a>
+                    <ul>
+                        {% comment %} <li><a href="{% url 'post_detail' %}">Blog Read</a></li>  {% endcomment %}
+                      <li><a href="{% url 'blog' %}">Blogs</a></li> 
+                      <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
+                    </ul>
+                  </li>
+                  <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
+                  <li> <a href="{% url 'newsLibrary'%}">News</a></li>
+                
+                      <li class=""> <a href="">Admin</a>
+                    <ul>
+                        <li><a href="{% url 'registration' %}"> Add User</a></li>
+              
+                      <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
+                          <li><a href="{% url 'addNews'%}">Add News</a></li>  
+                          <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>              
+                    </ul>
+                  </li>
+                    <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
+          </ul>
+        </nav>
+        <hr>
+      </div> 
 
 
- </div>
+  
+  
+</div><!--end wrapper-->
+
 
 
 
