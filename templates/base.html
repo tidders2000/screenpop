@@ -41,29 +41,29 @@
 <div id="main-wrapper"> 
   
   <!-- Top Toolbar -->
-  <div class="toolbar">
-    <div class="uou-block-1a blog">
-      <div class="container">
-        <div class="search"> 
-                <ol class="breadcrumb" style="background-color:#f4f4f4!important;">
-              <li class="breadcrumb-item">{% block title %}{% endblock %}</li>
-           
-            </ol>
+    <div class="toolbar">
+      <div class="uou-block-1a blog">
+        <div class="container">
+          <div class="search"> 
+                  <ol class="breadcrumb" style="background-color:#f4f4f4!important;">
+                <li class="breadcrumb-item">{% block title %}{% endblock %}</li>
+            
+              </ol>
+          </div>
+          <ul class="social">
+            <li><a href="#" class="fa fa-facebook"></a></li>
+            <li><a href="#" class="fa fa-twitter"></a></li>
+            <li><a href="#" class="fa fa-google-plus"></a></li>
+          </ul>
+          <ul class="authentication">
+            <li><a href="#">Welcome {{user.first_name}}</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+  
         </div>
-        <ul class="social">
-          <li><a href="#" class="fa fa-facebook"></a></li>
-          <li><a href="#" class="fa fa-twitter"></a></li>
-          <li><a href="#" class="fa fa-google-plus"></a></li>
-        </ul>
-        <ul class="authentication">
-          <li><a href="#">Welcome {{user.first_name}}</a></li>
-          <li><a href="#">Logout</a></li>
-        </ul>
- 
       </div>
+      <!-- end .uou-block-1a --> 
     </div>
-    <!-- end .uou-block-1a --> 
-  </div>
 
        <div class="col-md-8"></div>
   <!-- end toolbar -->
@@ -101,7 +101,7 @@
         </nav>
       </div>
     </div>
-    </div>
+  </div>
 
  
   {% block content %} {% endblock %} {% if messages %}
@@ -113,87 +113,71 @@
         </div>
 
 
-    </div>
+   
     
 
-    <!-- end nav block --> 
 
-
-  
-
-
-
-  
-
-     
-
-<!-- Footer -->
-
-<!-- end .uou-block-4e -->
 
 
 <div class="uou-block-4a secondary dark" style='text-align:center;'>
   <div class="container">
-    {% comment %} <ul class="links">
-     <li ><a href="mailto:penny@screenpop.club" style='color:red;'>Contact ScreenPop</a></li>
-      <li class="d-none d-sm-block">><a href="#">Privacy Policy</a></li>
-      <li class="d-none d-sm-block"><a href="#">Terms &amp; Conditions</a></li>
-    </ul><br> {% endcomment %}
+   
 
    <div class="row">
         <div class="col-4 d-none d-sm-block">
-              <a href="#"  style='color:#5A8BAA;'>Privacy Policy</a>
+                <a href="#"  style='color:#5A8BAA;'>Privacy Policy</a>
         </div>
         <div class="col-12 col-sm-4">
-          <a href="mailto:penny@screenpop.club" style='color:#5A8BAA;'>Contact ScreenPop</a>
-      </div>
+            <a href="mailto:penny@screenpop.club" style='color:#5A8BAA;'>Contact ScreenPop</a>
+        </div>
         <div class="col-4 d-none d-sm-block">
-          <a href="#"  style='color:#5A8BAA;'>Terms &amp; Conditions</a>
-      </div>
-   </div>
-   <div class='row' >
-      <div class="col-12">
-        <p  style='text-align:center;'> Copyright &copy; 2020 <a href="www.scruffyhorse.com">Scruffy Horse</a>. All Rights reserved.</p>
-      </div>
+            <a href="#"  style='color:#5A8BAA;'>Terms &amp; Conditions</a>
+        </div>
+    </div>
+    <div class='row' >
+        <div class="col-12">
+          <p  style='text-align:center;'> Copyright &copy; 2020 <a href="www.scruffyhorse.com">Scruffy Horse</a>. All Rights reserved.</p>
+        </div>
+    </div>    
+ </div>
 </div>
-</div>
-</div>
+
 <!-- end .uou-block-4a -->
 
-<div class="uou-block-11a">
-  <h5 class="title">Menu</h5>
-  <a href="#" class="mobile-sidebar-close">&times;</a>
-  <nav class="main-nav">
-    <ul>
-                <li><a href="{% url 'dashboard' %}"><i class="fa  fa-home"></i></a></li>
-            <li> <a href="{% url 'market' %}">Market Place</a> </li>
-            <li class=""> <a href="{% url 'blog' %}">Blog</a>
-              <ul>
-                  {% comment %} <li><a href="{% url 'post_detail' %}">Blog Read</a></li>  {% endcomment %}
-                <li><a href="{% url 'blog' %}">Blogs</a></li> 
-                <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
-              </ul>
-            </li>
-            <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
-            <li> <a href="{% url 'newsLibrary'%}">News</a></li>
+  <div class="uou-block-11a">
+    <h5 class="title">Menu</h5>
+    <a href="#" class="mobile-sidebar-close">&times;</a>
+    <nav class="main-nav">
+      <ul>
+                  <li><a href="{% url 'dashboard' %}"><i class="fa  fa-home"></i></a></li>
+              <li> <a href="{% url 'market' %}">Market Place</a> </li>
+              <li class=""> <a href="{% url 'blog' %}">Blog</a>
+                <ul>
+                    {% comment %} <li><a href="{% url 'post_detail' %}">Blog Read</a></li>  {% endcomment %}
+                  <li><a href="{% url 'blog' %}">Blogs</a></li> 
+                  <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
+                </ul>
+              </li>
+              <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
+              <li> <a href="{% url 'newsLibrary'%}">News</a></li>
+            
+                  <li class=""> <a href="">Admin</a>
+                <ul>
+                    <li><a href="{% url 'registration' %}"> Add User</a></li>
           
-                <li class=""> <a href="">Admin</a>
-              <ul>
-                  <li><a href="{% url 'registration' %}"> Add User</a></li>
-        
-                <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
-                    <li><a href="{% url 'addNews'%}">Add News</a></li>  
-                     <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>              
-              </ul>
-            </li>
-              <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
-    </ul>
-  </nav>
-  <hr>
-</div> 
+                  <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
+                      <li><a href="{% url 'addNews'%}">Add News</a></li>  
+                      <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>              
+                </ul>
+              </li>
+                <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
+      </ul>
+    </nav>
+    <hr>
+  </div> 
 
 
-
+ </div>
 
 
 
