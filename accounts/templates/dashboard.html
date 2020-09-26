@@ -104,7 +104,7 @@
           
           
 
-              <div class="col-md-8" > 
+              <div class="col-md-7" > 
             <!-- Company Information -->
             <div class="sidebar bottom_fix">
               <h5 class="main-title">Notifications</h5>
@@ -129,7 +129,7 @@
           
           {% endfor %}
        
-   <div>
+      <div>
       <div class="row" style=" background-color:#5CC0CE; margin-bottom:10px;padding-left:5px;"><h4>Latest Blogs</h4></div>
        {% for blo in blog %}
          <div class="latest-post-widget" >
@@ -214,7 +214,7 @@
                           <li class="col-xs-4"> <span>Contact</span> </li>
                           <li class="col-xs-3 d-none d-sm-block"> <span>Business Name</span> </li>
                           <li class="col-xs-3 d-none d-sm-block"> <span>Business Type</span> </li>
-                          <li class="col-xs-2 n-p-r n-p-l d-none d-sm-block"> <span>Location</span> </li>
+                          <li class="col-xs-2 n-p-r n-p-l d-none d-lg-block"> <span>Location</span> </li>
                         </ul>
                       </div>
                       
@@ -235,11 +235,11 @@
                                   <span>Web Developer</span> </div>
                               </div>
                               <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l  d-none d-sm-block"> <span><a href="{% url 'bp_view' member.pk%}">{{member.business_profile.business_name}}</a></span> </div>
+                              <div class="col-xs-3 n-p-r n-p-l  d-none d-md-block"> <span><a href="{% url 'bp_view' member.pk%}">{{member.business_profile.business_name}}</a></span> </div>
                               <!-- Network -->
-                              <div class="col-xs-3 n-p-r  d-none d-sm-block"> <span>{{member.business_profile.business_type }}</span>  </div>
+                              <div class="col-xs-3 n-p-r  d-none d-md-block"> <span>{{member.business_profile.business_type }}</span>  </div>
                               <!-- Connections -->
-                              <div class="col-xs-2 n-p-r n-p-l  d-none d-sm-block"> <span>{{member.business_profile.location }}</span> </div>
+                              <div class="col-xs-2 n-p-r n-p-l  d-none d-lg-block"> <span>{{member.business_profile.location }}</span> </div>
                             </div>
                           </li>
                           
