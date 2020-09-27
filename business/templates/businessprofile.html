@@ -1,4 +1,12 @@
 {% extends 'base.html' %}{% load static%} {% block page_title %}Profile{% endblock %} {% block page_heading %}Market Place{% endblock %}
+ {% block title %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Business Profile</li>
+  </ol>
+</nav>{% endblock %}
+ 
  {% block content %}
 
   <div class="compny-profile"> 
@@ -10,7 +18,7 @@
         <!-- User Iinfo -->
         <div class="user-info">
       
-          <h1>{{prof.business_name}} <a data-toggle="tooltip" data-placement="top" title="Verified Member"><img src="{{MEDIA_URL}}{{prof.logo}}" alt="" ></a> </h1>
+          <h1>{{prof.business_name}} <a data-toggle="tooltip" data-placement="top" title="Verified Member"><img src="{{MEDIA_URL}}{{prof.logo}}" alt="logo" style="width:300px;height:300px;"></a> </h1>
           <h6>{{prof.business_type}}</h6>
           <p>{{ prof.street_address1}} {{ prof.street_address2}} {{ prof.town_or_city}} {{ prof.postcode }}<br>{{prof.location}}</p>
           

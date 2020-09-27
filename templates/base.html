@@ -49,7 +49,7 @@
               <li><a href="#" class="fa fa-google-plus"></a></li>
             </ul>
             <ul class="authentication">
-              <li><a href="#">Welcome {{user.first_name}}</a></li>
+              <li><a href="#">Welcome <span class="hello">{{user.first_name}}</span></a></li>
               <li><a href="#">Logout</a></li>
             </ul>
     
@@ -75,6 +75,7 @@
                   </ul>
                 </li>
                 <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
+                <li> <a href="/forum/">Forums</a></li>
                 <li> <a href="{% url 'newsLibrary'%}">News</a></li>
               
                     <li class=""> <a href="">Admin</a>

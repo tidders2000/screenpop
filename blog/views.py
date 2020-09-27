@@ -93,5 +93,7 @@ def edit_post(request, pk):
         f.save()
         return redirect(reverse('add_blog'))
         messages.error(request, "News Added")
+    else:
+        messages.error(request, 'error')
 
     return render(request, 'edit_blog.html', {'blog': blog, 'history': history})

@@ -1,4 +1,13 @@
 {% extends 'base.html' %}{%load bootstrap4%}{% load crispy_forms_tags %} {% load static %}{% block page_title %}Market Place{% endblock %} {% block page_heading %}Market Place{% endblock %}
+ {% block title %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'dashboard'%}">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'business_profile'%}">Business Profile</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit Profile</li>
+  </ol>
+</nav>{% endblock %}
+ 
  {% block content %}
 
   
@@ -6,7 +15,9 @@
   <div class="container-fluid">
 
       <div class="row">
-        <div class="col-12 col-lg-8 offset-lg-2">
+        <div class="col-12 col-lg-8 offset-lg-2 mt-3">
+        <h1>Edit Page</h1>
+        <br>
 
  {% crispy profile %} 
 
@@ -18,12 +29,7 @@
 
 </div>
 </div>
- <form method='POST' enctype="multipart/form-data">
-                      {% csrf_token %} {{ tiny|crispy |  safe }}
-                      
-                      <button type="submit" class="btn btn-success">PUBLISH</button>
-
-                      </form> 
+ 
 
 
  {% endblock %}

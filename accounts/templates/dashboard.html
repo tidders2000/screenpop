@@ -1,7 +1,11 @@
 
 {% extends 'base.html' %}{% load static%} {% block page_title %}User Profile Page{% endblock %} {% block page_heading %}Profile{% endblock %}
 
-{% block title %}<a style="color:black;"href="{% url 'dashboard' %}">Dashboard</a>{% endblock %}
+{% block title %}<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+  </ol>
+</nav>{% endblock %}
 {% block content %}
  <p>{{ profile.email }}</p>
  <div class="compny-profile"> 
@@ -104,7 +108,7 @@
           
           
 
-              <div class="col-md-7" > 
+              <div class="col-md-7 col-lg-8" > 
             <!-- Company Information -->
             <div class="sidebar bottom_fix">
               <h5 class="main-title">Notifications</h5>

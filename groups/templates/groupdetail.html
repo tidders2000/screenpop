@@ -1,4 +1,15 @@
 {% extends 'base.html' %} {% block page_title %}Group Detail{% endblock %} {% block page_heading %}Group Detail{% endblock %}
+ 
+   {% block title %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'dashboard'%}">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'group_directory'%}">Group Directory</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Group Detail</li>
+  </ol>
+</nav>{% endblock %}
+ 
+ 
  {% block content %}
 
  <div class="compny-profile"> 
@@ -7,8 +18,8 @@
     <div class="profile-bnr " style="background:url({{MEDIA_URL}}{{group.image}})no-repeat; background-size: cover; min-height: 250px;">
       <div class="container">
         <div class="pull-left">
-          <h2 class='text-white'>{{group.groupName}}</h2>
-          <h5 class='text-white'>Established: {{group.created}}</h5>
+          <h1 class='text-white' style="background-color:#5CC1CD;margin-top:15px;">{{group.groupName}} > Established: {{group.created}}</h3>
+          
         </div>
         
         <!-- Top Riht Button -->
@@ -85,7 +96,7 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="col-md-8"> 
+                  <div class="col-md-7 col-lg-8"> 
                     <!-- Skills -->
                     <div class="sidebar">
                       <h5 class="main-title">About</h5>
@@ -159,7 +170,7 @@
                       <div class="similar">
                         <div class="media">
                           <div class="media-left">
-                            <div class="inn-simi"> <img class="media-object" src="{{MEDIA_URL}}{{ member.business_profile.logo}}" alt="logo"> <a href="{% url 'bp_view' member.pk%}">Profile </a> </div>
+                            <div class="inn-simi"> <img class="media-object" src="{{MEDIA_URL}}{{ member.business_profile.logo}}" alt="logo">  </div>
                           </div>
                           <div class="media-body">
                             <h5>{{member.business_profile.business_name}}</h5>
@@ -167,7 +178,7 @@
                             <p>{{member.business_profile.about| safe | linebreaks }}</p>
                             
                             <!-- Share -->
-                            <div class="share-w"> <a href="{{member.business_profile.e_mail }}"><i class="fa fa-envelope-o"></i></a> <a href=""><i class="fa fa-eye"></i></a></div>
+                            <div class="share-w"> <a href="{{member.business_profile.e_mail }}"><i class="fa fa-envelope-o"></i></a> <a href="{% url 'bp_view' member.pk%}"><i class="fa fa-eye"></i></a></div>
                           </div>
                         </div>
                 {% endfor %}

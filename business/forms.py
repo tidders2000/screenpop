@@ -5,14 +5,34 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML
 from crispy_forms.bootstrap import Tab, TabHolder
 
-article = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
+about = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 80}))
 
 
 class bp_model_form(forms.ModelForm):
 
     class Meta:
         model = BusinessProfile
-        fields = ('__all__')
+        fields = ('contact_name',
+                  'street_address1',
+                  'street_address2',
+                  'town_or_city',
+                  'county',
+                  'postcode',
+                  'country',
+                  'e_mail',
+                  'phone',
+                  'facebook',
+                  'twitter',
+                  'linkedin',
+                  'google',
+                  'website',
+                  'business_type',
+                  'opening_hours',
+                  'number_emp',
+                  'location',
+                  'legal_entity',
+                  'logo',
+                  'header_image')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -30,8 +50,12 @@ class bp_model_form(forms.ModelForm):
                     'e_mail',
                     'phone',
 
+
+
+
                     ),
                 Tab('Business Details',
+
                     'business_type',
                     'opening_hours',
                     'number_emp',
@@ -59,13 +83,12 @@ class bp_model_form(forms.ModelForm):
                     )
             ),
             ButtonHolder(
-                Submit('submit', 'Submit', css_class='btn btn-danger')
+                Submit('submit', 'Save', css_class='btn btn-danger')
             )
         )
         self.helper.form_id = 'id-exampleForm'
-        self.helper.form_class = 'blueForms'
-        self.helper.form_method = 'post'
-        self.helper.form_action = 'submit_survey'
+        self.helper.enc_type = "multipart/form-data"
+        self.helper.form_method = 'POST'
 
 
 class tiny_model_form(forms.ModelForm):

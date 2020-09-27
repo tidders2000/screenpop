@@ -1,9 +1,20 @@
 {% extends 'base.html' %} {% block page_title %}Group Directory{% endblock %} {% block page_heading %}Group Directoy{% endblock %}
+ 
+    {% block title %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'dashboard'%}">Dashboard</a></li>
+     <li class="breadcrumb-item active" aria-current="page">Group Directory</li>
+  
+  </ol>
+</nav>{% endblock %}
+ 
+ 
  {% block content %}
 
  
  <!-- search -->
-  <div class="search-pro">
+  {% comment %} <div class="search-pro">
     <div class="map-search">
       <div class="container">
         <div class="row">
@@ -27,7 +38,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> {% endcomment %}
 
   <!-- Members -->
   <section class="pro-mem">
@@ -37,7 +48,7 @@
       {% for group in groups %}
         <div class="col-sm-3">
           <div class="uou-block-6a"> <a href="{% url 'group_detail' group.pk%}"><img src="{{MEDIA_URL}}{{ group.image}}" alt="" style="cursor:pointer;height:255px; height:142px"></a>
-            <h6>{{group.groupName}} <span>15 Members</span></h6>
+            <h6>{{group.groupName}} </h6>
             <p><i class="fa fa-map-marker"></i>{{group.groupLocation}}</p>
           </div>
           <!-- end .uou-block-6a --> 

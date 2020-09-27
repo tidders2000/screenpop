@@ -21,7 +21,8 @@ class BusinessProfile(models.Model):
     phone = PhoneField(blank=True, help_text='Contact phone number')
     business_type = models.CharField(
         max_length=254, choices=businessTypes, default='Default')
-    logo = models.ImageField(upload_to='media/images', blank=True)
+    logo = models.ImageField(upload_to='media/images',
+                             blank=True, default='media/images/default_1.png')
     opening_hours = models.CharField(max_length=254, default='09:00-17:00')
     number_emp = models.IntegerField(default=0)
     location = models.CharField(max_length=254, default='Bristol, UK')
@@ -34,8 +35,9 @@ class BusinessProfile(models.Model):
     contact_name = models.CharField(max_length=254, default=0)
     about = HTMLField(blank=True)
     services = HTMLField(blank=True)
-    website = models.CharField(max_length=254, default='')
-    header_image = models.ImageField(upload_to='media/images', blank=True)
+    website = models.CharField(max_length=254, default='https://example.com')
+    header_image = models.ImageField(
+        upload_to='media/images', blank=True, default='media/images/header_1.jpg')
     facebook = models.CharField(max_length=254, default="enter a link")
     linkedin = models.CharField(max_length=254, default=0)
     google = models.CharField(max_length=254, default=0)

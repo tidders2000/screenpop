@@ -19,19 +19,38 @@
             <a href="{{article.pk}}" class="btn btn-small btn-primary">Read More</a> </article>
           <!-- end .uou-block-7f -->
           {% endfor %}
-        
-          <!-- end .uou-block-7f -->
-          
-          <div class="text-center pt20">
-            <ul class="uou-paginatin list-unstyled">
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-            </ul>
-          </div>
-        </div>
+
+      
+
+
+     
+
+          <!-- pagination-->
+           
+<nav aria-label="Page navigation example">
+
+  <ul class="pagination">
+  
+
+  
+    <li class="page-item">
+      <a class="page-link" href="" aria-label="Previous">
+        <span aria-hidden="true">LAST</span>
+      </a>
+    </li>
+      {% for num in page_obj.paginator.page_range %}
+    <li class="page-item" ><a class="page-link" href="?page={{ num }}" style='color:blue;'>{{num}}</a></li>
+    {% endfor %}
+
+    <li class="page-item">
+      <a class="page-link" href="" aria-label="Next">
+        <span aria-hidden="true">NEXT</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+     
+
         
           <!-- end uou-sidebar --> 
         </div>

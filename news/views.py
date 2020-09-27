@@ -4,6 +4,7 @@ from .forms import add_news_form
 from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -23,9 +24,13 @@ def addNews(request):
 
 def newsLibrary(request):
 
-    articles = News.objects.all()
+    articles = News.objects.all().order_by('date')
 
-    return render(request, 'news_library.html', {'articles': articles})
+    paginator = Paginator(articles, 2)  # Show 5 posts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'news_library.html', {'articles': articles, 'page_obj': page_obj, 'paginator': paginator})
 
 
 def newsArticle(request, pk):

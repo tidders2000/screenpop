@@ -33,6 +33,12 @@ def edit_profile(request, pk):
     data = BusinessProfile.objects.get(pk=pk)
     tpk = pk
     profile = bp_model_form(instance=data)
+    prof = BusinessProfile.objects.get(pk=pk)
+    if request.method == "POST":
+        form = bp_model_form(request.POST, request.FILES, instance=prof)
+        form.save()
+        return redirect(reverse('business_profile'))
+        messages.error(request, "Profile Updated")
 
     return render(request, 'edit_profile.html', {'profile': profile, 'tpk': tpk})
 
@@ -40,6 +46,11 @@ def edit_profile(request, pk):
 def edit_profile_b(request, pk):
     data = BusinessProfile.objects.get(pk=pk)
     tiny = tiny_model_form(instance=data)
+    if request.method == "POST":
+        form = tiny_model_form(request.POST, request.FILES, instance=data)
+        form.save()
+        return redirect(reverse('business_profile'))
+        messages.error(request, "Profile Updated")
     return render(request, 'edit_profile_b.html', {'tiny': tiny})
 
 
