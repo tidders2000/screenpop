@@ -234,12 +234,12 @@
                               
                                 <!-- Name -->
                                 <div class="fol-name">
-                                  <div class="avatar"> <img src="{{MEDIA_URL}}{{ member.business_profile.logo}}" alt="business"> </div>
+                                  <div class="avatar"> <img src="{{MEDIA_URL}}{{ member.user.profile.profile_image}}"  style="height:50px;"alt="profile pciture"> </div>
                                   <h6><a href="{% url 'bp_view' member.pk%}">{{member.user}}</a></h6>
-                                  <span>Web Developer</span> </div>
+                                   </div>
                               </div>
                               <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l  d-none d-md-block"> <span><a href="{% url 'bp_view' member.pk%}">{{member.business_profile.business_name}}</a></span> </div>
+                              <div class="col-xs-3 n-p-r n-p-l  d-none d-md-block"> <span><a href="{% url 'bp_view'  member.business_profile.pk%}">{{member.business_profile.business_name}}</a></span> </div>
                               <!-- Network -->
                               <div class="col-xs-3 n-p-r  d-none d-md-block"> <span>{{member.business_profile.business_type }}</span>  </div>
                               <!-- Connections -->

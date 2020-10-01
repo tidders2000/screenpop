@@ -22,6 +22,7 @@ def addNews(request):
     return render(request, 'add_news.html', {'news': news})
 
 
+@login_required
 def newsLibrary(request):
 
     articles = News.objects.all().order_by('date')
@@ -33,6 +34,7 @@ def newsLibrary(request):
     return render(request, 'news_library.html', {'articles': articles, 'page_obj': page_obj, 'paginator': paginator})
 
 
+@login_required
 def newsArticle(request, pk):
     article = get_object_or_404(News, pk=pk)
     return render(request, 'article.html', {'article': article})

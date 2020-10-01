@@ -50,7 +50,7 @@
             </ul>
             <ul class="authentication">
               <li><a href="#">Welcome <span class="hello">{{user.first_name}}</span></a></li>
-              <li><a href="#">Logout</a></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
     
            </div>
@@ -77,16 +77,17 @@
                 <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
                 <li> <a href="/forum/">Forums</a></li>
                 <li> <a href="{% url 'newsLibrary'%}">News</a></li>
-              
+                   {% if request.user.is_staff  %}
                     <li class=""> <a href="">Admin</a>
                   <ul>
                       <li><a href="{% url 'registration' %}"> Add User</a></li>
+                      <li><a href="{% url 'new_business' %}"> Add Business</a></li>
             
                     <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
                         <li><a href="{% url 'addNews'%}">Add News</a></li>  
                         <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>              
                   </ul>
-                </li>
+                </li>{% endif %}
                   <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
             
               </ul>
@@ -95,12 +96,25 @@
         </div>
       </div><!--end box-->
 
-      {% block content %} {% endblock %} {% if messages %}
+           
+      {% if messages %}
 
-      <div class="message" id='alert' role="alert">
-
-            {% for message in messages %} {{ message }} {% endfor %} {% endif%}
+                {% for message in messages %}
+  <div class="alert alert-primary alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
+            
+             {% endif%}
           
+     
+      {% block content %} {% endblock %} 
+
+      
+
       </div><!--end message-->
       <div class="uou-block-4a secondary dark" style='text-align:center;'>
         <div class="container">
@@ -122,6 +136,7 @@
          </div>    
         </div>
       </div><!--end block4a-->
+      </div><!--added-->
       <div class="uou-block-11a">
         <h5 class="title">Menu</h5>
         <a href="#" class="mobile-sidebar-close">&times;</a>
@@ -155,7 +170,7 @@
       </div> 
 
 
-  
+
   
 </div><!--end wrapper-->
 

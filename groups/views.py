@@ -41,6 +41,7 @@ def add_group(request):
     return render(request, 'add_group.html', {'groups': groups})
 
 
+@login_required
 def join_meet(request, pk):
     group = request.GET['q']
     user = request.user

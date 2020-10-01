@@ -5,10 +5,12 @@ from django.contrib import messages
 from .utils import render_to_pdf
 from django.http import HttpResponse
 from accounts.models import Switcher
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
+@login_required
 def meeting_detail(request):
     form = meeting_model_form()
     if request.method == "POST":
@@ -22,6 +24,7 @@ def meeting_detail(request):
     return render(request, 'add_meeting.html', {'form': form})
 
 
+@login_required
 def pdf(request, pk):
 
     meeting = Meeting.objects.get(pk=pk)
@@ -40,6 +43,7 @@ def pdf(request, pk):
     return HttpResponse(pdf, content_type='application/pdf')
 
 
+@login_required
 def meeting_requests(request):
     requests = Guests.objects.filter(status='pending')
 

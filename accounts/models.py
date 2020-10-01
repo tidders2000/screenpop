@@ -10,7 +10,8 @@ from business.models import BusinessProfile
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     telephone = models.CharField(max_length=254)
-    profile_image = models.ImageField(upload_to='media/profiles', blank=True)
+    profile_image = models.ImageField(
+        upload_to='media/profiles', default='media/images/default_1.png')
 
 
 @receiver(post_save, sender=User)

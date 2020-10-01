@@ -20,7 +20,7 @@ from blog.views import post_tag
 
 urlpatterns = [
     path('index/', index, name='index'),
-    path('logout/', logout, name='logout'),
+    path('/logout/', logout, name='logout'),
 
     path('register/', registration, name='registration'),
     path('profile/', user_profile, name='profile'),

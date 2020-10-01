@@ -8,6 +8,12 @@ from crispy_forms.bootstrap import Tab, TabHolder
 about = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 80}))
 
 
+class add_business(forms.ModelForm):
+    class Meta:
+        model = BusinessProfile
+        fields = ('business_name', 'user',)
+
+
 class bp_model_form(forms.ModelForm):
 
     class Meta:

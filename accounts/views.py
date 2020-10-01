@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
 from .forms import ProfileForm, switcher_form
 from news.models import News
-from .models import Switcher
+from .models import Switcher, Profile
 from meetings.models import Meeting, Apologies, Guests
 from meetings.forms import apologies_form
 from datetime import datetime
@@ -72,6 +72,7 @@ def logout(request):
 #     return render(request, 'login.html', {'login_form': login_form})
 
 
+@login_required
 def registration(request):
 
     if request.method == "POST":
@@ -92,10 +93,19 @@ def registration(request):
     return render(request, 'registration.html', {'registration_form': registration_form, 'profile_form': profile_form})
 
 
+@login_required
 def user_profile(request):
     """the users profile page"""
-    user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {'profile': user})
+    instance = Profile.objects.get(pk=request.user.pk)
+    if request.method == "POST":
+
+        form = ProfileForm(request.POST, request.FILES, instance=instance)
+        form.save()
+        return redirect(reverse('dashboard'))
+        messages.error(request, "Profile Updated")
+
+    profile = ProfileForm(instance=instance)
+    return render(request, 'profile.html', {'profile': profile, 'instance': instance})
 
 
 @login_required
@@ -146,6 +156,7 @@ def dashboard(request):
                                               'member_count': member_count})
 
 
+@login_required
 def switcher(request):
 
     # set user id
@@ -163,6 +174,7 @@ def switcher(request):
     return redirect(reverse('dashboard'))
 
 
+@login_required
 def switching(request, pk):
     # changes the group and business based on the switcher instance by updating session cookies
     # filters switcher table by instance
@@ -176,6 +188,7 @@ def switching(request, pk):
     return redirect(reverse('dashboard'))
 
 
+@login_required
 def switcher_add(request):
     if request.method == "POST":
         switch = switcher_form(request.POST)
@@ -189,6 +202,7 @@ def switcher_add(request):
         return render(request, 'switch_add.html', {'switch': switch})
 
 
+@login_required
 def apologies(request, pk):
     user = request.user
     meeting = Meeting.objects.get(pk=pk)

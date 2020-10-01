@@ -18,6 +18,7 @@ from django.urls import path, include
 from machina import urls as machina_urls
 from django.conf import settings
 from django.conf.urls.static import static
+from accounts.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +33,7 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('forum/', include(machina_urls)),
+    path('', index, name='index'),
 
 
 ]

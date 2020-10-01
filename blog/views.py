@@ -6,13 +6,14 @@ from django.contrib import messages
 from django.template.defaultfilters import slugify
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 
 # class PostList(generic.ListView):
 #     queryset = Post.objects.filter(status=1).order_by('-created_on')
 #     template_name = 'blog.html'
 #     paginate_by = 3
-
+@login_required
 def post_list(request):
     post_list = Post.objects.all().order_by('-created_on')
     paginator = Paginator(post_list, 5)  # Show 5 posts per page.
@@ -31,6 +32,7 @@ def post_list(request):
     return render(request, "blog.html", {'page_obj': page_obj, 'popular': popular, 'post_list': post_list, 'tags': tags, 'cat_list': cat_list})
 
 
+@login_required
 def post_detail(request, slug):
     template_name = 'post_detail.html'
     post = get_object_or_404(Post, slug=slug)
@@ -62,6 +64,7 @@ def post_detail(request, slug):
                                            })
 
 
+@login_required
 def add_blog(request):
     history = Post.objects.filter(author=request.user)
     if request.method == "POST":
@@ -77,12 +80,14 @@ def add_blog(request):
     return render(request, 'add_blog.html', {'blog': blog, 'history': history})
 
 
+@login_required
 def post_tag(request):
     tag = request.GET['q']
     post_list = Post.objects.filter(tag=tag)
     return render(request, 'blog.html', {'post_list': post_list})
 
 
+@login_required
 def edit_post(request, pk):
     history = Post.objects.filter(author=request.user)
     data = Post.objects.get(pk=pk)
