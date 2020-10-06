@@ -44,6 +44,11 @@
             "src": "/static/icons/spicon-512x512.png",
             "type": "image/png",
             "sizes": "512x512"
+        } {
+            "src": "/static/icons/maskable_icon.png",
+            "sizes": "196x196",
+            "type": "image/png",
+            "purpose": "any maskable"
         }
     ]
 }
