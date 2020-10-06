@@ -13,6 +13,7 @@ from datetime import date
 from blog.models import Post
 from django.template.context_processors import csrf
 from machina.apps.forum_conversation.models import Post as Posting
+from django.views.generic import TemplateView
 
 
 def index(request):
@@ -217,3 +218,9 @@ def apologies(request, pk):
 
 def test(request):
     return render(request, 'user-dashboard.html')
+
+
+class ServiceWorkerView(TemplateView):
+    template_name = 'sw.js'
+    content_type = 'application/javascript'
+    name = 'sw.js'

@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.urls import path, include
-from .views import logout, registration, user_profile, index, dashboard, switcher, switching, apologies, switcher_add, test
+from .views import *
 from blog.views import post_tag
 
 urlpatterns = [
@@ -32,5 +32,10 @@ urlpatterns = [
     path('switcher_add', switcher_add, name='switcher_add'),
     path('post_tag', post_tag, name='post_tag'),
     path('test', test, name='test'),
+    path(
+        'sw.js',
+        ServiceWorkerView.as_view(),
+        name='ServiceWorkerView',
+    ),
 
 ]
