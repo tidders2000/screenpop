@@ -1,7 +1,7 @@
 {
     "name": "ScreenPop App",
     "short_name": "ScreenPop",
-    "start_url": "http://127.0.0.1:8000/",
+    "start_url": "/",
     "scope": ".",
     "display": "standalone",
     "background_color": "#FFF",
