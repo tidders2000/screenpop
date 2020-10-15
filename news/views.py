@@ -27,14 +27,14 @@ def newsLibrary(request):
 
     articles = News.objects.all().order_by('date')
 
-    paginator = Paginator(articles, 2)  # Show 5 posts per page.
+    paginator = Paginator(articles, 5)  # Show 5 posts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'news_library.html', {'articles': articles, 'page_obj': page_obj, 'paginator': paginator})
+    return render(request, "news_library.html", {'page_obj': page_obj})
 
 
-@login_required
+@ login_required
 def newsArticle(request, pk):
     article = get_object_or_404(News, pk=pk)
     return render(request, 'article.html', {'article': article})

@@ -1,7 +1,7 @@
 {
     "name": "ScreenPop App",
     "short_name": "ScreenPop",
-    "start_url": "/",
+    "start_url": "/accounts/dashboard/",
     "scope": ".",
     "display": "standalone",
     "background_color": "#FFF",

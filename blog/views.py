@@ -84,7 +84,20 @@ def add_blog(request):
 def post_tag(request):
     tag = request.GET['q']
     post_list = Post.objects.filter(tag=tag)
-    return render(request, 'blog.html', {'post_list': post_list})
+    paginator = Paginator(post_list, 5)  # Show 5 posts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    tags = Post.objects.order_by('tag').distinct('tag')
+    popular = Post.objects.order_by('updated_on')
+    cat_list = Post.objects.order_by('category').distinct('category')
+    if request.method == "POST":
+        keyword = request.POST.get('keyword')
+
+        # type = request.POST.get('type')
+        post_list = Post.objects.filter(
+            Q(author__first_name__icontains=keyword) | Q(title__icontains=keyword) | Q(content__icontains=keyword) | Q(author__last_name__icontains=keyword))
+
+    return render(request, "blog.html", {'page_obj': page_obj, 'popular': popular, 'post_list': post_list, 'tags': tags, 'cat_list': cat_list})
 
 
 @login_required

@@ -10,16 +10,17 @@
 <title>ScreenPop - Home</title>
 
 <!-- Fonts Online -->
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+{% comment %} <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300&display=swap' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap' rel='stylesheet' type='text/css'> {% endcomment %}
 
 <!-- Style Sheet -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+ <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/main-style.css' %}">
-<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+{% comment %} <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"> {% endcomment %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/custom.css' %}">
   <link rel="manifest" href="{% static 'manifest.json' %}">
+   <link rel="apple-touch-icon" href="{% static 'icons/aurss.192x192.png' %}">   
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -29,82 +30,46 @@
 </head>
 
 <body>
-<div id="main-wrapper"> 
-  
-  <!-- Top Toolbar -->
-  <div class="toolbar">
-    <div class="uou-block-1a blog">
-      <div class="container">
-        <div class="search"> 
-                <ol class="breadcrumb" style="background-color:#f4f4f4!important;">
-              <li class="breadcrumb-item"><a href="user-dashboard.html">Home</a></li>
-           
-            </ol>
-        </div>
-        <ul class="social">
-          <li><a href="#" class="fa fa-facebook"></a></li>
-          <li><a href="#" class="fa fa-twitter"></a></li>
-          <li><a href="#" class="fa fa-google-plus"></a></li>
-        </ul>
-        <ul class="authentication">
-          <li><a href="#">Welcome Dave</a></li>
-          <li><a href="#">Logout</a></li>
-        </ul>
- 
-      </div>
-    </div>
-    <!-- end .uou-block-1a --> 
-  </div>
 
-       <div class="col-md-8"></div>
-  <!-- end toolbar -->
-  
-  <div class="box-shadow-for-ui">
-    <div class="uou-block-2b">
-      <div class="container"> <a href="#" class="logo"><img src="images/screenpop-logo.png" alt=""></a> <a href="#" class="mobile-sidebar-button mobile-sidebar-toggle"><span></span></a>
-        <nav class="nav">
-          <ul class="sf-menu">
-            <li><a href="user-dashboard.html"><i class="fa  fa-home"></i></a></li>
-            <li> <a href="listing-filter.html">Market Place</a> </li>
-            <li class=""> <a href="blog.html">Blog</a>
-              <ul>
-                  <li><a href="blog.html"> View Blogs</a></li>
-        
-                <li><a href="blog-post.html">Blog Post</a></li>                
-              </ul>
-            </li>
-            <li> <a href="profile_company-no-tabs.html">Company Profile</a></li>
-          
-                <li class=""> <a href="index.html">Admin</a>
-              <ul>
-                  <li><a href=""> Add User</a></li>
-        
-                <li><a href="">Manage Meeting</a></li> 
-                    <li><a href="">Add News</a></li>                
-              </ul>
-            </li>
-              <li><a href="listing-filter-1.html">Group Directory</a></li>
-         
-          </ul>
-        </nav>
-      </div>
-    </div>
-    </div>
-    <!-- end .uou-block-2b --> 
+
+
+  <style>
+
+.login-sec{
+  margin-top:20%;
+}
+
+  @media only screen and (min-width: 1000px) {
+   .login-sec{
+      margin-top:0;
+    width: 60%;
+   
+  }
+}
+  </style>
+
 
   <!-- HOME PRO-->
-  <div class="home-pro" style="height:100%;"> 
+ <div class="home-pro" style="height:100%;"> 
+  
+{% if messages %}
+
+    
+
+            {% for message in messages %} {{ message }} {% endfor %} {% endif%}
+          
+    
     
     <!-- PRO BANNER HEAD -->
-    <div class="banr-head">
-      <div class="container">
-        <div class="row"> 
+    <div class="banr-head ">
+      <div class="container col-lg-10 offset-lg-1">
+   
           
           <!-- CONTENT -->
           
           
           <!-- FORM SECTION -->
-          <div class="col-6 col-sm-10 col-md-8">
+          
             <div class="login-sec"> 
               
               <!-- TABS -->
@@ -115,7 +80,7 @@
                 </ul>
                 
                 <!-- REGISTER -->
-                <div class="content">
+                {% comment %} <div class="content">
                   <div id="register">
                     <form>
                       <input type="text" placeholder="Full Name">
@@ -126,7 +91,7 @@
                       <div class="login-with"> <span>Or login with:</span> <a href="#."><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-google"></i></a> <a href="#."><i class="fa fa-linkedin"></i></a> </div>
                     </form>
                   </div>
-                  
+                   {% endcomment %}
                   <!-- LOGIN -->
                   <div id="log-in" class="active">
                     <!--<form>
@@ -148,8 +113,8 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          
+     
       </div>
     </div>
     
@@ -157,40 +122,31 @@
     
   
   
-  </div>
-</div>
 
-{% if messages %}
 
-        <div class="message" id='alert' role="alert">
 
-            {% for message in messages %} {{ message }} {% endfor %} {% endif%}
-          
-        </div>
-
-</div>
 
 <!-- Scripts --> 
-<script src="https://maps.googleapis.com/maps/api/js"></script> 
-<script src="{% static 'js/jquery-2.1.3.min.js' %}"></script> 
 
-<!--<script src="js/bootstrap.js"></script> -->
+{% comment %} <script src="{% static 'js/jquery-2.1.3.min.js' %}"></script>  {% endcomment %}
+
+{% comment %} <!--<script src="js/bootstrap.js"></script> -->
 <script src=" {% static  'js/plugins/superfish.min.js' %}"></script> 
 <script src="{% static  'js/jquery.ui.min.js' %}"></script> 
 
 
 
-<script src="{% static 'js/plugins/rangeslider.min.js' %}"></script> 
+
 <script src="{% static 'js/plugins/jquery.flexslider-min.js' %}"></script> 
 <script src="{% static 'js/uou-accordions.js' %}"></script> 
 <script src="{% static  'js/uou-tabs.js' %}"></script> 
 <script src="{% static 'js/plugins/select2.min.js' %}"></script> 
 <script src="{% static 'js/owl.carousel.min.js' %}"></script> 
-<script src="{% static  'js/gmap3.min.js' %}"></script> 
+
 <script src="{% static  'js/scripts.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script><!---->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script><!----> {% endcomment %}
 
 
   <script src="{% static  'js/custom.js' %}"></script> 

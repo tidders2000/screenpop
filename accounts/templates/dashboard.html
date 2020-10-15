@@ -263,5 +263,35 @@
               
                
 </div>
+{% comment %} <script>
+var url = 'http://127.0.0.1:8000/accounts/dashboard/';
+var networkDataReceived = false;
+
+fetch(url)
+  .then(function(res) {
+    return res.json();
+  })
+  .then(function(data) {
+    networkDataReceived = true;
+    console.log('From web', data);
+  
+  });
+
+if ('caches' in window) {
+  caches.match(url)
+    .then(function(response) {
+      if (response) {
+        return response.json();
+      }
+    })
+    .then(function(data) {
+      console.log('From cache', data);
+      if (!networkDataReceived) {
+    
+      }
+    });
+}
+
+</script> {% endcomment %}
 
  {% endblock %}

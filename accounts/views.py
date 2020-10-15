@@ -45,7 +45,7 @@ def index(request):
     return render(request, 'index.html', {'login_form': login_form})
 
 
-@login_required
+
 def logout(request):
     """Log the user out"""
     auth.logout(request)
@@ -115,7 +115,7 @@ def dashboard(request):
     # current user
     user = request.user
     # get new articles for dash
-    articles = News.objects.all()[:3]
+    articles = News.objects.all().order_by('date').reverse()[0:3]
     # get list of groups and business for user
     switchData = Switcher.objects.filter(user=user)
     # work out next meeting
@@ -224,3 +224,7 @@ class ServiceWorkerView(TemplateView):
     template_name = 'sw.js'
     content_type = 'application/javascript'
     name = 'sw.js'
+
+
+def error(request):
+    return render(request, 'error.html')
