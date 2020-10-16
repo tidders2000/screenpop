@@ -19,7 +19,7 @@
 {% comment %} <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"> {% endcomment %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-  <link rel="manifest" href="{% static 'manifest.json' %}">
+  {% comment %} <link rel="manifest" href="{% static 'manifest.json' %}"> {% endcomment %}
    <link rel="apple-touch-icon" href="{% static 'icons/aurss.192x192.png' %}">   
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -102,7 +102,8 @@
                       <div class="forget">Forgot your password? <a href="#.">Click Here</a></div>
                     </form>-->
                       <form method='POST'>
-                       {{ login_form|crispy }}    {% csrf_token %}
+                       {{ login_form|crispy }}   {% csrf_token %}
+             
                       <button type="submit" class="btn btn-success">Login</button>
 
                       </form>

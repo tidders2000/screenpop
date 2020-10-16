@@ -14,9 +14,12 @@ from blog.models import Post
 from django.template.context_processors import csrf
 from machina.apps.forum_conversation.models import Post as Posting
 from django.views.generic import TemplateView
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 def index(request):
+
 
     if request.user.is_authenticated:
         return redirect(reverse('dashboard'))
@@ -43,7 +46,6 @@ def index(request):
         login_form = UserLoginForm()
 
     return render(request, 'index.html', {'login_form': login_form})
-
 
 
 def logout(request):

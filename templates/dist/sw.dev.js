@@ -1,12 +1,13 @@
 "use strict";
 
-var CACHE_STATIC_NAME = 'static-v1';
-var CACHE_DYNAMIC_NAME = 'dynamic-v3';
+var CACHE_STATIC_NAME = 'static-v5';
+var CACHE_DYNAMIC_NAME = 'dynamic-v1';
+var offlinePage = '/accounts/error/';
 self.addEventListener('install', function (event) {
   console.log('[Service Worker] Installing Service Worker ...', event);
   event.waitUntil(caches.open(CACHE_STATIC_NAME).then(function (cache) {
     console.log('[Service Worker] Precaching App Shell');
-    cache.addAll(['/accounts/error/', '/account/switcher/', '/', '/logout/', '/static/js/custom.js', '/static/css/main-style.css', '/static/css/style.css', '/static/css/custom.css', 'https://code.jquery.com/jquery-3.2.1.slim.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', 'https://kit.fontawesome.com/6cdfe06436.js', 'https://fonts.googleapis.com/icon?family=Material+Icons', 'https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css']);
+    cache.addAll(['/accounts/error/', '/accounts/logout/', '/static/js/custom.js', '/static/css/main-style.css', '/static/css/style.css', '/static/css/custom.css', 'https://code.jquery.com/jquery-3.2.1.slim.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', 'https://kit.fontawesome.com/6cdfe06436.js', 'https://fonts.googleapis.com/icon?family=Material+Icons', 'https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css']);
   }));
 });
 self.addEventListener('activate', function (event) {
@@ -21,19 +22,107 @@ self.addEventListener('activate', function (event) {
   }));
   return self.clients.claim();
 });
-self.addEventListener('fetch', function (event) {
-  event.respondWith(caches.open(CACHE_STATIC_NAME).then(function (cache) {
-    return cache.match(event.request).then(function (response) {
-      var fetchPromise = fetch(event.request).then(function (networkResponse) {
-        cache.put(event.request, networkResponse.clone());
-        return networkResponse;
-      }); // response contains cached data, if available
+addEventListener('fetch', function (fetchEvent) {
+  var request = fetchEvent.request;
 
-      return response || fetchPromise;
-    });
-  })["catch"](function (err) {
-    return caches.open(CACHE_STATIC_NAME).then(function (cache) {
-      return cache.match('/accounts/error/');
-    });
-  })); //end respond
-});
+  if (request.method !== 'GET') {
+    return;
+  }
+
+  fetchEvent.respondWith(function _callee2() {
+    var responseFromFetch, responseFromCache, _responseFromCache;
+
+    return regeneratorRuntime.async(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            responseFromFetch = fetch(request);
+            fetchEvent.waitUntil(function _callee() {
+              var responseCopy, myCache;
+              return regeneratorRuntime.async(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      _context.next = 2;
+                      return regeneratorRuntime.awrap(responseFromFetch);
+
+                    case 2:
+                      responseCopy = _context.sent.clone();
+                      _context.next = 5;
+                      return regeneratorRuntime.awrap(caches.open(CACHE_STATIC_NAME));
+
+                    case 5:
+                      myCache = _context.sent;
+                      _context.next = 8;
+                      return regeneratorRuntime.awrap(myCache.put(request, responseCopy));
+
+                    case 8:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              });
+            }());
+
+            if (!request.headers.get('Accept').includes('text/html')) {
+              _context2.next = 17;
+              break;
+            }
+
+            _context2.prev = 3;
+            _context2.next = 6;
+            return regeneratorRuntime.awrap(responseFromFetch);
+
+          case 6:
+            return _context2.abrupt("return", _context2.sent);
+
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](3);
+            _context2.next = 13;
+            return regeneratorRuntime.awrap(caches.match(request));
+
+          case 13:
+            responseFromCache = _context2.sent;
+            return _context2.abrupt("return", responseFromCache || caches.match(offlinePage));
+
+          case 15:
+            _context2.next = 21;
+            break;
+
+          case 17:
+            _context2.next = 19;
+            return regeneratorRuntime.awrap(caches.match(request));
+
+          case 19:
+            _responseFromCache = _context2.sent;
+            return _context2.abrupt("return", _responseFromCache || responseFromFetch);
+
+          case 21:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, null, null, [[3, 9]]);
+  }());
+}); // self.addEventListener('fetch', function(event) {
+//     event.respondWith(
+//         caches.open(CACHE_STATIC_NAME)
+//         .then(function(cache) {
+//             return cache.match(event.request)
+//                 .then(function(response) {
+//                     var fetchPromise = fetch(event.request).then(function(networkResponse) {
+//                         cache.put(event.request, networkResponse.clone());
+//                         return networkResponse;
+//                     })
+//                     // response contains cached data, if available
+//                 return response || fetchPromise;
+//                 })
+//         }).catch(function(err) {
+//             return caches.open(CACHE_STATIC_NAME)
+//                 .then(function(cache) {
+//                     return cache.match('/accounts/error/');
+//                 });
+//         })
+//     ); //end respond
+// });
