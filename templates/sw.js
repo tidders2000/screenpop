@@ -1,5 +1,5 @@
 var CACHE_STATIC_NAME = 'static-v5';
-var CACHE_DYNAMIC_NAME = 'dynamic-v1';
+var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 var offlinePage = '/accounts/error/'
 
 self.addEventListener('install', function(event) {
@@ -9,8 +9,13 @@ self.addEventListener('install', function(event) {
         .then(function(cache) {
             console.log('[Service Worker] Precaching App Shell');
             cache.addAll([
+                '/',
                 '/accounts/error/',
-                '/accounts/logout/',
+                // // '/accounts/logout/',
+
+                '/accounts/dashboard/',
+                '/static/images/error_pattern.png',
+
 
 
                 '/static/js/custom.js',
@@ -18,12 +23,10 @@ self.addEventListener('install', function(event) {
                 '/static/css/style.css',
                 '/static/css/custom.css',
 
-                'https://code.jquery.com/jquery-3.2.1.slim.min.js',
-                'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
-                'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
-                'https://kit.fontawesome.com/6cdfe06436.js',
-                'https://fonts.googleapis.com/icon?family=Material+Icons',
-                'https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css'
+                // 'https://code.jquery.com/jquery-3.2.1.slim.min.js',
+                // 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
+                // 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
+                // 'https://kit.fontawesome.com/6cdfe06436.js',
             ]);
         })
     )
@@ -70,32 +73,66 @@ addEventListener('fetch', fetchEvent => {
         }
     }());
 });
+
 // self.addEventListener('fetch', function(event) {
 //     event.respondWith(
-//         caches.open(CACHE_STATIC_NAME)
-//         .then(function(cache) {
-
-
-
-
-//             return cache.match(event.request)
-//                 .then(function(response) {
-//                     var fetchPromise = fetch(event.request).then(function(networkResponse) {
-
-//                         cache.put(event.request, networkResponse.clone());
-//                         return networkResponse;
-//                     })
-
-//                     // response contains cached data, if available
-//                 return response || fetchPromise;
+//         fetch(event.request)
+//         .then(function(res) {
+//             return caches.open(CACHE_DYNAMIC_NAME)
+//                 .then(function(cache) {
+//                     cache.put(event.request.url, res.clone());
+//                     return res;
 //                 })
+//         })
+//         .catch(function(err) {
+
+
+//             return caches.match(event.request)
+
+
+
 //         }).catch(function(err) {
 //             return caches.open(CACHE_STATIC_NAME)
 //                 .then(function(cache) {
 //                     return cache.match('/accounts/error/');
 //                 });
+//         })
 
+//     )
+
+// })
+
+
+// self.addEventListener('fetch', function(event) {
+//     event.respondWith(
+//         fetch(event.request)
+//         .then(function(response) {
+//             if (response) {
+
+
+
+//                 return caches.open(CACHE_DYNAMIC_NAME)
+//                     .then(function(cache) {
+//                         cache.put(event.request.url, res.clone());
+//                         return res;
+
+//                     })
+
+//             } else {
+//                 caches.match(event.request)
+//                     .then(function(response) {
+
+//                         return response;
+
+//                     })
+//                     .catch(function(err) {
+//                         return caches.open(CACHE_STATIC_NAME)
+//                             .then(function(cache) {
+//                                 return cache.match('/accounts/error');
+//                             });
+//                     })
+//             }
 
 //         })
-//     ); //end respond
-// });
+//     )
+// })

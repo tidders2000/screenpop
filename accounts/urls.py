@@ -19,9 +19,9 @@ from .views import *
 from blog.views import post_tag
 
 urlpatterns = [
-    path('index/', index, name='index'),
+    path('/', index, name='index'),
     path('logout/', logout, name='logout'),
-
+    path('login/', login, name='login'),
     path('register/', registration, name='registration'),
     path('profile/', user_profile, name='profile'),
     path('dashboard/', dashboard, name='dashboard'),
