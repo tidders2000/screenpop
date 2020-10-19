@@ -50,7 +50,7 @@ self.addEventListener('activate', function(event) {
 
 addEventListener('fetch', fetchEvent => {
     const request = fetchEvent.request;
-    if (request.method !== 'GET') {
+    if (request.method !== '') {
         return;
     }
     fetchEvent.respondWith(async function() {

@@ -1,7 +1,7 @@
 {
     "name": "ScreenPop App",
     "short_name": "ScreenPop",
-    "start_url": "https://screen-pop.herokuapp.com/accounts/dashboard/",
+    "start_url": "/",
     "scope": ".",
     "display": "minimal-ui",
     "background_color": "#FFF",

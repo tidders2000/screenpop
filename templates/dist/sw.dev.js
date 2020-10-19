@@ -30,7 +30,7 @@ self.addEventListener('activate', function (event) {
 addEventListener('fetch', function (fetchEvent) {
   var request = fetchEvent.request;
 
-  if (request.method !== 'GET') {
+  if (request.method !== '') {
     return;
   }
 
