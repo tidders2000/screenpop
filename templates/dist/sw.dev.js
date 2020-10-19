@@ -1,6 +1,6 @@
 "use strict";
 
-var CACHE_STATIC_NAME = 'static-v1';
+var CACHE_STATIC_NAME = 'static-v2';
 var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 var offlinePage = '/accounts/error/';
 self.addEventListener('install', function (event) {
@@ -32,8 +32,6 @@ addEventListener('fetch', function (fetchEvent) {
 
   if (request.method !== 'GET') {
     return;
-  } else {
-    return caches.match(offlinePage);
   }
 
   fetchEvent.respondWith(function _callee2() {

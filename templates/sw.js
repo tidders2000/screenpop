@@ -1,4 +1,4 @@
-var CACHE_STATIC_NAME = 'static-v1';
+var CACHE_STATIC_NAME = 'static-v2';
 var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 var offlinePage = '/accounts/error/'
 
@@ -52,11 +52,7 @@ addEventListener('fetch', fetchEvent => {
     const request = fetchEvent.request;
     if (request.method !== 'GET') {
         return;
-    } else {
-
-        return caches.match(offlinePage);
     }
-
 
 
     fetchEvent.respondWith(async function() {
