@@ -1,4 +1,4 @@
-var CACHE_STATIC_NAME = 'static-v5';
+var CACHE_STATIC_NAME = 'static-v1';
 var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 var offlinePage = '/accounts/error/'
 
@@ -50,9 +50,15 @@ self.addEventListener('activate', function(event) {
 
 addEventListener('fetch', fetchEvent => {
     const request = fetchEvent.request;
-    if (request.method !== '') {
+    if (request.method !== 'GET') {
         return;
+    } else {
+
+        return caches.match(offlinePage);
     }
+
+
+
     fetchEvent.respondWith(async function() {
         const responseFromFetch = fetch(request);
         fetchEvent.waitUntil(async function() {
