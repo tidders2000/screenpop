@@ -3,7 +3,7 @@
     "short_name": "ScreenPop",
     "start_url": "/",
     "scope": ".",
-    "display": "browser",
+    "display": "minimal-ui",
     "background_color": "#FFF",
     "theme_color": "#493174",
     "description": "App for screenpop club members",
