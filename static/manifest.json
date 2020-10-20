@@ -1,8 +1,8 @@
 {
     "name": "ScreenPop App",
     "short_name": "ScreenPop",
-    "start_url": "https://screen-pop.herokuapp.com/",
-    "scope": ".",
+    "start_url": "/",
+    "scope": "../",
     "display": "standalone",
     "background_color": "#FFF",
     "theme_color": "#493174",

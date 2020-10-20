@@ -1,5 +1,5 @@
-var CACHE_STATIC_NAME = 'static-v2';
-var CACHE_DYNAMIC_NAME = 'dynamic-v2';
+var CACHE_STATIC_NAME = 'static-v1';
+var CACHE_DYNAMIC_NAME = 'dynamic-v1';
 var offlinePage = '/accounts/error/'
 
 self.addEventListener('install', function(event) {
@@ -48,61 +48,76 @@ self.addEventListener('activate', function(event) {
     return self.clients.claim();
 });
 
-addEventListener('fetch', fetchEvent => {
-    const request = fetchEvent.request;
-    if (request.method !== 'GET') {
-        return;
-    }
-
-
-    fetchEvent.respondWith(async function() {
-        const responseFromFetch = fetch(request);
-        fetchEvent.waitUntil(async function() {
-            const responseCopy = (await responseFromFetch).clone();
-            const myCache = await caches.open(CACHE_STATIC_NAME);
-            await myCache.put(request, responseCopy);
-        }());
-        if (request.headers.get('Accept').includes('text/html')) {
-            try {
-                return await responseFromFetch;
-            } catch (error) {
-                const responseFromCache = await caches.match(request);
-                return responseFromCache || caches.match(offlinePage);
-            }
-        } else {
-            const responseFromCache = await caches.match(request);
-            return responseFromCache || responseFromFetch;
-        }
-    }());
-});
 
 // self.addEventListener('fetch', function(event) {
 //     event.respondWith(
-//         fetch(event.request)
-//         .then(function(res) {
-//             return caches.open(CACHE_DYNAMIC_NAME)
-//                 .then(function(cache) {
-//                     cache.put(event.request.url, res.clone());
-//                     return res;
-//                 })
-//         })
-//         .catch(function(err) {
-
-
-//             return caches.match(event.request)
-
-
-
-//         }).catch(function(err) {
-//             return caches.open(CACHE_STATIC_NAME)
-//                 .then(function(cache) {
-//                     return cache.match('/accounts/error/');
+//         caches.open('CACHE_DYNAMIC_NAME').then(function(cache) {
+//             return cache.match(event.request).then(function(response) {
+//                 var fetchPromise = fetch(event.request).then(function(networkResponse) {
+//                     cache.put(event.request, networkResponse.clone());
+//                     return networkResponse;
 //                 });
-//         })
+//                 return response || fetchPromise;
+//             });
+//         }),
+//     );
+// });
 
-//     )
+// addEventListener('fetch', fetchEvent => {
+//     const request = fetchEvent.request;
+//     if (request.method !== 'GET') {
+//         return;
+//     }
 
-// })
+
+//     fetchEvent.respondWith(async function() {
+//         const responseFromFetch = fetch(request);
+//         fetchEvent.waitUntil(async function() {
+//             const responseCopy = (await responseFromFetch).clone();
+//             const myCache = await caches.open(CACHE_STATIC_NAME);
+//             await myCache.put(request, responseCopy);
+//         }());
+//         if (request.headers.get('Accept').includes('text/html')) {
+//             try {
+//                 return await responseFromFetch;
+//             } catch (error) {
+//                 const responseFromCache = await caches.match(request);
+//                 return responseFromCache || caches.match(offlinePage);
+//             }
+//         } else {
+//             const responseFromCache = await caches.match(request);
+//             return responseFromCache || responseFromFetch;
+//         }
+//     }());
+// });
+
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        fetch(event.request)
+        .then(function(res) {
+            return caches.open(CACHE_DYNAMIC_NAME)
+                .then(function(cache) {
+                    cache.put(event.request.url, res.clone());
+                    return res;
+                })
+        })
+        .catch(function(err) {
+
+
+            return caches.match(event.request)
+
+
+
+        }).catch(function() {
+            return caches.open(CACHE_STATIC_NAME)
+                .then(function(cache) {
+                    return cache.match('/accounts/error/');
+                });
+        })
+
+    )
+
+})
 
 
 // self.addEventListener('fetch', function(event) {

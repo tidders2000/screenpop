@@ -50,6 +50,6 @@ def join_meet(request, pk):
     guest.user = user
     guest.meeting = meeting
     guest.save()
-    messages.error(request, 'apologies added')
+    messages.error(request, 'Request added')
 
     return redirect('group_detail', pk=group)
