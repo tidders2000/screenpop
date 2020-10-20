@@ -1,9 +1,9 @@
 {
     "name": "ScreenPop App",
     "short_name": "ScreenPop",
-    "start_url": "/",
+    "start_url": "/index.html/",
     "scope": ".",
-    "display": "minimal-ui",
+    "display": "standalone",
     "background_color": "#FFF",
     "theme_color": "#493174",
     "description": "App for screenpop club members",
