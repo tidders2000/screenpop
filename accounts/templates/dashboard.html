@@ -124,12 +124,13 @@
             <div class="latest-post-widget" >
               <div class="post-single">
                 <img src="{{MEDIA_URL}}{{ article.image}}" alt="image of author" style="height:80px;width:80px;">
-                <p class="meta"><span class="post-title">{{article.headline}}</span>  </p>
+                <p class="meta"><span class="post-title"> <a href="{% url 'newsArticle' article.pk  %}">{{article.headline}}</a></span>  </p>
                 <br><p class="">{{article.article|striptags |truncatewords_html:10}}</p>
                
               </div>
+            
               </div>
-          
+        
           
           {% endfor %}
        
@@ -139,7 +140,7 @@
          <div class="latest-post-widget" >
               <div class="post-single">
                 <img src="{{MEDIA_URL}}{{blo.author.profile.profile_image}}" alt="image of author" style="height:80px;width:80px;">
-                <p class="meta"><span class="post-title">{{blo.title}}</span> {{blo.created_on}} {{blo.author}} </p>
+                <p class="meta"><span class="post-title"><a href="{% url 'post_detail' blo.slug  %}"">{{blo.title}}</a></span> {{blo.created_on}} {{blo.author}} </p>
                 <br><p class="">{{blo.content|striptags|safe|truncatewords_html:10 }}</p>
                
               </div>
@@ -152,7 +153,7 @@
               <div class="row" style="background-color:rgb(217,147,59); margin-bottom:10px;padding-left:5px;"> <h4>Latest Forum Posts</h4></div>
                {% for post in posts %}
 
-               <h5>{{post.subject}} - {{post.topic.forum}}</h5>
+               <h5><a href="/forum/">{{post.subject}} - {{post.topic.forum}}</a></h5>
                <p>{{post.content|striptags|safe|slice:":50"}}
 
                {% endfor%}
