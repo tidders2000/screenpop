@@ -1,5 +1,5 @@
-var CACHE_STATIC_NAME = 'static-v1';
-var CACHE_DYNAMIC_NAME = 'dynamic-v1';
+var CACHE_STATIC_NAME = 'static-v2';
+var CACHE_DYNAMIC_NAME = 'dynamic-v2';
 var offlinePage = '/accounts/error/'
 
 self.addEventListener('install', function(event) {
@@ -91,34 +91,40 @@ self.addEventListener('activate', function(event) {
 //     }());
 // });
 
+// self.addEventListener('fetch', function(event) {
+//     event.respondWith(
+//         fetch(event.request)
+//         .then(function(res) {
+//             return caches.open(CACHE_DYNAMIC_NAME)
+//                 .then(function(cache) {
+//                     cache.put(event.request.url, res.clone());
+//                     return res;
+//                 })
+//         })
+//         .catch(function(err) {
+
+
+//             return caches.match(event.request)
+
+
+
+//         }).catch(function() {
+//             return caches.open(CACHE_STATIC_NAME)
+//                 .then(function(cache) {
+//                     return cache.match('/accounts/error/');
+//                 });
+//         })
+
+//     )
+
+// })
+
+//Network - only
 self.addEventListener('fetch', function(event) {
     event.respondWith(
         fetch(event.request)
-        .then(function(res) {
-            return caches.open(CACHE_DYNAMIC_NAME)
-                .then(function(cache) {
-                    cache.put(event.request.url, res.clone());
-                    return res;
-                })
-        })
-        .catch(function(err) {
-
-
-            return caches.match(event.request)
-
-
-
-        }).catch(function() {
-            return caches.open(CACHE_STATIC_NAME)
-                .then(function(cache) {
-                    return cache.match('/accounts/error/');
-                });
-        })
-
-    )
-
-})
-
+    );
+});
 
 // self.addEventListener('fetch', function(event) {
 //     event.respondWith(

@@ -94,6 +94,7 @@
                   <ul>
                       <li><a href="{% url 'registration' %}"> Add User</a></li>
                       <li><a href="{% url 'new_business' %}"> Add Business</a></li>
+                      <li><a href="{% url 'switcher_add' %}"> Add User to Group</a></li>
             
                     <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
                         <li><a href="{% url 'addNews'%}">Add News</a></li>  
@@ -101,7 +102,7 @@
                   </ul>
                 </li>{% endif %}
                   <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
-            
+                  <li> <a href="{% url 'logout'%}">Logout</a></li>
               </ul>
             </nav>
           </div>
@@ -123,11 +124,14 @@
                     {% if request.user.is_staff  %}
                   
                  <li><a href="{% url 'registration' %}"> Add User</a></li>
+                  <li><a href="{% url 'new_business' %}"> Add Business</a></li>
+                   <li><a href="{% url 'switcher_add' %}"> Add User to Group</a></li>
                  <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
                 <li><a href="{% url 'addNews'%}">Add News</a></li>  
                 <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li> 
                 {% endif %}             
                   <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
+                  <li> <a href="{% url 'logout'%}">Logout</a></li>
           
 </div>
 

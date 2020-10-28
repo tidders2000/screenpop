@@ -10,7 +10,7 @@ class CommentForm(forms.ModelForm):
         fields = ('name', 'email', 'body')
 
 
-content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
+content = forms.CharField(widget=TinyMCE(attrs={'cols': 200, 'rows': 30}))
 
 
 class add_blog_form(forms.ModelForm):

@@ -55,7 +55,7 @@ def meeting_requests(request):
         user_req = Guests.objects.get(pk=pk)
         user_req.status = nv
         user_req.save()
-        return redirect(reverse('dashboard'))
+        return redirect(reverse('meeting_requests'))
     else:
         form = status_form()
 
