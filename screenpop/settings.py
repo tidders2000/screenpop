@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-#import env
+import env
 import dj_database_url
 from machina import MACHINA_MAIN_TEMPLATE_DIR
 from machina import MACHINA_MAIN_STATIC_DIR
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'accounts',
     'bootstrap4',
     'django_forms_bootstrap',
-
+    'storages',
     'crispy_forms',
     'password_reset',
     'business',
@@ -169,18 +169,41 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/media/'
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# print(MEDIA_ROOT)
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "static"), MACHINA_MAIN_STATIC_DIR,
+# )
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'CacheControl': 'max-age=94608000',
+
+}
+AWS_STORAGE_BUCKET_NAME = 'media-screenpop'
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+STATICFILES_LOCATION = 'static'
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+MEDIAFILES_LOCATION = 'media'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-print(MEDIA_ROOT)
-
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"), MACHINA_MAIN_STATIC_DIR,
+    os.path.join(BASE_DIR, "static"),
 )
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
