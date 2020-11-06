@@ -10,7 +10,26 @@ STATUS = (
 
 CATS = [
     ('Digital', 'Digital'),
-    ('StartUp', 'StartUp')
+    ('StartUp', 'StartUp'),
+    ('Finance', 'Finance'),
+    ('Marketing', 'Marketing'),
+    ('HR', 'HR'),
+    ('Legal', 'Legal'),
+    ('Web', 'Web'),
+    ('Social Media', 'Social Media'),
+    ('Fitness', 'Fitness'),
+    ('Wellbeing', 'Wellbeing'),
+    ('Gifts', 'Gifts'),
+    ('Homemade', 'Homemade'),
+    ('Support', 'Support'),
+    ('Training', 'Training'),
+    ('Advice', 'Advice'),
+    ('Advertising', 'Advertising'),
+    ('Coaching', 'Coaching'),
+    ('Help', 'Help'),
+    ('Money Saving', 'Money Saving'),
+
+
 ]
 
 
