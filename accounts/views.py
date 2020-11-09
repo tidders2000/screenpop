@@ -86,7 +86,9 @@ def user_profile(request):
     if request.method == "POST":
 
         form = ProfileForm(request.POST, request.FILES, instance=instance)
-        form.save()
+        if form.is_valid():
+            form.save(commit=True)
+
         return redirect(reverse('dashboard'))
         messages.error(request, "Profile Updated")
 

@@ -175,7 +175,7 @@
                           <div class="media-body">
                             <h5>{{member.business_profile.business_name}}</h5>
                             <p>{{member.business_profile.business_type }}</p>
-                            <p>{{member.business_profile.about| safe | linebreaks }}</p>
+                            <p style="font-size:15px!important">{{member.business_profile.about| safe | linebreaks }}</p>
                             
                             <!-- Share -->
                             <div class="share-w"> <a href="{{member.business_profile.e_mail }}"><i class="fa fa-envelope-o"></i></a> <a href="{% url 'bp_view' member.pk%}"><i class="fa fa-eye"></i></a></div>

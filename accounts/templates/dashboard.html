@@ -115,7 +115,7 @@
           
               <div class="sidebar-information" style="background-color:#fff">
 
-                  <div class="row" style="background-color:#C7AAC6; margin-bottom:10px;padding-left:5px;"><h4>News</h4></div>
+                  <div class="row" style="background-color:#C7AAC6; margin-bottom:10px;padding:5px;"><h4><b>News</b></h4></div>
               {{test}}
 
               {% for article in articles %}
@@ -124,7 +124,7 @@
             <div class="latest-post-widget" >
               <div class="post-single">
                 <img src="{{MEDIA_URL}}{{ article.image}}" alt="image of author" style="height:80px;width:80px;">
-                <p class="meta"><span class="post-title"> <a href="{% url 'newsArticle' article.pk  %}">{{article.headline}}</a></span>  </p>
+                <p class=""><span style="color:black!important;font-weight:bold;"> <a href="{% url 'newsArticle' article.pk  %}" style="color:black">{{article.headline}}</a></span>  </p>
                 <br><p class="">{{article.article|striptags |truncatewords_html:10}}</p>
                
               </div>
@@ -135,12 +135,12 @@
           {% endfor %}
        
       <div>
-      <div class="row" style=" background-color:#5CC0CE; margin-bottom:10px;padding-left:5px;"><h4>Latest Blogs</h4></div>
+      <div class="row" style=" background-color:#5CC0CE; margin-bottom:10px;padding:5px;"><h4><b>Latest Blogs</b></h4></div>
        {% for blo in blog %}
          <div class="latest-post-widget" >
               <div class="post-single">
                 <img src="{{MEDIA_URL}}{{blo.author.profile.profile_image}}" alt="image of author" style="height:80px;width:80px;">
-                <p class="meta"><span class="post-title"><a href="{% url 'post_detail' blo.slug  %}"">{{blo.title}}</a></span> {{blo.created_on}} {{blo.author}} </p>
+                <p style="color:black;font-weight:bold;"><span class=""><a href="{% url 'post_detail' blo.slug  %}" style="color:black;font-weight:bold;">{{blo.title}}</a></span> {{blo.created_on}} {{blo.author}} </p>
                 <br><p class="">{{blo.content|striptags|safe|truncatewords_html:10 }}</p>
                
               </div>
@@ -150,12 +150,12 @@
               </div>
 
 
-              <div class="row" style="background-color:rgb(217,147,59); margin-bottom:10px;padding-left:5px;"> <h4>Latest Forum Posts</h4></div>
+              <div class="row" style="background-color:rgb(217,147,59); margin-bottom:10px;padding:5px;"> <h4><b>Latest Forum Posts</b></h4></div>
                {% for post in posts %}
-
-               <h5><a href="/forum/">{{post.subject}} - {{post.topic.forum}}</a></h5>
+              <div>
+               <span class="post-title"> <a href="/forum/" style="color:black; font-weight:bold;">{{post.subject}} - {{post.topic.forum}}</a><span>
                <p>{{post.content|striptags|safe|slice:":50"}}
-
+              </div>
                {% endfor%}
 
               
@@ -236,11 +236,11 @@
                                 <!-- Name -->
                                 <div class="fol-name">
                                   <div class="avatar"> <img src="{{MEDIA_URL}}{{ member.user.profile.profile_image}}"  style="height:50px;"alt="profile pciture"> </div>
-                                  <h6><a href="{% url 'bp_view' member.pk%}">{{member.user}}</a></h6>
+                                  <h6><a href="{% url 'bp_view' member.pk%}"style="color:black">{{member.user}}</a></h6>
                                    </div>
                               </div>
                               <!-- Location -->
-                              <div class="col-xs-3 n-p-r n-p-l  d-none d-md-block"> <span><a href="{% url 'bp_view'  member.business_profile.pk%}">{{member.business_profile.business_name}}</a></span> </div>
+                              <div class="col-xs-3 n-p-r n-p-l  d-none d-md-block"> <span><a href="{% url 'bp_view'  member.business_profile.pk%}" style="color:black">{{member.business_profile.business_name}}</a></span> </div>
                               <!-- Network -->
                               <div class="col-xs-3 n-p-r  d-none d-md-block"> <span>{{member.business_profile.business_type }}</span>  </div>
                               <!-- Connections -->
