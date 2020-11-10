@@ -23,6 +23,19 @@ def addNews(request):
 
 
 @login_required
+def editNews(request, pk):
+    instance = get_object_or_404(News, pk=pk)
+    if request.method == "POST":
+        news = add_news_form(request.POST, request.FILES, instance=instance)
+        if news.is_valid():
+            news.save(commit=True)
+            messages.error(request, "News Added")
+
+    news = add_news_form(instance=instance)
+    return render(request, 'add_news.html', {'news': news})
+
+
+@login_required
 def newsLibrary(request):
 
     articles = News.objects.all().order_by('date')

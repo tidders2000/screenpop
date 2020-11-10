@@ -8,8 +8,12 @@
 
 <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 mt-2" style="background-color:#f4f4f4;">
 
+ {% if request.user.is_staff  %}
 
-<h1>{{article.headline}}</h1>
+                   <a href="{% url 'editNews' article.pk %}">Edit</a>
+
+                   {% endif %}
+<h1>{{article.headline}}</h1>  
 
 <div class="uou-block-6a">
 <img src="{{MEDIA_URL}}{{article.image}}" style="height:270px; width:270px;" alt="newsimage" class="image"/>
@@ -19,7 +23,10 @@
           {{article.article| safe | linebreaks}}
 
 </div>
+
+               
 </div>
+
 </div>
 
  {% endblock%}

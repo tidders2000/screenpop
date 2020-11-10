@@ -90,6 +90,7 @@ class BusinessProfile(models.Model):
     linkedin = models.CharField(max_length=254, default='https://example.com')
     google = models.CharField(max_length=254, default='https://example.com')
     twitter = models.CharField(max_length=254, default='https://example.com')
+    instagram = models.CharField(max_length=254, default='https://example.com')
     legal_entity = models.CharField(
         max_length=254, choices=legalEntity, default='Sole trader')
 

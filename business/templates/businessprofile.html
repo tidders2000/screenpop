@@ -12,7 +12,7 @@
   <div class="compny-profile"> 
     {% for prof in profile %}
     <!-- SUB Banner -->
-    <div class="profile-bnr" style='background: url({{MEDIA_URL}}{{prof.header_image}}) no-repeat; background-size: cover;'>
+    <div class="profile-bnr" style='background: url({{MEDIA_URL}}{{prof.header_image}}) no-repeat; background-size: contain;background-position:center;'>
       <div class="container"> 
         
         <!-- User Iinfo -->
@@ -23,7 +23,7 @@
           <p>{{ prof.street_address1}} {{ prof.street_address2}} {{ prof.town_or_city}} {{ prof.postcode }}<br>{{prof.location}}</p>
           
           <!-- Social Icon -->
-          <div class="social-links"> <a href="{{prof.facebook}}"><i class="fa fa-facebook"></i></a> <a href="{{prof.twitter}}"><i class="fa fa-twitter"></i></a> <a href="{{prof.google}}"><i class="fa fa-google"></i></a> <a href="{{prof.linkedin}}"><i class="fa fa-linkedin"></i></a> <a href="mailto:{{prof.e_mail}}"><i class="fa fa-envelope-o"></i> </a> <a href="{{prof.website}}"><i class="fa fa-globe"></i></a> </div>
+          <div class="social-links"> <a href="{{prof.facebook}}"><i class="fa fa-facebook"></i></a> <a href="{{prof.instagram}}"><i class="fa fa-instagram"></i></a>  <a href="{{prof.twitter}}"><i class="fa fa-twitter"></i></a> <a href="{{prof.google}}"><i class="fa fa-google"></i></a> <a href="{{prof.linkedin}}"><i class="fa fa-linkedin"></i></a> <a href="mailto:{{prof.e_mail}}"><i class="fa fa-envelope-o"></i> </a> <a href="{{prof.website}}"><i class="fa fa-globe"></i></a> </div>
          
          
   {%if user.pk == prof.user.pk %}
