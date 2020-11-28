@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Meeting, Visitors, Guests, Apologies
 from .forms import meeting_model_form, status_form
 from django.contrib import messages
@@ -60,3 +60,25 @@ def meeting_requests(request):
         form = status_form()
 
         return render(request, 'meeting_requests.html', {'requests': requests, 'form': form})
+
+
+@login_required
+def meeting_list(request):
+    meeting = Meeting.objects.all()
+
+    return render(request, 'meeting_list.html', {'meeting': meeting})
+
+
+@ login_required
+def edit_meeting(request, pk):
+    instance = get_object_or_404(Meeting, pk=pk)
+
+    if request.method == "POST":
+        meet = meeting_model_form(
+            request.POST, request.FILES, instance=instance)
+        if meet.is_valid():
+            meet.save(commit=True)
+            messages.error(request, "Meeting Ammended")
+
+    meeting = meeting_model_form(instance=instance)
+    return render(request, 'edit_meeting.html', {'meeting': meeting})

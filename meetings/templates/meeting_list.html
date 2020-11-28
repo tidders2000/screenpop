@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %}{% block page_title %}Meeting{% endblock %} {% block page_heading %}Meeting{% endblock %}
+ {% block content %}
+
+
+<h1>Edit A Meeting</h1>
+
+      <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2">
+<ul>
+        {% for meet in meeting %}
+        <li> <a href="{{meet.pk}}">{{meet.meeting_date}} {{meet.group}}</a></li>
+
+
+        
+        {% endfor %}
+        </ul>
+
+ 
+                      </div>
+
+</div>
+</div>
+
+
+ {% endblock %}
