@@ -35,6 +35,8 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('forum/', include(machina_urls)),
     path('', index, name='index'),
+    path('uploader/', include('uploader.urls')),
+
 
 
 

@@ -66,13 +66,13 @@
                 </ol>
             </div>
             <ul class="social">
-              <li><a href="#" class="fa fa-facebook"></a></li>
-              <li><a href="#" class="fa fa-twitter"></a></li>
-              <li><a href="#" class="fa fa-google-plus"></a></li>
+              <a href="#" class="fa fa-facebook"></a></li>
+              <a href="#" class="fa fa-twitter"></a></li>
+              <a href="#" class="fa fa-google-plus"></a></li>
             </ul>
             <ul class="authentication">
-              <li><a href="#">Welcome <span class="hello">{{user.first_name}}</span></a></li>
-              <li><a href="{% url 'logout' %}">Logout</a></li>
+              <a href="#">Welcome <span class="hello">{{user.first_name}}</span></a></li>
+              <a href="{% url 'logout' %}">Logout</a></li>
             </ul>
     
            </div>
@@ -87,35 +87,35 @@
           <div class="container"> <a href="{% url 'dashboard' %}" class="logo"><img src="{% static 'images/screenpop-logo.png'%}" alt="logo"></a> <a href="#" class="mobile-sidebar-button mobile-sidebar-toggle"onclick="openNav()"><span></span></a>
             <nav class="nav">
               <ul class="sf-menu">
-                    <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i></a></li>
-                <li> <a href="{% url 'market' %}">Market Place</a> </li>
+                    <a href="{% url 'dashboard' %}"><i class="fas fa-home"></i></a></li>
+                 <a href="{% url 'market' %}">Market Place</a> </li>
                 <li class=""> <a href="{% url 'blog' %}">Blog</a>
                 
                   <ul>
                     
-                    <li><a href="{% url 'blog' %}">Blogs</a></li> 
-                    <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
+                    <a href="{% url 'blog' %}">Blogs</a>
+                    <a href="{% url 'add_blog' %}">Write a Blog</a>                
                   </ul>
                 </li>
-                <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
-                <li> <a href="/forum/">Forums</a></li>
-                <li> <a href="{% url 'newsLibrary'%}">News</a></li>
+                 <a href="{% url 'business_profile'%}">Company Profile</a></li>
+                 <a href="/forum/">Forums</a></li>
+                 <a href="{% url 'newsLibrary'%}">News</a></li>
               
                    {% if request.user.is_staff  %}
                     <li class=""> <a href="">Admin</a>
                   <ul>
-                      <li><a href="{% url 'registration' %}"> Add User</a></li>
-                      <li><a href="{% url 'new_business' %}"> Add Business</a></li>
-                      <li><a href="{% url 'switcher_add' %}"> Add User to Group</a></li>
+                      <a href="{% url 'registration' %}"> Add User</a></li>
+                      <a href="{% url 'new_business' %}"> Add Business</a></li>
+                      <a href="{% url 'switcher_add' %}"> Add User to Group</a></li>
             
-                    <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
-                        <li><a href="{% url 'addNews'%}">Add News</a></li>  
-                        <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>  
-                         <li><a href="{% url 'meeting_list'%}">Edit A Meeting</a></li>             
+                    <a href="{% url 'meeting_detail'%}">Manage Meeting</a>
+                        <a href="{% url 'addNews'%}">Add News</a> 
+                        <a href="{% url 'meeting_requests'%}">Meeting Requests</a> 
+                         <a href="{% url 'meeting_list'%}">Edit A Meeting</a>            
                   </ul>
                 </li>{% endif %}
-                  <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
-                  <li> <a href="{% url 'logout'%}">Logout</a></li>
+                  <a href="{% url 'group_directory'%}">Group Directory</a></li>
+                   <a href="{% url 'logout'%}">Logout</a></li>
               </ul>
             </nav>
           </div>
@@ -126,25 +126,25 @@
  <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
    
-                 <li><a href="{% url 'dashboard' %}"><i class="fa  fa-home"></i></a></li>
-                  <li> <a href="{% url 'market' %}">Market Place</a> </li>
+                 <a href="{% url 'dashboard' %}"><i class="fa  fa-home"></i></a>
+                <a href="{% url 'market' %}">Market Place</a> 
                 
-                  <li><a href="{% url 'blog' %}">Blogs</a></li> 
-                  <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
-                  <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
-                  <li> <a href="/forum/">Forums</a></li>
-                  <li> <a href="{% url 'newsLibrary'%}">News</a></li>
+                  <a href="{% url 'blog' %}">Blogs</a>
+                  <a href="{% url 'add_blog' %}">Write a Blog</a>                
+                   <a href="{% url 'business_profile'%}">Company Profile</a></li>
+                   <a href="/forum/">Forums</a></li>
+                   <a href="{% url 'newsLibrary'%}">News</a></li>
                     {% if request.user.is_staff  %}
                   
-                 <li><a href="{% url 'registration' %}"> Add User</a></li>
-                  <li><a href="{% url 'new_business' %}"> Add Business</a></li>
-                   <li><a href="{% url 'switcher_add' %}"> Add User to Group</a></li>
-                 <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
-                <li><a href="{% url 'addNews'%}">Add News</a></li>  
-                <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li> 
+                 <a href="{% url 'registration' %}"> Add User</a>
+                  <a href="{% url 'new_business' %}"> Add Business</a>
+                   <a href="{% url 'switcher_add' %}"> Add User to Group</a>
+                 <a href="{% url 'meeting_detail'%}">Manage Meeting</a>
+                <a href="{% url 'addNews'%}">Add News</a> 
+                <a href="{% url 'meeting_requests'%}">Meeting Requests</a>
                 {% endif %}             
-                  <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
-                  <li> <a href="{% url 'logout'%}">Logout</a></li>
+                  <a href="{% url 'group_directory'%}">Group Directory</a>
+                   <a href="{% url 'logout'%}">Logout</a>
           
 </div>
 
