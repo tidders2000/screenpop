@@ -13,6 +13,7 @@ class Meeting(models.Model):
 
     meeting_date = models.DateField()
     group = models.ForeignKey(Groups, null=True, on_delete=models.CASCADE)
+    start_time = models.CharField(max_length=10, default='start time')
     zoom_link = models.URLField(blank=True)
     agenda_item1 = models.CharField(max_length=254, default='Agenda Item')
     agenda_item2 = models.CharField(max_length=254, default='Agenda Item')

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
+from taggit.managers import TaggableManager
 
 
 STATUS = (
@@ -51,6 +52,7 @@ class Post(models.Model):
     content = HTMLField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    tag = TaggableManager()
 
     class Meta:
         ordering = ['-created_on']

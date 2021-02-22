@@ -1,12 +1,30 @@
 
 {% extends 'base.html' %}{% load static%} {% block page_title %}User Profile Page{% endblock %} {% block page_heading %}Profile{% endblock %}
+{% block head %}
+ <link rel="stylesheet" href="{% static 'css/smart_cookie.min.css' %}">
+  <script src="{% static  'js/jquery.smartCookie.min.js' %}"></script> 
+  <script type="text/javascript">
+    $(document).ready(function() {
 
+        $(document).smartCookie({
+            position: "bottom",
+            backgroundColor: "#252b33",
+            textColor: "#ffffff"
+        });
+
+    });
+</script>
+{% endblock %}
 {% block title %}<nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
   </ol>
 </nav>{% endblock %}
+
+
 {% block content %}
+	
+ 
  <p>{{ profile.email }}</p>
  <div class="compny-profile"> 
     
@@ -90,7 +108,7 @@
               <div class="tag-cloud">
 
               {% for tag in tags %}
-                 <a class="btn btn-primary" href="{% url 'post_tag' %}?q={{tag.tag.pk}}">{{tag.tag}}</a>
+                 <a class="btn btn-primary" href="{% url 'post_tag' %}?q={{tag.pk}}">{{tag.name}}</a>
               {% endfor %}
               </div>
             </div>
@@ -264,6 +282,8 @@
               
                
 </div>
+
+
 {% comment %} <script>
 var url = 'http://127.0.0.1:8000/accounts/dashboard/';
 var networkDataReceived = false;
@@ -294,5 +314,10 @@ if ('caches' in window) {
 }
 
 </script> {% endcomment %}
+
+
+  
+
+
 
  {% endblock %}

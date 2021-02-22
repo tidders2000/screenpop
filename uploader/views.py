@@ -43,7 +43,8 @@ def meeting_upload(request):
             zoom_link=column[2],
             agenda_item1=column[3],
             agenda_item2=column[4],
-            agenda_item3=column[5]
+            agenda_item3=column[5],
+            start_time=column[6]
         )
 
     context = {}

@@ -14,6 +14,7 @@ from blog.models import Post
 from django.template.context_processors import csrf
 from machina.apps.forum_conversation.models import Post as Posting
 from django.views.generic import TemplateView
+from taggit.models import Tag
 
 
 def login(request):
@@ -128,7 +129,7 @@ def dashboard(request):
     # get blog posts and tags
     blog = Post.objects.filter(status=1).order_by('-created_on')[0:3]
 
-    tags = Post.objects.order_by('tag').distinct('tag')
+    tags = Tag.objects.all().order_by('name').distinct('name')[:30]
 
     posts = Posting.objects.all().order_by('pk').reverse()[0:3]
 

@@ -123,7 +123,7 @@
               <div class="tag-cloud">
 
               {% for tag in tags %}
-                 <a class="btn btn-primary" href="{% url 'post_tag' %}?q={{tag.tag.pk}}">{{tag.tag}}</a>
+                 <a class="btn btn-primary" href="{% url 'post_tag' %}?q={{tag.pk}}">{{tag.name}}</a>
               {% endfor %}
               </div>
             </div>

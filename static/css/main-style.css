@@ -3550,7 +3550,7 @@ a:hover {
 .uou-block-7f .thumb {
     width: 250px;
     height: 250px;
-    height: auto;
+    /* height: auto; */
     float: left;
     margin-right: 30px;
     border-radius: 4px;

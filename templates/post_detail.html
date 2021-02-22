@@ -36,7 +36,7 @@
             {% comment %} <h3><a href="#">{{ post.title }}</a></h3> {% endcomment %}
 
             <p>{{ post.content | safe }}</p>
-
+            <p>{{post.tag.all|join:", "}}</p>
 
             <div class="uou-share-story clearfix">
               <div class="row">
@@ -70,6 +70,7 @@
                     </div>
                   </article>
                 </li>
+
                   {% endfor %}
 
 
@@ -77,6 +78,8 @@
               </ul>
             </aside> <!-- end .uou-block-14a -->
       </div>
+
+
             <h4>Join Conversation</h4>
       
        <div class="uou-post-comment-form">

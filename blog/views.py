@@ -7,20 +7,22 @@ from django.template.defaultfilters import slugify
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-
+from taggit.models import Tag
 
 # class PostList(generic.ListView):
 #     queryset = Post.objects.filter(status=1).order_by('-created_on')
 #     template_name = 'blog.html'
 #     paginate_by = 3
+
+
 @login_required
 def post_list(request):
-    post_list = Post.objects.all().order_by('-created_on')
+    post_list = Post.objects.all().order_by('-created_on').filter(status=1)
     paginator = Paginator(post_list, 5)  # Show 5 posts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     tags = Post.objects.order_by('tag').distinct('tag')
-    popular = Post.objects.order_by('updated_on')
+    popular = Post.objects.order_by('updated_on').filter(status=1)
     cat_list = Post.objects.order_by('category').distinct('category')
     if request.method == "POST":
         keyword = request.POST.get('keyword')
@@ -83,11 +85,13 @@ def add_blog(request):
 @login_required
 def post_tag(request):
     tag = request.GET['q']
-    post_list = Post.objects.filter(tag=tag)
+    post_list = Post.objects.all().filter(status=1)
+    tag = get_object_or_404(Tag, pk=tag)
+    post_list = post_list.filter(tag__in=[tag])
     paginator = Paginator(post_list, 5)  # Show 5 posts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    tags = Post.objects.order_by('tag').distinct('tag')
+    tags = Tag.objects.all().order_by('name').distinct('name')[:30]
     popular = Post.objects.order_by('updated_on')
     cat_list = Post.objects.order_by('category').distinct('category')
     if request.method == "POST":
