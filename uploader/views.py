@@ -10,6 +10,7 @@ from business.models import BusinessProfile
 from accounts.models import Switcher
 from groups.models import Groups
 from meetings.models import Meeting
+from django.contrib.auth.hashers import make_password
 # Create your views here.
 # one parameter named request
 
@@ -81,7 +82,7 @@ def profile_upload(request):
             first_name=column[1],
             last_name=column[2],
             email=column[3],
-            password=column[4]
+            password=make_password(column[4])
         )
         bp = BusinessProfile.objects.update_or_create(
             user=User.objects.latest('pk'),

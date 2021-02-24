@@ -57,7 +57,11 @@
       </div>
     </div>
   </section>
-
+<ul>
+  {% for group in groups %}
+<li>{{group.pk}} {{group.groupName}}</li>
+{% endfor %}
+</ul>
 </div>
 
 
