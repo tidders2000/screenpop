@@ -32,6 +32,7 @@ urlpatterns = [
     path('switching/<int:pk>', switching, name='switching'),
     path('switcher_add', switcher_add, name='switcher_add'),
     path('post_tag', post_tag, name='post_tag'),
+    path('help', help, name='help'),
     path('test', test, name='test'),
     path(
         'sw.js',

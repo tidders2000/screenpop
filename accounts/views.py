@@ -15,6 +15,11 @@ from django.template.context_processors import csrf
 from machina.apps.forum_conversation.models import Post as Posting
 from django.views.generic import TemplateView
 from taggit.models import Tag
+from django.core.mail import send_mail
+
+
+def help(request):
+    return render(request, 'help.html')
 
 
 def login(request):
