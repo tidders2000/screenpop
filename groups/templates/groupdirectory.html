@@ -1,70 +1,63 @@
-{% extends 'base.html' %} {% block page_title %}Group Directory{% endblock %} {% block page_heading %}Group Directoy{% endblock %}
- 
-    {% block title %}
+{% extends 'base.html' %} {% block page_title %}Group Directory{% endblock %} {% block page_heading %}Group Directoy{% endblock %} {% block title %}
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{% url 'dashboard'%}">Dashboard</a></li>
-     <li class="breadcrumb-item active" aria-current="page">Group Directory</li>
-  
-  </ol>
-</nav>{% endblock %}
- 
- 
- {% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard'%}">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Group Directory</li>
 
- 
- <!-- search -->
-  {% comment %} <div class="search-pro">
+    </ol>
+</nav>{% endblock %} {% block content %}
+
+
+<!-- search -->
+{% comment %}
+<div class="search-pro">
     <div class="map-search">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="map-toggleButton"> <i class="fa fa-bars"></i> </div>
-            <div class="map-search-fields">
-              <div class="field">
-                <input type="text" placeholder="Keyword">
-              </div>
-              <div class="field">
-                <input type="text" placeholder="Location">
-              </div>
-              <div class="field custom-select-box">
-                <input type="text" placeholder="Profession">
-              </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="map-toggleButton"> <i class="fa fa-bars"></i> </div>
+                    <div class="map-search-fields">
+                        <div class="field">
+                            <input type="text" placeholder="Keyword">
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="Location">
+                        </div>
+                        <div class="field custom-select-box">
+                            <input type="text" placeholder="Profession">
+                        </div>
+                    </div>
+                    <div class="search-button">
+                        <button>Search Groups</button>
+                    </div>
+                </div>
             </div>
-            <div class="search-button">
-              <button>Search Groups</button>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div> {% endcomment %}
+</div> {% endcomment %}
 
-  <!-- Members -->
-  <section class="pro-mem">
+<!-- Members -->
+<section class="pro-mem">
     <div class="container pb30">
-      <h3>Groups</h3>
-      <div class="row">
-      {% for group in groups %}
-        <div class="col-sm-3">
-          <div class="uou-block-6a"> <a href="{% url 'group_detail' group.pk%}"><img src="{{MEDIA_URL}}{{ group.image}}" alt="" style="cursor:pointer;height:255px; height:142px;width:100%;%"></a>
-            <h6>{{group.groupName}} </h6>
-            <p><i class="fa fa-map-marker"></i> {{group.groupLocation}}</p>
-          </div>
-          <!-- end .uou-block-6a --> 
+        <h3>Groups</h3>
+        <div class="row">
+            {% for group in groups %}
+            <div class="col-sm-3">
+                <div class="uou-block-6a">
+                    <a href="{% url 'group_detail' group.pk%}"><img src="{{MEDIA_URL}}{{ group.image}}" alt="" style="cursor:pointer;height:255px; height:142px;width:100%;%"></a>
+                    <h6>{{group.groupName}} </h6>
+                    <p><i class="fa fa-map-marker"></i> {{group.groupLocation}}</p>
+                </div>
+                <!-- end .uou-block-6a -->
+            </div>
+            {% endfor %}
         </div>
-       {% endfor %}
-      </div>
     </div>
-  </section>
-<ul>
-  {% for group in groups %}
-<li>{{group.pk}} {{group.groupName}}</li>
-{% endfor %}
-</ul>
+</section>
+
 </div>
 
 
 
 
- {% endblock %}
+{% endblock %}
