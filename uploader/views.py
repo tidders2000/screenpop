@@ -197,7 +197,7 @@ def bulk_email(request):
             column[0] + '\n \n Please find your logon details for the new ScreenPop App. You are part of the test group and I would be grateful if you could flag up any issues or bugs to me at simon@scruffyhorse.com '
             + ' \n \n Please use your email and the following password ' +
             column[1] + ' and you can logon at:\n\n ' + column[3] +
-            '\n \n If you would like some help on getting the most out of the app click the Help link when you logon. \n\n Best Wishes Simon',
+            '\n \n If you would like some help on getting the most out of the app click the ? (Help) in the top right corner after you have logged on. \n\n Best Wishes Simon',
 
             from_email='simon@scruffyhorse.com',
             recipient_list=[column[2]],

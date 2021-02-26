@@ -1,5 +1,86 @@
-{% extends 'base.html' %} {% load crispy_forms_tags %}{% block page_title %}User Profile Page{% endblock %} {% block page_heading %}Help{% endblock %} {% block content %}
-
+{% extends 'base.html' %} {%load static %}{% load crispy_forms_tags %}{% block page_title %}UserProfile Page{% endblock %} {% block page_heading %}Help{% endblock %} {% block content %}
+<style>
+    h3 {
+        color: #C7AAC6;
+        margin-top: 10px;
+    }
+</style>
 <h1 class="m-3">Help</h1>
+<div style="margin-left:10px;margin-right:10px; margin-bottom:50px;">
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 ">
+            <h3>Setting up your profile</h3>
 
+            <p>
+                From the dashboard click on Business Profile. From the business profile screen you will see an edit link (image below). This will take you into a form based widget to update the information to reflect your business. If you have two businesses you can
+                switch between them (covered below).
+            </p>
+
+            <img src="{% static 'images/help/bp.png' %}" alt="profile screen" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 ">
+            <h3>Setting up your profile</h3>
+
+            <p>
+                The meeting widget on your dashboard shows your next meeting, allows you to link to the zoom meeting, view the agenda, and offer apologies by clicking the apologies link. This only covers groups you are member of.
+            </p>
+
+            <img src="{% static 'images/help/meetings.png' %}" alt="meeting screen" />
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 ">
+
+            <h3>Attending meetings for groups you are not a member off</h3>
+
+            <p>
+                Click on the groups directory and you will see all the groups. Clicking on a group will take you into the group profile. All the meetings are listed. By clicking attend next to the meeting you want to attend will cause a request to be generated. Group
+                leads will approve or deny the request (if you are locked out). The status of this is visible on your dashboard.
+            </p>
+
+            <img src="{% static 'images/help/meetingdates.png' %}" alt="meeting screen" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 ">
+            <h3>Meeting Status and Switching Between Groups and businesses</h3>
+
+            <p>
+                Meeting status will show your requests to join other group meetings. Joining these meetings is currently manual so the host will send you a link. This functionality will be added soon. You can also use the widget to change between businesses and groups
+            </p>
+
+            <img src="{% static 'images/help/meetingrequests.png' %}" alt="meeting screen" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 ">
+            <h3>Blogs</h3>
+
+            <p>
+                You can write blogs on anything you like. Images can be added by adding a url to the image on the internet (screenshot below). Blogs are live when the status is set to publish. You can edit blogs via the blog or edit screen. Previous posts are shown under
+                previous
+            </p>
+
+            <img src="{% static 'images/help/blogimage.png' %}" alt="blog image" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 ">
+            <h3>Profile</h3>
+            <p>
+                You can add a profile image here which shows up in your group info on the dashboard page. You can also reset your password.
+            </p>
+
+            <h3>Other bits</h3>
+            <p>
+                The market place shows all the businesses in ScreenPop and allows you to browse them. There is a forum which all are free to use, there are topic and gruop forums. There is also a news section to keep ypurself updated.
+            </p>
+        </div>
+    </div>
+</div>
+<!-- end of div container-->
 {% endblock %}
