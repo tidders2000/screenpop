@@ -45,10 +45,12 @@
              <H2>Group:{{meeting.group}}</h2>
         <h2>Date of Meeting:{{meeting.meeting_date}}</h2>
 <h3>Attendees:</h3>
+ <ul>
      {% for attend in attendees %}
-        {{attend.user}}
-        {% endfor %}<br>
-
+    
+      <li>  {{attend.user}} / {{attend.business_profile.business_name}} / {{attend.user.email}}</li>
+        {% endfor %}
+</ul>
     <h3>Visitors & Guests</h3>
      {% for visit in visitors %}
         {{visit.user}}
@@ -62,7 +64,7 @@
 
     <h3>Apologies:</h3>
      {% for apol in apologies %}
-        {{apol.user}}
+        {{apol.user}} /
         {% endfor %}
 <h3>Agenda</h3>
            

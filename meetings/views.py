@@ -30,7 +30,7 @@ def pdf(request, pk):
     meeting = Meeting.objects.get(pk=pk)
     grp = meeting.group
     meet = meeting.pk
-    attendees = Switcher.objects.filter(group=grp)
+    attendees = Switcher.objects.filter(group=grp).order_by('user__last_name')
     visitors = Visitors.objects.filter(meeting=meet)
     guests = Guests.objects.filter(meeting=meet)
     apologies = Apologies.objects.filter(meeting=meet)
