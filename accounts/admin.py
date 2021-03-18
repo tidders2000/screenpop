@@ -9,9 +9,14 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', )
 
 
+class SwitcherAdmin(admin.ModelAdmin):
+    list_display = ('user', )
+    ordering = ('user',)
+
+
 admin.site.register(Profile, ProfileAdmin)
 
-admin.site.register(Switcher)
+admin.site.register(Switcher, SwitcherAdmin)
 
 
 # Register your models here.

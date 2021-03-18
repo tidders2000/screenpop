@@ -5,7 +5,7 @@ import io
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from business.models import BusinessProfile
 from accounts.models import Switcher
 from groups.models import Groups
@@ -19,6 +19,7 @@ from django.core.mail import send_mail
 @login_required
 def meeting_upload(request):
     # declaring template
+
     template = "uploader.html"
     data = User.objects.all()
 # prompt is a context variable that can have different values      depending on their context

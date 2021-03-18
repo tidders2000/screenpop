@@ -95,6 +95,7 @@
             <nav class="nav">
               <ul class="sf-menu">
                     <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i></a></li>
+                      {% if perms.blog.can_add_post %}
                 <li> <a href="{% url 'market' %}">Market Place</a> </li>
                 <li class=""> <a href="{% url 'blog' %}">Blog</a>
                 
@@ -107,7 +108,7 @@
                 <li> <a href="{% url 'business_profile'%}">Company Profile</a></li>
                 <li> <a href="/forum/">Forums</a></li>
                 <li> <a href="{% url 'newsLibrary'%}">News</a></li>
-              
+              {% endif %}
                    {% if request.user.is_staff  %}
                     <li class=""> <a href="">Admin</a>
                   <ul>
@@ -121,7 +122,9 @@
                          <li><a href="{% url 'meeting_list'%}">Edit A Meeting</a></li>             
                   </ul>
                 </li>{% endif %}
+                     {% if perms.blog.can_add_post %}
                   <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
+                  {% endif %}
                   <li> <a href="{% url 'logout'%}">Logout</a></li>
               </ul>
             </nav>

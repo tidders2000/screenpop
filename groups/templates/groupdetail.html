@@ -55,7 +55,7 @@
                       <div class="sidebar-information">
                         <ul class="single-category">
                         {% for meet in meetings %}
-                          <li>{{meet.meeting_date}}  <a href="{% url 'join_meet' meet.pk %}?q={{group.pk}}"><span style="color:#31A8EC;">Attend</span></a></li>
+                          <li><a href="{% url 'pdf' meet.pk %}">{{meet.meeting_date}} </a> <a href="{% url 'join_meet' meet.pk %}?q={{group.pk}}"><span style="color:#31A8EC;">Attend</span></a></li>
                         {% endfor %}
                         </ul>
                       </div>
