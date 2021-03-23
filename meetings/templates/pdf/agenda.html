@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -38,8 +39,11 @@
     </head>
     <body>
         <div class='wrapper'>
+          
             <div class='header'>
-                <p class='title'>Meeting Agenda </p>
+               <img src="static/images/screenpop-logo.png"/>
+               
+                <p class='title'> ScreenPop Meeting Agenda </p>
             </div>
         <div>
              <H2>Group:{{meeting.group}}</h2>
@@ -51,15 +55,21 @@
       <li>  {{attend.user}} / {{attend.business_profile.business_name}} / {{attend.user.email}}</li>
         {% endfor %}
 </ul>
-    <h3>Visitors & Guests</h3>
-     {% for visit in visitors %}
-        {{visit.user}}
+    <h3>Guests</h3>
+   
+        {% for guest in guests %}
+          
+                {{guest.user}} / {{guest.user.email}} 
+           
         {% endfor %}
-       {% for guest in guests %}
-        {{guest.user}}
-        {% endfor %}
-        
-        
+    
+    
+        <h3>Visitors</h3>
+        {% for visit in visitors %}
+     
+            {{visit.user}} / {{visit.user.email}} 
+    
+    {% endfor %}
         <br>
 
     <h3>Apologies:</h3>

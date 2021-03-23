@@ -27,12 +27,12 @@ class Meeting(models.Model):
 
 
 class Visitors(models.Model):
-    name = models.CharField(max_length=254, default='name')
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     business = models.CharField(max_length=254, default='business')
     meeting = models.ForeignKey(Meeting, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return 'name:{}, business{}'.format(self.name, self.business)
+        return 'user:{}, business{}'.format(self.user, self.business)
 
 
 class Guests(models.Model):
