@@ -5,20 +5,26 @@ from django.contrib.auth.decorators import login_required
 from accounts.models import Switcher
 from business.models import BusinessProfile
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 
 @login_required
 def market(request):
 
-    all_members = Switcher.objects.all
+    all_members = Switcher.objects.all()
+    paginator = Paginator(all_members, 30)  # Show 25 posts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     if request.method == "POST":
         keyword = request.POST.get('keyword')
         location = request.POST.get('location')
         type = request.POST.get('type')
         all_members = Switcher.objects.filter(
             business_profile__business_name__icontains=keyword).filter(business_profile__location__icontains=location).filter(business_profile__business_type__icontains=type)
-
-    return render(request, 'marketplace.html', {'all_members': all_members})
+        paginator = Paginator(all_members, 30)  # Show 25 posts per page.
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+    return render(request, 'marketplace.html', {'all_members': all_members, 'page_obj':page_obj })
 
 
 @login_required

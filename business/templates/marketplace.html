@@ -47,9 +47,9 @@
     <div class="container pb30">
       <h3>Members</h3>
       <div class="row">
-      {% for member in all_members %}
+      {% for member in page_obj %}
         <div class="col-sm-3">
-          <div class="uou-block-6a" style="padding-top:10%;height:328px!important;"> <a href= "{% url 'bp_view' member.business_profile.pk%}"><img src="{{MEDIA_URL}}{{member.business_profile.logo}}" alt="profile picture" class="img-thumbnail border-0"style="cursor:pointer;padding-bottom:5px;height:233px;width:233px;"></a>
+          <div class="uou-block-6a" style="padding-top:10%;height:328px!important;"> <a href= "{% url 'bp_view' member.business_profile.pk%}"><img src="{{MEDIA_URL}}{{member.business_profile.logo}}"  alt="profile picture" class="img-thumbnail border-0 lazy"style="cursor:pointer;padding-bottom:5px;height:233px;width:233px;"></a>
             <h6>{{member.user.firstname}} <span style="padding:5px;">{{member.business_profile.business_name}}</span></h6>
             <p><i class="fa fa-map-marker"></i>{{member.business_profile.location}}</p>
           </div>
@@ -58,9 +58,33 @@
         {% endfor %}
           <!-- end .uou-block-6a --> 
         </div>
+        <div class="pagination">
+          <span class="step-links">
+              {% if page_obj.has_previous %}
+                  <a href="?page=1">&laquo; first</a>
+                  <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+      
+              <span class="current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+      
+              {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}">next</a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+              {% endif %}
+          </span>
+      </div>
       </div>
     </div>
+   
   </section>
 
+<script>
+  $(function() {
+    $('.lazy').Lazy();
+});
+
+</script>
 
  {% endblock %}
