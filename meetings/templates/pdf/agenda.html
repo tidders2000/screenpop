@@ -35,6 +35,9 @@
                 color: #333; /* old IE */
                 background-color: #fff; /* Modern Browsers */
             }
+            .apologies{
+                color:red;
+            }
         </style>
     </head>
     <body>
@@ -52,30 +55,37 @@
  <ul>
      {% for attend in attendees %}
     
-      <li>  {{attend.user}} / {{attend.business_profile.business_name}} / {{attend.user.email}}</li>
+      <li>  {{attend.user}} / {{attend.business_profile.business_name}} / {{attend.user.email}}
+
+        {% for apol in apologies %}
+         {% if attend.user == apol.user %}<span class="apologies">**Apologies**</span>{%endif%}
+         {%endfor%}
+      </li>
+
         {% endfor %}
 </ul>
-    <h3>Guests</h3>
-   
-        {% for guest in guests %}
-          
-                {{guest.user}} / {{guest.user.email}} 
-           
-        {% endfor %}
+
     
     
         <h3>Visitors</h3>
+        <ul>
         {% for visit in visitors %}
+
      
-            {{visit.user}} / {{visit.user.email}} 
+           <li>{{visit.user}} - {{visit.user.email}} - {{visit.business}} </li> 
     
     {% endfor %}
-        <br>
 
-    <h3>Apologies:</h3>
-     {% for apol in apologies %}
-        {{apol.user}} /
-        {% endfor %}
+</ul>
+   
+<h3>Guests</h3>
+   
+{% for guest in guests %}
+  
+        {{guest.user}} / {{guest.user.email}} 
+   
+{% endfor %}
+
 <h3>Agenda</h3>
            
         <p>1: {{meeting.agenda_item1}}</p>
