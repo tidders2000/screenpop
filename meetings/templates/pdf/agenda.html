@@ -51,6 +51,7 @@
         <div>
              <H2>Group:{{meeting.group}}</h2>
         <h2>Date of Meeting:{{meeting.meeting_date}}</h2>
+        <h2>Link: {{meeting.zoom_link}}</h2>
 <h3>Attendees:</h3>
  <ul>
      {% for attend in attendees %}
@@ -65,7 +66,9 @@
         {% endfor %}
 </ul>
 
-    
+<div>
+    <pdf:nextpage /> 
+</div> 
     
         <h3>Visitors</h3>
         <ul>
