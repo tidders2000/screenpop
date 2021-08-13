@@ -1,7 +1,10 @@
 from django.db import models
+from django.db.models.fields import EmailField
 from tinymce.models import HTMLField
 from django.contrib.auth.models import User
 from groups.models import Groups
+from business.models import BusinessProfile
+from django.contrib.postgres.fields import ArrayField
 
 from datetime import datetime
 
@@ -27,17 +30,21 @@ class Meeting(models.Model):
 
 
 class Visitors(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-    business = models.CharField(max_length=254, default='business')
+    
+    first_name = models.CharField(max_length=40)
+    second_name = models.CharField(max_length=40)
+    email = EmailField(default="user@user.com")
+    business =   models.CharField(max_length=60)
     meeting = models.ForeignKey(Meeting, null=True, on_delete=models.CASCADE)
-
+ 
     def __str__(self):
-        return 'user:{}, business{}'.format(self.user, self.business)
+        return 'first_name:{},second_name:{}, business{}'.format(self.first_name, self.second_name,self.business)
 
 
 class Guests(models.Model):
     meeting = models.ForeignKey(Meeting, null=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    business =  models.ForeignKey(BusinessProfile, null=True, on_delete=models.CASCADE)
     status = models.CharField(
         max_length=254, choices=status, default='pending')
 

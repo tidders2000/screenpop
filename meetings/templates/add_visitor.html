@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %}{% block page_title %}Meeting{% endblock %} {% block page_heading %}Meeting{% endblock %}
+    {% block title %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'dashboard'%}">Dashboard</a></li>
+
+    <li class="breadcrumb-item active" aria-current="page">Add Meeting</li>
+  </ol>
+</nav>{% endblock %}
+ 
+ 
+ 
+ {% block content %}
+
+
+<h1 class='m-3'>Add Visitor</h1>
+
+      <div class="row">
+        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 ">
+
+  <form method='POST' >
+                      {% csrf_token %} {{ form|crispy }}
+                      <button type="submit" class="btn btn-success">ADD</button>
+
+                      </form>
+
+                      </div>
+
+</div>
+</div>
+
+
+ {% endblock %}

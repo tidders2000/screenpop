@@ -72,10 +72,10 @@
     
         <h3>Visiting Members</h3>
         <ul>
-        {% for visit in visitors %}
+        {% for guest in guests %}
 
      
-           <li>{{visit.user}} - {{visit.user.email}} - {{visit.business}} </li> 
+           <li>{{guest.user}} - {{guest.user.email}} - {{guest.business.business_name}} </li> 
     
     {% endfor %}
 
@@ -83,9 +83,9 @@
    
 <h3>Guests</h3>
    
-{% for guest in guests %}
+{% for visitor in visitors %}
   
-        {{guest.user}} / {{guest.user.email}} 
+        {{visitor.first_name}}  {{visitor.second_name}}  {{visitor.email}} - {{visitor.business}}
    
 {% endfor %}
 

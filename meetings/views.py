@@ -1,14 +1,24 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Meeting, Visitors, Guests, Apologies
-from .forms import meeting_model_form, status_form
+from .forms import apologies_form, meeting_model_form, status_form,visitors_form
 from django.contrib import messages
 from .utils import render_to_pdf
 from django.http import HttpResponse
 from accounts.models import Switcher
 from django.contrib.auth.decorators import login_required
-
+from django.core.mail import send_mail
 # Create your views here.
 
+@login_required
+def add_apologies(request):
+    form=apologies_form()
+    if request.method == "POST":
+        apol= apologies_form(request.POST)
+        if apol.is_valid():
+            apol.save(commit=True)
+            messages.error(request, "Apologies Added")
+
+    return render(request,'add_apologies.html',{'form':form})
 
 @login_required
 def meeting_detail(request):
@@ -24,14 +34,14 @@ def meeting_detail(request):
     return render(request, 'add_meeting.html', {'form': form})
 
 
-@login_required
+
 def pdf(request, pk):
 
     meeting = Meeting.objects.get(pk=pk)
     grp = meeting.group
     meet = meeting.pk
     attendees = Switcher.objects.filter(group=grp).order_by('user__first_name')
-    visitors = Visitors.objects.filter(meeting=meet).order_by('user__first_name')
+    visitors = Visitors.objects.filter(meeting=meet).order_by('first_name')
     guests = Guests.objects.filter(meeting=meet)
     apologies = Apologies.objects.filter(meeting=meet)
 
@@ -82,3 +92,27 @@ def edit_meeting(request, pk):
 
     meeting = meeting_model_form(instance=instance)
     return render(request, 'edit_meeting.html', {'meeting': meeting})
+@ login_required
+def add_visitor(request):
+     form = visitors_form()
+  
+     
+     if request.method == "POST":
+        vis=visitors_form(request.POST)
+       
+        if vis.is_valid():
+            email= vis.cleaned_data.get("email")
+            meeting=vis.cleaned_data.get("meeting")
+         
+            vis.save(commit=True)
+            link= 'https://screen-pop.herokuapp.com/meetings/pdf/{}/'.format(meeting.id)
+          
+            send_mail(subject="ScreenPop App", message="Hi, You have been added as a visitor to attend a ScreenPop networking meeting. Agenda and access link can be found on this link. Meeting link {} Kind regards The ScreenPop Team".format(link),  from_email='admin@screenpop.com',
+          
+            recipient_list=[email])
+            
+          
+            messages.error(request, "Visitor Added")
+           
+    
+     return render(request, 'add_visitor.html',{'form':form})

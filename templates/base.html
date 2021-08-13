@@ -59,6 +59,7 @@
 .sidenav li{
   list-style:none!important;
 }
+
 </style>
 
 <body>
@@ -120,7 +121,9 @@
                     <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
                         <li><a href="{% url 'addNews'%}">Add News</a></li>  
                         <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>  
-                         <li><a href="{% url 'meeting_list'%}">Edit A Meeting</a></li>             
+                         <li><a href="{% url 'meeting_list'%}">Edit A Meeting</a></li> 
+                         <li><a href="{% url 'add_visitor'%}">Add A Visitor</a></li> 
+                         <li><a href="{% url 'add_apologies'%}">Add Apologies</a></li>              
                   </ul>
                 </li>{% endif %}
                      
@@ -153,6 +156,8 @@
                  <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
                 <li><a href="{% url 'addNews'%}">Add News</a></li>  
                 <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li> 
+                <li><a href="{% url 'add_visitor'%}">Add A Visitor</a></li> 
+                <li><a href="{% url 'add_apologies'%}">Add Apologies</a></li>  
                 {% endif %}             
                   <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
                   <li> <a href="{% url 'logout'%}">Logout</a></li>
@@ -176,6 +181,18 @@ function closeNav() {
 
 </script>
 <style>
+  #id_password1{
+    width:200px;
+    margin-left: 15px;
+  }
+
+  #id_password2{
+    width:200px;
+    margin-left: 15px;
+  }
+  label{
+    margin-left: 5px;
+  }
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */

@@ -207,3 +207,15 @@ def bulk_email(request):
 
     context = {}
     return render(request, template, context)
+
+def mailshot(request):
+    select = request.user
+    for user in User.objects.filter(last_name='Tidman'):
+     target=user.email
+     send_mail(subject="ScreenPop App", message="test2",  from_email='simon@scruffyhorse.com',
+          
+          recipient_list=[target])
+     
+    messages.error(request, 'Message Sent')
+    return redirect(reverse('dashboard'))
+    

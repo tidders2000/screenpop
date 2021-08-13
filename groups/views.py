@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, HttpResponseRedirect
+from django.shortcuts import render, redirect, reverse, HttpResponseRedirect,get_object_or_404
 from .models import Groups
 from meetings.models import Meeting, Guests
 from .forms import add_groups_form
@@ -9,11 +9,14 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from datetime import date
 from accounts.models import Switcher
+from business.models import BusinessProfile
+from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
 
 
 @login_required
+
 def group_directory(request):
     groups = Groups.objects.all()
     return render(request, 'groupdirectory.html', {'groups': groups})
@@ -22,10 +25,14 @@ def group_directory(request):
 @login_required
 def group_detail(request, pk):
     group = Groups.objects.get(pk=pk)
+    user=request.user
     today = date.today()
     meetings = Meeting.objects.filter(group=group.pk, meeting_date__gte=today)
     members = Switcher.objects.filter(group=group)
-    return render(request, 'groupdetail.html', {'group': group, 'meetings': meetings, 'members': members})
+    switchData= Switcher.objects.filter(user=user)
+    user=switchData[0].business_profile.pk
+    print(user)
+    return render(request, 'groupdetail.html', {'group': group, 'meetings': meetings, 'members': members,'user':user})
 
 
 @login_required
@@ -45,10 +52,14 @@ def add_group(request):
 def join_meet(request, pk):
     group = request.GET['q']
     user = request.user
+    business = BusinessProfile.objects.filter(user=user)
+    instance = get_object_or_404(BusinessProfile, pk=business[0].pk)
+    print(instance)
     meeting = Meeting.objects.get(pk=pk)
     guest = guests_form().save(commit=False)
     guest.user = user
     guest.meeting = meeting
+    guest.business=instance
     guest.save()
     messages.error(request, 'Request added')
 

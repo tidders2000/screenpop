@@ -1,5 +1,5 @@
 from django import forms
-from .models import Meeting, Apologies, Guests
+from .models import Meeting, Apologies, Guests, Visitors
 from tinymce.widgets import TinyMCE
 
 
@@ -21,6 +21,11 @@ class apologies_form(forms.ModelForm):
     class Meta:
         model = Apologies
         fields = '__all__'
+
+class visitors_form(forms.ModelForm):
+    class Meta:
+        model = Visitors
+        fields='__all__'
 
 
 class guests_form(forms.ModelForm):
