@@ -12,6 +12,8 @@ class ProfileAdmin(admin.ModelAdmin):
 class SwitcherAdmin(admin.ModelAdmin):
     list_display = ('user', )
     ordering = ('user',)
+    search_fields = ['user']
+    list_filter =  ['user']
 
 
 admin.site.register(Profile, ProfileAdmin)

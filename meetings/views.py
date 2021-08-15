@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .models import Meeting, Visitors, Guests, Apologies
+from .models import Meeting, Visitors, Guests, Apologies,Hosts
 from .forms import apologies_form, meeting_model_form, status_form,visitors_form
 from django.contrib import messages
 from .utils import render_to_pdf
@@ -40,13 +40,15 @@ def pdf(request, pk):
     meeting = Meeting.objects.get(pk=pk)
     grp = meeting.group
     meet = meeting.pk
+    host = Hosts.objects.filter(group=grp)
     attendees = Switcher.objects.filter(group=grp).order_by('user__first_name')
     visitors = Visitors.objects.filter(meeting=meet).order_by('first_name')
     guests = Guests.objects.filter(meeting=meet)
     apologies = Apologies.objects.filter(meeting=meet)
+  
 
     data = {'meeting': meeting, 'attendees': attendees,
-            'visitors': visitors, 'guests': guests, 'apologies': apologies}
+            'visitors': visitors, 'guests': guests, 'apologies': apologies, 'host':host}
 
     pdf = render_to_pdf('pdf/agenda.html', data)
 

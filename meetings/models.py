@@ -55,3 +55,7 @@ class Guests(models.Model):
 class Apologies(models.Model):
     meeting = models.ForeignKey(Meeting, null=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+
+class Hosts(models.Model):
+     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+     group = models.ForeignKey(Groups, null=True, on_delete=models.CASCADE)

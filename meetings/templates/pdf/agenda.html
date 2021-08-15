@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>ScreenPop Agenda</title>
+ 
         <style type="text/css">
             body {
                 font-weight: 200;
@@ -38,6 +39,10 @@
             .apologies{
                 color:red;
             }
+
+            .host{
+                color:gold;
+            }
         </style>
     </head>
     <body>
@@ -52,14 +57,19 @@
              <H2>Group:{{meeting.group}}</h2>
         <h2>Date of Meeting:{{meeting.meeting_date}}</h2>
         <h2>Link: {{meeting.zoom_link}}</h2>
+        
 <h3>Attendees:</h3>
  <ul>
      {% for attend in attendees %}
     
-      <li>  {{attend.user}} / {{attend.business_profile.business_name}} / {{attend.user.email}}
+      <li>  {{attend.user.first_name}} {{attend.user.last_name}}/ {{attend.business_profile.business_name}} / {{attend.user.email}}
 
         {% for apol in apologies %}
          {% if attend.user == apol.user %}<span class="apologies">**Apologies**</span>{%endif%}
+         {%endfor%}
+
+         {% for ho in host %}
+         {% if attend.user == ho.user %}<span class="host"><i class="fa fa-star" aria-hidden="true"></i> ** HOST **</span>{%endif%}
          {%endfor%}
       </li>
 
@@ -85,7 +95,7 @@
    
 {% for visitor in visitors %}
   
-        {{visitor.first_name}}  {{visitor.second_name}}  {{visitor.email}} - {{visitor.business}}
+        {{visitor.user.first_name}}  {{visitor.user.second_name}}  {{visitor.email}} - {{visitor.business}}
    
 {% endfor %}
 
