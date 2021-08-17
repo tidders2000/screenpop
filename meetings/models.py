@@ -36,6 +36,7 @@ class Visitors(models.Model):
     email = EmailField(default="user@user.com")
     business =   models.CharField(max_length=60)
     meeting = models.ForeignKey(Meeting, null=True, on_delete=models.CASCADE)
+    website =   models.CharField(max_length=60)
  
     def __str__(self):
         return 'first_name:{},second_name:{}, business{}'.format(self.first_name, self.second_name,self.business)

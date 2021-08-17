@@ -62,7 +62,7 @@
  <ul>
      {% for attend in attendees %}
     
-      <li>  {{attend.user.first_name}} {{attend.user.last_name}}/ {{attend.business_profile.business_name}} / {{attend.user.email}}
+      <li>  {{attend.user.first_name}} {{attend.user.last_name}}/ {{attend.business_profile.business_name}} / {{attend.user.email}} /  {% if attend.business_profile.website != 'https://example.com' %} {{attend.business_profile.website}}{% endif%}
 
         {% for apol in apologies %}
          {% if attend.user == apol.user %}<span class="apologies">**Apologies**</span>{%endif%}
@@ -85,7 +85,7 @@
         {% for guest in guests %}
 
      
-           <li>{{guest.user}} - {{guest.user.email}} - {{guest.business.business_name}} </li> 
+           <li>{{guest.user.first_name}} {{guest.user.last_name}} / {{guest.business.business_name}} / {{guest.user.email}} {% if guest.business.website != 'https://example.com' %} {{guest.business.website}}{% endif%}</li> 
     
     {% endfor %}
 
@@ -95,7 +95,7 @@
    
 {% for visitor in visitors %}
   
-        {{visitor.user.first_name}}  {{visitor.user.second_name}}  {{visitor.email}} - {{visitor.business}}
+        {{visitor.first_name}} {{visitor.second_name}} / {{visitor.email}} / {{visitor.business}} / {{visitor.website}}
    
 {% endfor %}
 
