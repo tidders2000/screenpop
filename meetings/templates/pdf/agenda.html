@@ -43,12 +43,103 @@
             .host{
                 color:gold;
             }
+
+            table, th, td {
+  border: 1px solid black;
+  margin-left: 2px;
+ padding-top: 3px;
+}
+
+.heading{
+    font-size: 2.5em;
+}
+.intro{
+    padding:2px;
+    text-align: center;
+}
+
         </style>
     </head>
     <body>
         <div class='wrapper'>
-          
             <div class='header'>
+                <img src="static/images/screenpop-logo.png"/>
+                
+ 
+             </div>
+         <div>
+             <table class="intro">
+             
+                  <tr>
+                      <td class="heading">{{meeting.group}} ScreenPop {{meeting.meeting_date}} </td>
+                  </tr>
+                  <tr>
+                    <th> Zoom Link</th>
+                   
+                  </tr>
+                  <tr>
+                    <th>{{meeting.zoom_link}}</td>
+                    
+                  </tr>
+
+             </table>
+            <table>
+           
+                <tr>
+                  <th>Contact Details</th>
+                  <th>Notes</th>
+                 
+                </tr>
+                {% for attend in attendees %}
+                <tr>
+                    <td> {{attend.user.first_name}} {{attend.user.last_name}}<br> {{attend.business_profile.business_name}} <br> {{attend.user.email}}<br> {% if attend.business_profile.website != 'https://example.com' %} {{attend.business_profile.website}}{% endif%} </td>
+                    <td>
+                        {% for apol in apologies %}
+                        {% if attend.user == apol.user %}<span class="apologies">**Apologies**</span>{%endif%}
+                        {%endfor%}
+
+                        {% for ho in host %}
+                        {% if attend.user == ho.user %}<span class="host"><i class="fa fa-star" aria-hidden="true"></i> ** HOST **</span>{%endif%}
+                        {%endfor%}
+
+                        {% if attend.user == meeting.presenter %}<span class="apologies">**Presenting**</span>{%endif%}
+
+    
+                        
+
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th>Visiting Members</th>
+                    <th</th>
+                   
+                   
+                  </tr>
+                  {% for guest in guests %}
+                  <tr>
+                      <td>{{guest.user.first_name}}<br> {{guest.user.last_name}} <br> {{guest.business.business_name}} <br> {{guest.user.email}} {% if guest.business.website != 'https://example.com' %} {{guest.business.website}}{% endif%}</td>
+                  </tr>
+                  {% endfor %}
+                  <tr>
+
+                  
+                    <th>Visitors</th>
+                    <th</th>
+                   
+                   
+                  </tr>
+                  {% for visitor in visitors %}
+                  <tr>
+                      <td> {{visitor.first_name}} {{visitor.second_name}} <br> {{visitor.email}} <br> {{visitor.business}} <br> {{visitor.website}}</td>
+                  </tr>
+                  {% endfor %}
+           
+
+              </table>
+         
+          
+            <!-- <div class='header'>
                <img src="static/images/screenpop-logo.png"/>
                
                 <p class='title'> ScreenPop Meeting Agenda </p>
@@ -106,7 +197,7 @@
         <p>3: {{meeting.agenda_item3}}</p>
 
     </div>
-       
+        -->
 
   
      
