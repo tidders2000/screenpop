@@ -11,6 +11,8 @@ class meeting_model_form(forms.ModelForm):
     class Meta:
         model = Meeting
         fields = '__all__'
+        exclude = ('agenda_item2',  'agenda_item3')
+        
 
         widgets = {
             'meeting_date': DateInput(),

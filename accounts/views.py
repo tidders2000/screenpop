@@ -108,7 +108,7 @@ def dashboard(request):
     # current user
     user = request.user
     # get new articles for dash
-    articles = News.objects.all().order_by('date').reverse()[0:3]
+    articles = News.objects.all().order_by('id').reverse()[0:3]
     # get list of groups and business for user
     switchData = Switcher.objects.filter(user=user)
     # work out next meeting

@@ -19,7 +19,7 @@ class Meeting(models.Model):
     start_time = models.CharField(max_length=10, default='start time')
     zoom_link = models.URLField(blank=True)
     presenter = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-    agenda_item1 = models.CharField(max_length=254, default='Agenda Item')
+    Notes = models.CharField(max_length=254, default='Agenda Item')
     agenda_item2 = models.CharField(max_length=254, default='Agenda Item')
     agenda_item3 = models.CharField(max_length=254, default='Agenda Item')
 

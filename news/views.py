@@ -38,7 +38,7 @@ def editNews(request, pk):
 @login_required
 def newsLibrary(request):
 
-    articles = News.objects.all().order_by('date')
+    articles = News.objects.all().order_by('-date')
 
     paginator = Paginator(articles, 5)  # Show 5 posts per page.
     page_number = request.GET.get('page')
@@ -51,3 +51,18 @@ def newsLibrary(request):
 def newsArticle(request, pk):
     article = get_object_or_404(News, pk=pk)
     return render(request, 'article.html', {'article': article})
+
+@ login_required
+def deleteNews(request):
+    articles = News.objects.all().order_by('date')
+    return render(request, "delete_news.html", {'articles': articles})
+
+@ login_required
+def delete(request,pk):
+     article = get_object_or_404(News, pk=pk)
+     article.delete()
+     articles = News.objects.all().order_by('-date')
+     
+     return render(request, "delete_news.html", {'articles': articles})
+  
+     
