@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block page_title %}Meeting{% endblock %} {% block page_heading %}Meeting{% endblock %}
+ {% block content %}
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<h1>Edit User</h1>
+
+
+<form method='POST' name="search-form" enctype="multipart/form-data">
+    <label for="user">Search: </label>
+    <input id="user">
+    <button type="submit" class="btn btn-success">Display Details</button>
+
+    </form>
+
+
+    </div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+    var availableTags = [
+     
+    {% for q in qs %}
+            "{{q.first_name}} {{q.last_name}}",
+    {% endfor %}
+
+  
+  ]
+    $( "#user" ).autocomplete({
+      source:availableTags
+    });
+  } );
+  </script>
+ {% endblock %}

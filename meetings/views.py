@@ -49,16 +49,18 @@ def pdf(request, pk):
     visitors = Visitors.objects.filter(meeting=meet).order_by('first_name')
     guests = Guests.objects.filter(meeting=meet)
     apologies = Apologies.objects.filter(meeting=meet)
-    presenter=["",]
+    presenter=[]
     if meeting.presenter!=None:
      presenter=meeting.presenter.split()
+    
+    if len(presenter)>1:
 
-    for attend in attendees:
-        if attend.user.first_name==presenter[0] and attend.user.last_name==presenter[1]:
-            present=User.objects.get(pk=attend.user.pk)
-         
-        else:
-            present=""
+        for attend in attendees:
+            if attend.user.first_name==presenter[0] and attend.user.last_name==presenter[1]:
+                present=User.objects.get(pk=attend.user.pk)
+            
+            else:
+                present=""
   
 
     data = {'meeting': meeting, 'attendees': attendees,
