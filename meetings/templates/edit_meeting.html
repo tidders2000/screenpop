@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load crispy_forms_tags %}{% block page_title %}Meeting{% endblock %} {% block page_heading %}Meeting{% endblock %}
  {% block content %}
 
-
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
      <div class="container-fluid">
@@ -14,10 +14,27 @@
                       <button type="submit" class="btn btn-success">PUBLISH</button>
 
                       </form>
+              
 
                       </div>
 
 </div>
 </div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+    var availableTags = [
+     
+    {% for q in qs %}
+            "{{q.first_name}} {{q.last_name}}",
+        {% endfor %}
 
+  
+  ]
+    $( "#id_presenter" ).autocomplete({
+      source:availableTags
+    });
+  } );
+  </script>
  {% endblock%}

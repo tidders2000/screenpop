@@ -1,3 +1,5 @@
+from django.http.response import JsonResponse
+from django.core import serializers
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Meeting, Visitors, Guests, Apologies,Hosts
 from .forms import apologies_form, meeting_model_form, status_form,visitors_form
@@ -7,6 +9,7 @@ from django.http import HttpResponse
 from accounts.models import Switcher
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.contrib.auth.models import User
 # Create your views here.
 
 @login_required
@@ -39,16 +42,27 @@ def pdf(request, pk):
 
     meeting = Meeting.objects.get(pk=pk)
     grp = meeting.group
+   
     meet = meeting.pk
     host = Hosts.objects.filter(group=grp)
     attendees = Switcher.objects.filter(group=grp).order_by('user__first_name')
     visitors = Visitors.objects.filter(meeting=meet).order_by('first_name')
     guests = Guests.objects.filter(meeting=meet)
     apologies = Apologies.objects.filter(meeting=meet)
+    presenter=["",]
+    if meeting.presenter!=None:
+     presenter=meeting.presenter.split()
+
+    for attend in attendees:
+        if attend.user.first_name==presenter[0] and attend.user.last_name==presenter[1]:
+            present=User.objects.get(pk=attend.user.pk)
+         
+        else:
+            present=""
   
 
     data = {'meeting': meeting, 'attendees': attendees,
-            'visitors': visitors, 'guests': guests, 'apologies': apologies, 'host':host}
+            'visitors': visitors, 'guests': guests, 'apologies': apologies, 'host':host,'present':present}
 
     pdf = render_to_pdf('pdf/agenda.html', data)
 
@@ -84,6 +98,7 @@ def meeting_list(request):
 @ login_required
 def edit_meeting(request, pk):
     instance = get_object_or_404(Meeting, pk=pk)
+    qs = User.objects.all()
 
     if request.method == "POST":
         meet = meeting_model_form(
@@ -93,7 +108,7 @@ def edit_meeting(request, pk):
             messages.error(request, "Meeting Ammended")
 
     meeting = meeting_model_form(instance=instance)
-    return render(request, 'edit_meeting.html', {'meeting': meeting})
+    return render(request, 'edit_meeting.html', {'meeting': meeting,'qs':qs})
 @ login_required
 def add_visitor(request):
      form = visitors_form()
@@ -118,3 +133,10 @@ def add_visitor(request):
            
     
      return render(request, 'add_visitor.html',{'form':form})
+
+def names(request):
+     if request.method=="GET":
+        
+      if 'term' in request.GET:
+            qs = User.objects.all()
+            return qs
