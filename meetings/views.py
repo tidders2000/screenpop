@@ -50,6 +50,7 @@ def pdf(request, pk):
     guests = Guests.objects.filter(meeting=meet)
     apologies = Apologies.objects.filter(meeting=meet)
     presenter=[]
+    present=""
     if meeting.presenter!=None:
      presenter=meeting.presenter.split()
     
