@@ -111,12 +111,13 @@
                 </tr>
                 {% endfor %}
                 <tr>
-                    <th>Visiting Members</th>
+                    <th>Visiting Members </th>
                     <th</th>
                    
                    
                   </tr>
                   {% for guest in guests %}
+                  
                   <tr>
                       <td>{{guest.user.first_name}}<br> {{guest.user.last_name}} <br> {{guest.business.business_name}} <br> {{guest.user.email}} {% if guest.business.website != 'https://example.com' %} {{guest.business.website}}{% endif%}</td>
                   </tr>

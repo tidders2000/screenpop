@@ -10,6 +10,7 @@ from accounts.models import Switcher
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
+from datetime import datetime, timedelta
 # Create your views here.
 
 @login_required
@@ -49,19 +50,23 @@ def pdf(request, pk):
     visitors = Visitors.objects.filter(meeting=meet).order_by('first_name')
     guests = Guests.objects.filter(meeting=meet)
     apologies = Apologies.objects.filter(meeting=meet)
-    presenter=[]
+
     present=""
     if meeting.presenter!=None:
+  
      presenter=meeting.presenter.split()
+   
+    else:
+     presenter=[]
     
-    if len(presenter)>1:
-
+    if len(presenter)>0:
+    
         for attend in attendees:
             if attend.user.first_name==presenter[0] and attend.user.last_name==presenter[1]:
                 present=User.objects.get(pk=attend.user.pk)
+               
             
-            else:
-                present=""
+          
   
 
     data = {'meeting': meeting, 'attendees': attendees,
@@ -93,7 +98,7 @@ def meeting_requests(request):
 
 @login_required
 def meeting_list(request):
-    meeting = Meeting.objects.all()
+    meeting = Meeting.objects.filter( meeting_date__gte= datetime.now() )
 
     return render(request, 'meeting_list.html', {'meeting': meeting})
 
