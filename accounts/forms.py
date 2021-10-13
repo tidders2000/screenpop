@@ -51,3 +51,8 @@ class switcher_form(forms.ModelForm):
     class Meta:
         model = Switcher
         fields = '__all__'
+
+class user_form(forms.ModelForm):
+      class Meta:
+        model=User
+        fields=['first_name','username','last_name', 'email']

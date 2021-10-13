@@ -93,6 +93,7 @@ class BusinessProfile(models.Model):
     instagram = models.CharField(max_length=254, default='https://example.com')
     legal_entity = models.CharField(
         max_length=254, choices=legalEntity, default='Sole trader')
-
+    class Meta:
+        ordering = ('business_name',)
     def __str__(self):
         return self.business_name

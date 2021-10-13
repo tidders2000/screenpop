@@ -1,19 +1,77 @@
-{% extends 'base.html' %} {% block page_title %}Meeting{% endblock %} {% block page_heading %}Meeting{% endblock %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block page_title %}Edit User{% endblock %} {% block page_heading %}Meeting{% endblock %}
  {% block content %}
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <h1>Edit User</h1>
 
-
+<div class="container">
 <form method='POST' name="search-form" enctype="multipart/form-data">
     <label for="user">Search: </label>
-    <input id="user">
+    <input id="user" name="user">
+    {% csrf_token %}
     <button type="submit" class="btn btn-success">Display Details</button>
 
     </form>
 
+<h1>User Details</h1>
+<form method='POST' action="{% url 'changeuserdetails' pk %}" >
+        {% csrf_token %} {{ userform|crispy }}
+        <button type="submit" class="btn btn-success">Save</button>
+   
 
+        </form>
+        <a href="{% url 'deleteuser' pk %}" class="btn btn-danger btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Delete User</a>
+
+<h1>Group Membership</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Business</th>
+                <th>Group</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+              {% for switch in switches %}
+              <tr>
+                  <td> {{switch.business_profile.business_name }} </td>
+                  <td>{{switch.group.groupName}}</td>
+                  <td><a href="{% url 'editusergroup' switch.pk %}" class="btn btn-warning btn-lg" tabindex="-1" role="button" aria-disabled="true">Edit</a> </td>
+                  <td><a href="{% url 'deleteswitcher' switch.pk %}" class="btn btn-danger btn-lg " tabindex="-1" role="button" aria-disabled="true">Delete</a> </td>
+              </tr>
+              {%endfor%}
+              <tr>
+                <td><a href="{% url 'switcher_add' %}" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Add</a></td>
+              </tr>
+        </table>
+      
+
+     
+  <h1>Users Businesses</h1>
+   <table class="table table-striped">
+       <tr>
+           <th>Business</th>
+           <th>Delete</th>
+       </tr>
+       {% for bus in business %}
+       <tr>
+           <td>{{bus.business_name }} </td>
+           <td> <a href="{% url 'deletebusiness' bus.pk %}" class="btn btn-danger btn-lg " tabindex="-1" role="button" aria-disabled="true">Delete</a> </td>
+       </tr>
+       {%endfor%}
+
+       <tr>  <td><a href="{% url 'new_business' %}" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Add</a></td></tr>
+   </table>
+
+     <br>
+     <br>
+
+      
+    
+        
+        </div>
     </div>
+
+
+
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
