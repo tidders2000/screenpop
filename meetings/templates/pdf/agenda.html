@@ -41,7 +41,7 @@
             }
 
             .host{
-                color:gold;
+                color:black;
             }
 
             table, th, td {
@@ -103,6 +103,11 @@
                         {%endfor%}
 
                         {% if attend.user == present %}<span class="apologies">**Presenting**</span>{%endif%}
+                        {% if attend.business_profile.business_type  == 'Charity'%}<span class="host">** Charity Member **</span>{%endif%}
+                       
+                        {% for d in doubles %}
+                           {% if d.user == attend.user %} <span class="host">** Double Member **</span>{%endif%}
+                        {%endfor%}
 
     
                         

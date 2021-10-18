@@ -50,8 +50,29 @@ def pdf(request, pk):
     visitors = Visitors.objects.filter(meeting=meet).order_by('first_name')
     guests = Guests.objects.filter(meeting=meet)
     apologies = Apologies.objects.filter(meeting=meet)
+    doubles=[]
+ 
+    for attend in attendees:
+     
+            occ = Switcher.objects.filter(group=grp).filter(user=attend.user).count()
+            if occ>1:
+                x=0
+                for d in doubles:
+                    if d.user==attend.user:
+                        x = x+1
+                if x < 1:
+                    doubles.append(attend)
+              
 
+               
+
+              
+
+    
+
+    print(doubles)
     present=""
+
     if meeting.presenter!=None:
   
      presenter=meeting.presenter.split()
@@ -70,7 +91,7 @@ def pdf(request, pk):
   
 
     data = {'meeting': meeting, 'attendees': attendees,
-            'visitors': visitors, 'guests': guests, 'apologies': apologies, 'host':host,'present':present}
+            'visitors': visitors, 'guests': guests, 'apologies': apologies, 'host':host,'present':present,'doubles':doubles}
 
     pdf = render_to_pdf('pdf/agenda.html', data)
 

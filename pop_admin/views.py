@@ -1,4 +1,5 @@
-from django.shortcuts import render,get_object_or_404,HttpResponseRedirect
+from django.http import response
+from django.shortcuts import redirect, render,get_object_or_404,HttpResponseRedirect,reverse
 from django.contrib.auth.models import User
 # Create your views here.
 from django.contrib.auth.decorators import login_required
@@ -81,7 +82,7 @@ def editusergroup(request,pk):
             if data.is_valid():
                 data.save(commit=True)
                 messages.error(request, "Group Ammended")
-                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+                return redirect(reverse('edituser'))
 
 
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse,HttpResponseRedirect
 from .models import BusinessProfile
 from .forms import bp_model_form, tiny_model_form, add_business
 from django.contrib.auth.decorators import login_required
@@ -49,6 +49,7 @@ def edit_profile(request, pk):
         form.save()
         return redirect(reverse('business_profile'))
         messages.error(request, "Profile Updated")
+    
 
     return render(request, 'edit_profile.html', {'profile': profile, 'tpk': tpk})
 
@@ -80,7 +81,7 @@ def new_business(request):
         if new_bus.is_valid():
             new_bus.save(commit=True)
             messages.error(request, "business Added")
-            return redirect(reverse('switcher_add'))
+            return render(request, 'edituser')
     else:
 
         form = add_business()

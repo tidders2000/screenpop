@@ -8,4 +8,4 @@ about = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
 class add_groups_form(forms.ModelForm):
     class Meta:
         model = Groups
-        fields = ('groupName', 'groupLocation', 'about')
+        fields = ('__all__')

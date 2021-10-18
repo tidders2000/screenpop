@@ -98,7 +98,7 @@
               <ul class="sf-menu">
                     <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i></a></li>
                      
-                <li> <a href="{% url 'market' %}">Market Place</a> </li>
+                <li> <a href="{% url 'market' %}">Member Businesses </a> </li>
                 <li class=""> <a href="{% url 'blog' %}">Blog</a>
                 
                   <ul>
@@ -115,10 +115,11 @@
                     <li class=""> <a href="">Admin</a>
                   <ul>
                       <li><a href="{% url 'registration' %}"> Add User</a></li>
-                      <li><a href="{% url 'new_business' %}"> Add Business</a></li>
-                      <li><a href="{% url 'switcher_add' %}"> Add User to Group</a></li>
+                      <li><a href="{% url 'edituser' %}"> Edit User</a></li>
+                      <li><a href="{% url 'edit_group' %}"> Edit Group</a></li>
+                    
             
-                    <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
+                    <li><a href="{% url 'meeting_detail'%}">Add Meeting</a></li> 
                         <li><a href="{% url 'addNews'%}">Add News</a></li>  
                         <li><a href="{% url 'deleteNews'%}">Delete News</a></li>  
                         <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>  
@@ -142,7 +143,7 @@
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
    
                  <li><a href="{% url 'dashboard' %}"><i class="fa  fa-home"></i></a></li>
-                  <li> <a href="{% url 'market' %}">Market Place</a> </li>
+                  <li> <a href="{% url 'market' %}">Member Businesses </a> </li>
                 
                   <li><a href="{% url 'blog' %}">Blogs</a></li> 
                   <li><a href="{% url 'add_blog' %}">Write a Blog</a></li>                 
@@ -150,16 +151,18 @@
                   <li> <a href="/forum/">Forums</a></li>
                   <li> <a href="{% url 'newsLibrary'%}">News</a></li>
                     {% if request.user.is_staff  %}
-                  
-                 <li><a href="{% url 'registration' %}"> Add User</a></li>
-                  <li><a href="{% url 'new_business' %}"> Add Business</a></li>
-                   <li><a href="{% url 'switcher_add' %}"> Add User to Group</a></li>
-                 <li><a href="{% url 'meeting_detail'%}">Manage Meeting</a></li> 
-                <li><a href="{% url 'addNews'%}">Add News</a></li>  
-                <li><a href="{% url 'deleteNews'%}">Delete News</a></li>  
-                <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li> 
-                <li><a href="{% url 'add_visitor'%}">Add A Visitor</a></li> 
-                <li><a href="{% url 'add_apologies'%}">Add Apologies</a></li>  
+                    <li><a href="{% url 'registration' %}"> Add User</a></li>
+                      <li><a href="{% url 'edituser' %}"> Edit User</a></li>
+                      <li><a href="{% url 'edit_group' %}"> Edit Group</a></li>
+                    
+            
+                    <li><a href="{% url 'meeting_detail'%}">Add Meeting</a></li> 
+                        <li><a href="{% url 'addNews'%}">Add News</a></li>  
+                        <li><a href="{% url 'deleteNews'%}">Delete News</a></li>  
+                        <li><a href="{% url 'meeting_requests'%}">Meeting Requests</a></li>  
+                         <li><a href="{% url 'meeting_list'%}">Edit A Meeting</a></li> 
+                         <li><a href="{% url 'add_visitor'%}">Add A Visitor</a></li> 
+                         <li><a href="{% url 'add_apologies'%}">Add Apologies</a></li>  
                 {% endif %}             
                   <li><a href="{% url 'group_directory'%}">Group Directory</a></li>
                   <li> <a href="{% url 'logout'%}">Logout</a></li>

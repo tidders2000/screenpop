@@ -188,7 +188,7 @@ def switcher_add(request):
         if switch.is_valid():
             switch.save(commit=True)
             messages.error(request, "business Added")
-            return redirect(reverse('dashboard'))
+            return redirect(reverse('edituser'))
     else:
 
         switch = switcher_form()

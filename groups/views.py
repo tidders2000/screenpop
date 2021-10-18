@@ -64,3 +64,53 @@ def join_meet(request, pk):
     messages.error(request, 'Request added')
 
     return redirect('group_detail', pk=group)
+
+def edit_group(request):
+
+    groups=add_groups_form()
+    qs = Groups.objects.all()
+    pk=5
+
+ 
+    if request.method == "POST":
+       name=request.POST.get("group", "")
+     
+      
+       instance=Groups.objects.get(groupName__contains=name)
+       
+       groups=add_groups_form(instance=instance)
+       pk=instance.pk
+       return render (request,'edit-group.html',{'qs':qs,'groups':groups,'pk':pk})
+     
+    
+             
+          
+               
+            #         present=group
+                   
+        
+                 
+                    # groups = add_groups_form(instance=present)
+    return render (request,'edit-group.html',{'qs':qs,'groups':groups,'pk':pk})
+
+def deletegroup(request,pk):
+    try:
+        b = Groups.objects.get(pk = pk)
+        b.delete()
+        messages.success(request, "The Group is deleted")            
+
+    except Group.DoesNotExist:
+        messages.error(request, "Group doesnot exist")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def changegroupsdetails(request,pk):
+        instance = get_object_or_404(Groups, pk=pk)
+        if request.method=='POST':
+            data = add_groups_form(
+            request.POST, request.FILES, instance=instance)
+            if data.is_valid():
+                data.save(commit=True)
+                messages.error(request, "Group Ammended")
+
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

@@ -16,11 +16,11 @@
 <h1>User Details</h1>
 <form method='POST' action="{% url 'changeuserdetails' pk %}" >
         {% csrf_token %} {{ userform|crispy }}
-        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-success  btn-lg ">Save User</button>
    
 
         </form>
-        <a href="{% url 'deleteuser' pk %}" class="btn btn-danger btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Delete User</a>
+        <a href="{% url 'deleteuser' pk %}" class="btn btn-danger btn-lg " tabindex="-1" role="button" aria-disabled="true">Delete User</a>
 
 <h1>Group Membership</h1>
         <table class="table table-striped">
@@ -39,7 +39,7 @@
               </tr>
               {%endfor%}
               <tr>
-                <td><a href="{% url 'switcher_add' %}" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Add</a></td>
+                <td><a href="{% url 'switcher_add' %}" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Add A Group</a></td>
               </tr>
         </table>
       
@@ -58,7 +58,7 @@
        </tr>
        {%endfor%}
 
-       <tr>  <td><a href="{% url 'new_business' %}" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Add</a></td></tr>
+       <tr>  <td><a href="{% url 'new_business' %}" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Add A Business</a></td></tr>
    </table>
 
      <br>

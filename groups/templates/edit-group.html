@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block page_title %}Edit User{% endblock %} {% block page_heading %}Meeting{% endblock %}
+ {% block content %}
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<h1>Edit Group</h1>
+
+<div class="container">
+<form method='POST' name="search-form" enctype="multipart/form-data">
+    <label for="group">Search: </label>
+    <input id="group" name="group">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success">Display Details</button>
+
+    </form>
+
+<h1>Group Details</h1>
+<form method='POST' action="{% url 'changegroupsdetails' pk %}" >
+        {% csrf_token %} {{ groups.as_table}}
+        <button type="submit" class="btn btn-success  btn-lg ">Save Group</button>
+   
+
+        </form>
+        <a href="{% url 'deletegroup' pk %}" class="btn btn-danger btn-lg " tabindex="-1" role="button" aria-disabled="true">Delete Group</a>
+        <a href="{% url 'add_group' %}" class="btn btn-success btn-lg " tabindex="-1" role="button" aria-disabled="true">Add Group</a>
+
+    <br>
+    <br>
+        
+        </div>
+    </div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+    var availableTags = [
+     
+    {% for q in qs %}
+            "{{q.groupName}}",
+    {% endfor %}
+
+  
+  ]
+    $( "#group" ).autocomplete({
+      source:availableTags
+    });
+  } );
+  </script>
+ {% endblock %}
